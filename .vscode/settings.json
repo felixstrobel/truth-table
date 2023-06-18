@@ -1,0 +1,15 @@
+{
+	"prettier.jsxSingleQuote": true,
+	"prettier.singleQuote": true,
+	"prettier.tabWidth": 4,
+	"[javascript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"prettier.useTabs": true,
+	"prettier.useEditorConfig": false,
+	"prettier.printWidth": 120,
+	"editor.rulers": [80, 120]
+}
