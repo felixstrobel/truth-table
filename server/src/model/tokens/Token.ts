@@ -15,3 +15,5 @@ enum Token {
 
 	EOF,
 }
+
+export default Token;
