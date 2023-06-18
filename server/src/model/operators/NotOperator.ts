@@ -1,5 +1,5 @@
 class NotOperator extends Term {
-	public eval(): boolean {
-		return !this.leftChild.eval();
+	public eval(variableAssignment: Map<string, boolean>): boolean {
+		return !this.leftChild.eval(variableAssignment);
 	}
 }
