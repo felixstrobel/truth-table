@@ -19,37 +19,43 @@ export default class Lexer {
 		this.currentToken = this.input.charAt(this.currentIndex);
 	}
 
-	public nextToken(): Token {
-		if (this.currentToken === '') return Token.EOF;
+	public nextToken(): { token: Token; symbol?: string } {
+		if (this.currentToken === '') return { token: Token.EOF };
+
+		if (this.currentToken.match(/[a-zA-Z]/)) {
+			let symbol = this.currentToken;
+			this.updateToken();
+			return { token: Token.VARIABLE, symbol: symbol };
+		}
 
 		//#region unicode
 		if (this.currentToken === '⊼') {
 			this.updateToken();
-			return Token.NAND_OPERATOR;
+			return { token: Token.NAND_OPERATOR };
 		}
 		if (this.currentToken === '∧') {
 			this.updateToken();
-			return Token.AND_OPERATOR;
+			return { token: Token.AND_OPERATOR };
 		}
 		if (this.currentToken === '⊽') {
 			this.updateToken();
-			return Token.NOR_OPERATOR;
+			return { token: Token.NOR_OPERATOR };
 		}
 		if (this.currentToken === '∨') {
 			this.updateToken();
-			return Token.OR_OPERATOR;
+			return { token: Token.OR_OPERATOR };
 		}
 		if (this.currentToken === '→') {
 			this.updateToken();
-			return Token.IMP_OPERATOR;
+			return { token: Token.IMP_OPERATOR };
 		}
 		if (this.currentToken === '↔') {
 			this.updateToken();
-			return Token.XNOR_OPERATOR;
+			return { token: Token.XNOR_OPERATOR };
 		}
 		if (this.currentToken === '↮') {
 			this.updateToken();
-			return Token.XOR_OPERATOR;
+			return { token: Token.XOR_OPERATOR };
 		}
 		//#endregion
 
@@ -59,7 +65,7 @@ export default class Lexer {
 			if (this.currentToken === '&') {
 				this.updateToken();
 			}
-			return Token.AND_OPERATOR;
+			return { token: Token.AND_OPERATOR };
 		}
 
 		// |, ||
@@ -68,7 +74,7 @@ export default class Lexer {
 			if (this.currentToken === '|') {
 				this.updateToken();
 			}
-			return Token.OR_OPERATOR;
+			return { token: Token.OR_OPERATOR };
 		}
 
 		if (this.currentToken === '¬' || this.currentToken === '!' || this.currentToken === '~') {
@@ -76,34 +82,34 @@ export default class Lexer {
 
 			if (this.currentToken === '∧') {
 				this.updateToken();
-				return Token.NAND_OPERATOR;
+				return { token: Token.NAND_OPERATOR };
 			}
 			if (this.currentToken === '&') {
 				this.updateToken();
 				if (this.currentToken === '&') {
 					this.updateToken();
 				}
-				return Token.NAND_OPERATOR;
+				return { token: Token.NAND_OPERATOR };
 			}
 
 			if (this.currentToken === '∨') {
 				this.updateToken();
-				return Token.NOR_OPERATOR;
+				return { token: Token.NOR_OPERATOR };
 			}
 			if (this.currentToken === '|') {
 				this.updateToken();
 				if (this.currentToken === '|') {
 					this.updateToken();
 				}
-				return Token.NOR_OPERATOR;
+				return { token: Token.NOR_OPERATOR };
 			}
 
 			if (this.currentToken === '=') {
 				this.updateToken();
-				return Token.XOR_OPERATOR;
+				return { token: Token.XOR_OPERATOR };
 			}
 
-			return Token.NOT_OPERATOR;
+			return { token: Token.NOT_OPERATOR };
 		}
 
 		// ->
@@ -111,7 +117,7 @@ export default class Lexer {
 			this.updateToken();
 			if (this.currentToken === '>') {
 				this.updateToken();
-				return Token.IMP_OPERATOR;
+				return { token: Token.IMP_OPERATOR };
 			}
 			throw new Error();
 			// TODO Error
@@ -123,13 +129,13 @@ export default class Lexer {
 
 			if (this.currentToken === '>') {
 				this.updateToken();
-				return Token.IMP_OPERATOR;
+				return { token: Token.IMP_OPERATOR };
 			}
 
 			if (this.currentToken === '=') {
 				this.updateToken();
 			}
-			return Token.XNOR_OPERATOR;
+			return { token: Token.XNOR_OPERATOR };
 		}
 
 		// <> <=> <-> <!> <!=>
@@ -138,14 +144,14 @@ export default class Lexer {
 
 			if (this.currentToken === '>') {
 				this.updateToken();
-				return Token.XNOR_OPERATOR;
+				return { token: Token.XNOR_OPERATOR };
 			}
 
 			if (this.currentToken === '=') {
 				this.updateToken();
 				if (this.currentToken === '>') {
 					this.updateToken();
-					return Token.XNOR_OPERATOR;
+					return { token: Token.XNOR_OPERATOR };
 				}
 				throw new Error();
 				// TODO Error
@@ -155,7 +161,7 @@ export default class Lexer {
 				this.updateToken();
 				if (this.currentToken === '>') {
 					this.updateToken();
-					return Token.XNOR_OPERATOR;
+					return { token: Token.XNOR_OPERATOR };
 				}
 				throw new Error();
 				// TODO Error
@@ -170,7 +176,7 @@ export default class Lexer {
 
 				if (this.currentToken === '>') {
 					this.updateToken();
-					return Token.XOR_OPERATOR;
+					return { token: Token.XOR_OPERATOR };
 				}
 				throw new Error();
 				// TODO Error
