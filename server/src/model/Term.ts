@@ -1,8 +1,8 @@
 abstract class Term {
-	protected leftChild: Term;
-	protected rightChild: Term;
+	protected leftChild: Term | null;
+	protected rightChild: Term | null;
 
-	constructor(leftChild: Term, rightChild: Term) {
+	constructor(leftChild: Term | null, rightChild: Term | null) {
 		this.leftChild = leftChild;
 		this.rightChild = rightChild;
 	}
