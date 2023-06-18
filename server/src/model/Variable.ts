@@ -1,4 +1,6 @@
-class Variable extends Term {
+import Term from "./Term";
+
+export default class Variable extends Term {
 	private name: string;
 
 	constructor(name: string) {

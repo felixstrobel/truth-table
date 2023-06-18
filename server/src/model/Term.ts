@@ -1,4 +1,4 @@
-abstract class Term {
+export default abstract class Term {
 	protected leftChild: Term | null;
 	protected rightChild: Term | null;
 
