@@ -7,5 +7,5 @@ abstract class Term {
 		this.rightChild = rightChild;
 	}
 
-	public abstract eval(): boolean;
+	public abstract eval(variableAssignment: Map<string, boolean>): boolean;
 }
