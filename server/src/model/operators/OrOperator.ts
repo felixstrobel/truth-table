@@ -1,5 +1,5 @@
 class OrOperator extends Term {
-	public eval(): boolean {
-		return this.leftChild.eval() || this.rightChild.eval();
+	public eval(variableAssignment: Map<string, boolean>): boolean {
+		return this.leftChild.eval(variableAssignment) || this.rightChild.eval(variableAssignment);
 	}
 }
