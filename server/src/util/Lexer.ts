@@ -19,6 +19,7 @@ export default class Lexer {
 		this.currentToken = this.input.charAt(this.currentIndex);
 	}
 
+	// TODO brackets
 	public nextToken(): { token: Token; symbol?: string } {
 		if (this.currentToken === '') return { token: Token.EOF };
 
