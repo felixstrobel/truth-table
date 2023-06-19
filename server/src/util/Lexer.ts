@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import Connective from '../model/connective/Connective';
 import ConnectiveType from '../model/connective/ConnectiveType';
 import Token from '../model/token/Token';
@@ -36,7 +34,7 @@ export default class Lexer {
 	 * @param symbol The symbol of the connective.
 	 * @returns The connective object with the specified symbol, or null if not found.
 	 */
-	private getConnective(symbol: string): Connective {
+	private getConnective(symbol: string): Connective | null {
 		for (const connective of this.connectives) {
 			if (connective.getOfficialSymbol() === symbol) {
 				return connective;
