@@ -1,190 +1,86 @@
 // @ts-nocheck
 
+import Connective from '../model/Connective';
 import Token from '../model/tokens/Token';
 
 export default class Lexer {
 	private input: string;
-	private currentIndex: number;
-	private currentToken: string;
+	private connectives: Connective[] = [];
+	private currentIndex: number = -1;
 
 	constructor(input: string) {
 		this.input = input.trim();
 
-		this.currentIndex = 0;
-		this.currentToken = this.input.charAt(0);
+		this.loadDefaultConnective();
 	}
 
-	private updateToken() {
+	//#region connectives
+	public addConnective(connective: Connective): void {
+		this.connectives.push(connective);
+	}
+
+	private getConnective(symbol: string): Connective {
+		for (const connective of this.connectives) {
+			if (connective.getOfficialSymbol() === symbol) {
+				return connective;
+			}
+		}
+
+		return null;
+	}
+
+	private loadDefaultConnective(): void {
+		const NOT = new Connective('¬', (a: boolean) => !a, ['!', '~']);
+		const AND = new Connective('∧', (a: boolean, b: boolean) => a && b, ['&&', '&']);
+		const OR = new Connective('∨', (a: boolean, b: boolean) => a || b, ['||', '|']);
+
+		this.addConnective(NOT);
+		this.addConnective(AND);
+		this.addConnective(OR);
+	}
+
+	private replaceConnective(connective: Connective): void {
+		const officialSymbol = connective.getOfficialSymbol();
+		const otherSymbols = connective.getOtherSymbols();
+
+		for (const symbol of otherSymbols) {
+			this.input = this.input.replace(symbol, officialSymbol);
+		}
+	}
+
+	private replaceConnectives(): void {
+		for (const connective of this.connectives) {
+			this.replaceConnective(connective);
+		}
+	}
+	//#endregion
+
+	public lex(): Token[] {
+		this.replaceConnectives();
+
+		const tokens: Token[] = [];
+
+		while (this.hasNext()) {
+			tokens.push(this.handleNext());
+		}
+
+		return tokens;
+	}
+
+	private hasNext(): boolean {
+		return this.input.length > this.currentIndex + 1;
+	}
+
+	private handleNext(): Token {
 		this.currentIndex++;
-		this.currentToken = this.input.charAt(this.currentIndex);
+		const symbol: string = this.input.charAt(this.currentIndex);
+
+		console.log('char', this.getConnective(symbol));
+
+		return null;
 	}
 
-	// TODO brackets
-	public nextToken(): { token: Token; symbol?: string } {
-		if (this.currentToken === '') return { token: Token.EOF };
-
-		if (this.currentToken.match(/[a-zA-Z]/)) {
-			let symbol = this.currentToken;
-			this.updateToken();
-			return { token: Token.VARIABLE, symbol: symbol };
-		}
-
-		//#region unicode
-		if (this.currentToken === '⊼') {
-			this.updateToken();
-			return { token: Token.NAND_OPERATOR };
-		}
-		if (this.currentToken === '∧') {
-			this.updateToken();
-			return { token: Token.AND_OPERATOR };
-		}
-		if (this.currentToken === '⊽') {
-			this.updateToken();
-			return { token: Token.NOR_OPERATOR };
-		}
-		if (this.currentToken === '∨') {
-			this.updateToken();
-			return { token: Token.OR_OPERATOR };
-		}
-		if (this.currentToken === '→') {
-			this.updateToken();
-			return { token: Token.IMP_OPERATOR };
-		}
-		if (this.currentToken === '↔') {
-			this.updateToken();
-			return { token: Token.XNOR_OPERATOR };
-		}
-		if (this.currentToken === '↮') {
-			this.updateToken();
-			return { token: Token.XOR_OPERATOR };
-		}
-		//#endregion
-
-		// &, &&
-		if (this.currentToken === '&') {
-			this.updateToken();
-			if (this.currentToken === '&') {
-				this.updateToken();
-			}
-			return { token: Token.AND_OPERATOR };
-		}
-
-		// |, ||
-		if (this.currentToken === '|') {
-			this.updateToken();
-			if (this.currentToken === '|') {
-				this.updateToken();
-			}
-			return { token: Token.OR_OPERATOR };
-		}
-
-		if (this.currentToken === '¬' || this.currentToken === '!' || this.currentToken === '~') {
-			this.updateToken();
-
-			if (this.currentToken === '∧') {
-				this.updateToken();
-				return { token: Token.NAND_OPERATOR };
-			}
-			if (this.currentToken === '&') {
-				this.updateToken();
-				if (this.currentToken === '&') {
-					this.updateToken();
-				}
-				return { token: Token.NAND_OPERATOR };
-			}
-
-			if (this.currentToken === '∨') {
-				this.updateToken();
-				return { token: Token.NOR_OPERATOR };
-			}
-			if (this.currentToken === '|') {
-				this.updateToken();
-				if (this.currentToken === '|') {
-					this.updateToken();
-				}
-				return { token: Token.NOR_OPERATOR };
-			}
-
-			if (this.currentToken === '=') {
-				this.updateToken();
-				return { token: Token.XOR_OPERATOR };
-			}
-
-			return { token: Token.NOT_OPERATOR };
-		}
-
-		// ->
-		if (this.currentToken === '-') {
-			this.updateToken();
-			if (this.currentToken === '>') {
-				this.updateToken();
-				return { token: Token.IMP_OPERATOR };
-			}
-			throw new Error();
-			// TODO Error
-		}
-
-		// = == =>
-		if (this.currentToken === '=') {
-			this.updateToken();
-
-			if (this.currentToken === '>') {
-				this.updateToken();
-				return { token: Token.IMP_OPERATOR };
-			}
-
-			if (this.currentToken === '=') {
-				this.updateToken();
-			}
-			return { token: Token.XNOR_OPERATOR };
-		}
-
-		// <> <=> <-> <!> <!=>
-		if (this.currentToken === '<') {
-			this.updateToken();
-
-			if (this.currentToken === '>') {
-				this.updateToken();
-				return { token: Token.XNOR_OPERATOR };
-			}
-
-			if (this.currentToken === '=') {
-				this.updateToken();
-				if (this.currentToken === '>') {
-					this.updateToken();
-					return { token: Token.XNOR_OPERATOR };
-				}
-				throw new Error();
-				// TODO Error
-			}
-
-			if (this.currentToken === '-') {
-				this.updateToken();
-				if (this.currentToken === '>') {
-					this.updateToken();
-					return { token: Token.XNOR_OPERATOR };
-				}
-				throw new Error();
-				// TODO Error
-			}
-
-			if (this.currentToken === '!') {
-				this.updateToken();
-
-				if (this.currentToken === '=') {
-					this.updateToken();
-				}
-
-				if (this.currentToken === '>') {
-					this.updateToken();
-					return { token: Token.XOR_OPERATOR };
-				}
-				throw new Error();
-				// TODO Error
-			}
-		}
-
-		throw new Error();
-		// TODO Error
+	public getInput() {
+		return this.input;
 	}
 }
