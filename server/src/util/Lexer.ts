@@ -30,6 +30,12 @@ export default class Lexer {
 		this.connectives.push(connective);
 	}
 
+	/**
+	 * Retrieves a connective object based on its symbol.
+	 *
+	 * @param symbol The symbol of the connective.
+	 * @returns The connective object with the specified symbol, or null if not found.
+	 */
 	private getConnective(symbol: string): Connective {
 		for (const connective of this.connectives) {
 			if (connective.getOfficialSymbol() === symbol) {
