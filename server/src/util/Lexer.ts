@@ -1,4 +1,6 @@
+import BinaryOperator from "../model/operators/BinaryOperator";
 import Operator from "../model/operators/Operator";
+import UnaryOperator from "../model/operators/UnaryOperator";
 import OperatorFactory from "../model/operators/factory/OperatorFactory";
 import Token from "../model/token/Token";
 import TokenType from "../model/token/TokenType";
@@ -124,23 +126,23 @@ export default class Lexer {
 		const symbol: string = this.input.charAt(this.currentIndex);
 
 		let tokenType: TokenType;
-		// if (this.getOperator(symbol)?.getConnectiveType() === ConnectiveType.BINARY_CONNECTIVE) {
-		// 	tokenType = TokenType.BINARY_CONNECTIVE;
-		// } else if (this.getOperator(symbol)?.getConnectiveType() === ConnectiveType.UNARY_CONNECTIVE) {
-		// 	tokenType = TokenType.UNARY_CONNECTIVE;
-		// } else if (symbol === '(') {
-		// 	// TODO if statement more generic
-		// 	tokenType = TokenType.PARENTHESIS_OPEN;
-		// } else if (symbol === ')') {
-		// 	// TODO if statement more generic
-		// 	tokenType = TokenType.PARENTHESIS_CLOSE;
-		// } else if (symbol.match(/[A-Z]/)) {
-		// 	tokenType = TokenType.ATOM;
-		// } else {
-		// 	tokenType = TokenType.UNKNOWN;
-		// }
+		const operator = this.getOperator(symbol);
 
-		return new Token(TokenType.UNKNOWN, symbol);
+		if (operator instanceof UnaryOperator) {
+			tokenType = TokenType.UNARY_OPERATOR;
+		} else if (operator instanceof BinaryOperator) {
+			tokenType = TokenType.BINARY_OPERATOR;
+		} else if (symbol === "(") {
+			tokenType = TokenType.PARENTHESIS_OPEN;
+		} else if (symbol === ")") {
+			tokenType = TokenType.PARENTHESIS_CLOSE;
+		} else if (symbol.match(/[A-Z]/)) {
+			tokenType = TokenType.ATOM;
+		} else {
+			tokenType = TokenType.UNKNOWN;
+		}
+
+		return new Token(tokenType, symbol);
 	}
 
 	/**

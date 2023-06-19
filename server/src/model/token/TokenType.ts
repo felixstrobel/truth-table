@@ -10,14 +10,14 @@ enum TokenType {
 	ATOM,
 
 	/**
-	 * Represents a unary connective token (e.g. not).
+	 * Represents a unary operator token (e.g. not).
 	 */
-	UNARY_CONNECTIVE,
+	UNARY_OPERATOR,
 
 	/**
-	 * Represents a binary connective token (e.g. and).
+	 * Represents a binary operator token (e.g. and).
 	 */
-	BINARY_CONNECTIVE,
+	BINARY_OPERATOR,
 
 	/**
 	 * Represents an opening parenthesis token.
