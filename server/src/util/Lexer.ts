@@ -10,13 +10,22 @@ export default class Lexer {
 	private connectives: Connective[] = [];
 	private currentIndex: number = -1;
 
+	/**
+	 * Constructs a {@link Lexer} object.
+	 *
+	 * @param input The input string to be processed by the lexer.
+	 */
 	constructor(input: string) {
 		this.input = input.trim();
 
 		this.loadDefaultConnective();
 	}
 
-	//#region connectives
+	/**
+	 * Adds a given connective to the lexer.
+	 *
+	 * @param connective The connective to be added.
+	 */
 	public addConnective(connective: Connective): void {
 		this.connectives.push(connective);
 	}
@@ -31,6 +40,9 @@ export default class Lexer {
 		return null;
 	}
 
+	/**
+	 * Loads the default connectives (NOT, AND, OR) into the lexer.
+	 */
 	private loadDefaultConnective(): void {
 		const NOT = new Connective('¬', ConnectiveType.UNARY_CONNECTIVE, (a: boolean) => !a, ['!', '~']);
 		const AND = new Connective('∧', ConnectiveType.BINARY_CONNECTIVE, (a: boolean, b: boolean) => a && b, [
@@ -47,6 +59,12 @@ export default class Lexer {
 		this.addConnective(OR);
 	}
 
+	/**
+	 * Replaces alternate symbols of a connective with its official symbol in
+	 * the input string.
+	 *
+	 * @param connective The connective to be replaced.
+	 */
 	private replaceConnective(connective: Connective): void {
 		const officialSymbol = connective.getOfficialSymbol();
 		const otherSymbols = connective.getOtherSymbols();
@@ -56,13 +74,22 @@ export default class Lexer {
 		}
 	}
 
+	/**
+	 * Replaces all alternate symbols of all connectives in the input string
+	 * with their official symbols.
+	 */
 	private replaceConnectives(): void {
 		for (const connective of this.connectives) {
 			this.replaceConnective(connective);
 		}
 	}
-	//#endregion
 
+	/**
+	 * Performs lexical analysis on the input string and returns an array of
+	 * tokens in the order it was extracted from the string.
+	 *
+	 * @returns An array of tokens generated from the input string.
+	 */
 	public lex(): Token[] {
 		this.replaceConnectives();
 
@@ -75,10 +102,20 @@ export default class Lexer {
 		return tokens;
 	}
 
+	/**
+	 * Checks if there are more characters to process in the input string.
+	 *
+	 * @returns A boolean indicating whether there are more characters to process or not.
+	 */
 	private hasNext(): boolean {
 		return this.input.length > this.currentIndex + 1;
 	}
 
+	/**
+	 * Handles the next character in the input string and generates a token.
+	 *
+	 * @returns A token generated from the next character.
+	 */
 	private handleNext(): Token {
 		this.currentIndex++;
 		const symbol: string = this.input.charAt(this.currentIndex);
@@ -103,6 +140,11 @@ export default class Lexer {
 		return new Token(tokenType, symbol);
 	}
 
+	/**
+	 * Returns the input string the lexer processes.
+	 *
+	 * @returns The input string.
+	 */
 	public getInput() {
 		return this.input;
 	}
