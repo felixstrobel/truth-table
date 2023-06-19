@@ -2,10 +2,10 @@ import TokenType from './TokenType';
 
 export default class Token {
 	private readonly tokenType: TokenType;
-	private readonly value: string;
+	private readonly symbol: string;
 
-	constructor(tokenType: TokenType, value: string) {
+	constructor(tokenType: TokenType, symbol: string) {
 		this.tokenType = tokenType;
-		this.value = value;
+		this.symbol = symbol;
 	}
 }
