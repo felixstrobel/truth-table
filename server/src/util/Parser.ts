@@ -1,5 +1,5 @@
 import Lexer from './Lexer';
-import Token from '../model/tokens/Token';
+import Token from '../model/token/Token';
 
 export default class Parser {
 	private lexer: Lexer;
@@ -11,10 +11,11 @@ export default class Parser {
 
 	public parse() {
 		let token;
+		// new Connective('a', (a: boolean) => a);
 		// TODO rewrite
-		while ((token = this.lexer.nextToken()).token !== Token.EOF) {
-			console.log(token);
-		}
+		// while ((token = this.lexer.nextToken()).token !== Token.EOF) {
+		// 	console.log(token);
+		// }
 	}
 }
 

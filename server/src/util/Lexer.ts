@@ -1,7 +1,7 @@
-import Operator from '../model/operators/Operator';
-import OperatorFactory from '../model/operators/factory/OperatorFactory';
-import Token from '../model/token/Token';
-import TokenType from '../model/token/TokenType';
+import Operator from "../model/operators/Operator";
+import OperatorFactory from "../model/operators/factory/OperatorFactory";
+import Token from "../model/token/Token";
+import TokenType from "../model/token/TokenType";
 
 /**
  * Performs lexical analysis on a given string.
