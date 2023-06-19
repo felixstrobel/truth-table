@@ -1,0 +1,11 @@
+enum TokenType {
+	ATOM,
+	UNARY_CONNECTIVE,
+	BINARY_CONNECTIVE,
+	PARENTHESIS_OPEN,
+	PARENTHESIS_CLOSE,
+	TERM,
+	EOF,
+}
+
+export default TokenType;
