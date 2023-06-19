@@ -3,6 +3,7 @@
 import Connective from '../model/connective/Connective';
 import ConnectiveType from '../model/connective/ConnectiveType';
 import Token from '../model/token/Token';
+import TokenType from '../model/token/TokenType';
 
 export default class Lexer {
 	private input: string;
@@ -32,8 +33,14 @@ export default class Lexer {
 
 	private loadDefaultConnective(): void {
 		const NOT = new Connective('¬', ConnectiveType.UNARY_CONNECTIVE, (a: boolean) => !a, ['!', '~']);
-		const AND = new Connective('∧', ConnectiveType.BINARY_CONNECTIVE, (a: boolean, b: boolean) => a && b, ['&&', '&']);
-		const OR = new Connective('∨', ConnectiveType.BINARY_CONNECTIVE, (a: boolean, b: boolean) => a || b, ['||', '|']);
+		const AND = new Connective('∧', ConnectiveType.BINARY_CONNECTIVE, (a: boolean, b: boolean) => a && b, [
+			'&&',
+			'&',
+		]);
+		const OR = new Connective('∨', ConnectiveType.BINARY_CONNECTIVE, (a: boolean, b: boolean) => a || b, [
+			'||',
+			'|',
+		]);
 
 		this.addConnective(NOT);
 		this.addConnective(AND);
@@ -76,9 +83,24 @@ export default class Lexer {
 		this.currentIndex++;
 		const symbol: string = this.input.charAt(this.currentIndex);
 
-		console.log('char', this.getConnective(symbol));
+		let tokenType: TokenType;
+		if (this.getConnective(symbol)?.getConnectiveType() === ConnectiveType.BINARY_CONNECTIVE) {
+			tokenType = TokenType.BINARY_CONNECTIVE;
+		} else if (this.getConnective(symbol)?.getConnectiveType() === ConnectiveType.UNARY_CONNECTIVE) {
+			tokenType = TokenType.UNARY_CONNECTIVE;
+		} else if (symbol === '(') {
+			// TODO if statement more generic
+			tokenType = TokenType.PARENTHESIS_OPEN;
+		} else if (symbol === ')') {
+			// TODO if statement more generic
+			tokenType = TokenType.PARENTHESIS_CLOSE;
+		} else if (symbol.match(/[A-Z]/)) {
+			tokenType = TokenType.ATOM;
+		} else {
+			tokenType = TokenType.UNKNOWN;
+		}
 
-		return null;
+		return new Token(tokenType, symbol);
 	}
 
 	public getInput() {
