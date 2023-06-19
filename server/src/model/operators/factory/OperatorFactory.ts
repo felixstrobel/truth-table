@@ -10,6 +10,18 @@ import UnaryOperator from "../UnaryOperator";
  * @author Felix Strobel <https://github.com/felixstrobel>
  */
 class OperatorFactory {
+    public static getAllOperators(): Operator[] {
+        return [
+            this.createNegation(),
+            this.createConjunction(),
+            this.createNAND(),
+            this.createDisjunction(),
+            this.createNOR(),
+            this.createConditional(),
+            this.createBiconditional(),
+            this.createExclusiveDisjunction(),
+        ];
+    }
 
     public static createNegation(): Operator {
         return new UnaryOperator((x: boolean) => !x, "¬", ["!", "~"]);
