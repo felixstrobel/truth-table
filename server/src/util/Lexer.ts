@@ -3,6 +3,13 @@ import ConnectiveType from '../model/connective/ConnectiveType';
 import Token from '../model/token/Token';
 import TokenType from '../model/token/TokenType';
 
+/**
+ * Performs lexical analysis on a given string.
+ * It tokenizes the string by identifiers that can be changed.
+ * For token types see {@link TokenType}.
+ * 
+ * @author Max Lohrmann <https://github.com/Max0440>
+ */
 export default class Lexer {
 	private input: string;
 	private connectives: Connective[] = [];
