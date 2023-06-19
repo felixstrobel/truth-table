@@ -1,5 +1,5 @@
-import Connective from '../model/connective/Connective';
-import ConnectiveType from '../model/connective/ConnectiveType';
+import Operator from '../model/operators/Operator';
+import OperatorFactory from '../model/operators/factory/OperatorFactory';
 import Token from '../model/token/Token';
 import TokenType from '../model/token/TokenType';
 
@@ -7,12 +7,12 @@ import TokenType from '../model/token/TokenType';
  * Performs lexical analysis on a given string.
  * It tokenizes the string by identifiers that can be changed.
  * For token types see {@link TokenType}.
- * 
+ *
  * @author Max Lohrmann <https://github.com/Max0440>
  */
 export default class Lexer {
 	private input: string;
-	private connectives: Connective[] = [];
+	private operators: Operator[] = [];
 	private currentIndex: number = -1;
 
 	/**
@@ -23,28 +23,39 @@ export default class Lexer {
 	constructor(input: string) {
 		this.input = input.trim();
 
-		this.loadDefaultConnective();
+		this.loadDefaultOperators();
 	}
 
 	/**
-	 * Adds a given connective to the lexer.
+	 * Adds a given operator to the lexer.
 	 *
-	 * @param connective The connective to be added.
+	 * @param operator The operator to be added.
 	 */
-	public addConnective(connective: Connective): void {
-		this.connectives.push(connective);
+	public addOperator(operator: Operator): void {
+		this.operators.push(operator);
 	}
 
 	/**
-	 * Retrieves a connective object based on its symbol.
-	 *
-	 * @param symbol The symbol of the connective.
-	 * @returns The connective object with the specified symbol, or null if not found.
+	 * Loads the default operator (NOT, AND, OR) into the lexer.
 	 */
-	private getConnective(symbol: string): Connective | null {
-		for (const connective of this.connectives) {
-			if (connective.getOfficialSymbol() === symbol) {
-				return connective;
+	private loadDefaultOperators(): void {
+		const allOperators = OperatorFactory.getAllOperators();
+
+		for (const operator of allOperators) {
+			this.addOperator(operator);
+		}
+	}
+
+	/**
+	 * Retrieves a operator object based on its symbol.
+	 *
+	 * @param symbol The symbol of the operator.
+	 * @returns The operator object with the specified symbol, or null if not found.
+	 */
+	private getOperator(symbol: string): Operator | null {
+		for (const operator of this.operators) {
+			if (operator.getUnifiedSymbol() === symbol) {
+				return operator;
 			}
 		}
 
@@ -52,33 +63,14 @@ export default class Lexer {
 	}
 
 	/**
-	 * Loads the default connectives (NOT, AND, OR) into the lexer.
-	 */
-	private loadDefaultConnective(): void {
-		const NOT = new Connective('¬', ConnectiveType.UNARY_CONNECTIVE, (a: boolean) => !a, ['!', '~']);
-		const AND = new Connective('∧', ConnectiveType.BINARY_CONNECTIVE, (a: boolean, b: boolean) => a && b, [
-			'&&',
-			'&',
-		]);
-		const OR = new Connective('∨', ConnectiveType.BINARY_CONNECTIVE, (a: boolean, b: boolean) => a || b, [
-			'||',
-			'|',
-		]);
-
-		this.addConnective(NOT);
-		this.addConnective(AND);
-		this.addConnective(OR);
-	}
-
-	/**
-	 * Replaces alternate symbols of a connective with its official symbol in
+	 * Replaces alternate symbols of a operator with its official symbol in
 	 * the input string.
 	 *
-	 * @param connective The connective to be replaced.
+	 * @param operator The operator to be replaced.
 	 */
-	private replaceConnective(connective: Connective): void {
-		const officialSymbol = connective.getOfficialSymbol();
-		const otherSymbols = connective.getOtherSymbols();
+	private replaceOperator(operator: Operator): void {
+		const officialSymbol = operator.getUnifiedSymbol();
+		const otherSymbols = operator.getAlternativeSymbols();
 
 		for (const symbol of otherSymbols) {
 			this.input = this.input.replace(symbol, officialSymbol);
@@ -86,12 +78,12 @@ export default class Lexer {
 	}
 
 	/**
-	 * Replaces all alternate symbols of all connectives in the input string
+	 * Replaces all alternate symbols of all operators in the input string
 	 * with their official symbols.
 	 */
-	private replaceConnectives(): void {
-		for (const connective of this.connectives) {
-			this.replaceConnective(connective);
+	private replaceOperators(): void {
+		for (const operator of this.operators) {
+			this.replaceOperator(operator);
 		}
 	}
 
@@ -102,7 +94,7 @@ export default class Lexer {
 	 * @returns An array of tokens generated from the input string.
 	 */
 	public lex(): Token[] {
-		this.replaceConnectives();
+		this.replaceOperators();
 
 		const tokens: Token[] = [];
 
@@ -132,23 +124,23 @@ export default class Lexer {
 		const symbol: string = this.input.charAt(this.currentIndex);
 
 		let tokenType: TokenType;
-		if (this.getConnective(symbol)?.getConnectiveType() === ConnectiveType.BINARY_CONNECTIVE) {
-			tokenType = TokenType.BINARY_CONNECTIVE;
-		} else if (this.getConnective(symbol)?.getConnectiveType() === ConnectiveType.UNARY_CONNECTIVE) {
-			tokenType = TokenType.UNARY_CONNECTIVE;
-		} else if (symbol === '(') {
-			// TODO if statement more generic
-			tokenType = TokenType.PARENTHESIS_OPEN;
-		} else if (symbol === ')') {
-			// TODO if statement more generic
-			tokenType = TokenType.PARENTHESIS_CLOSE;
-		} else if (symbol.match(/[A-Z]/)) {
-			tokenType = TokenType.ATOM;
-		} else {
-			tokenType = TokenType.UNKNOWN;
-		}
+		// if (this.getOperator(symbol)?.getConnectiveType() === ConnectiveType.BINARY_CONNECTIVE) {
+		// 	tokenType = TokenType.BINARY_CONNECTIVE;
+		// } else if (this.getOperator(symbol)?.getConnectiveType() === ConnectiveType.UNARY_CONNECTIVE) {
+		// 	tokenType = TokenType.UNARY_CONNECTIVE;
+		// } else if (symbol === '(') {
+		// 	// TODO if statement more generic
+		// 	tokenType = TokenType.PARENTHESIS_OPEN;
+		// } else if (symbol === ')') {
+		// 	// TODO if statement more generic
+		// 	tokenType = TokenType.PARENTHESIS_CLOSE;
+		// } else if (symbol.match(/[A-Z]/)) {
+		// 	tokenType = TokenType.ATOM;
+		// } else {
+		// 	tokenType = TokenType.UNKNOWN;
+		// }
 
-		return new Token(tokenType, symbol);
+		return new Token(TokenType.UNKNOWN, symbol);
 	}
 
 	/**
