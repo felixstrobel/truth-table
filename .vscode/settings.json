@@ -11,13 +11,6 @@
 	"prettier.useTabs": true,
 	"prettier.useEditorConfig": false,
 	"prettier.printWidth": 120,
-	"editor.rulers": [
-		80,
-		120
-	],
-	"cSpell.words": [
-		"Biconditional",
-		"Nand",
-		"Xnor"
-	]
+	"editor.rulers": [80, 120],
+	"cSpell.words": ["Biconditional", "Nand", "Strobel", "Xnor"]
 }
