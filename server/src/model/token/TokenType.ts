@@ -5,6 +5,7 @@ enum TokenType {
 	PARENTHESIS_OPEN,
 	PARENTHESIS_CLOSE,
 	TERM,
+	UNKNOWN,
 	EOF,
 }
 
