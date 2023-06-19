@@ -1,6 +1,7 @@
 // @ts-nocheck
 
 import Connective from '../model/connective/Connective';
+import ConnectiveType from '../model/connective/ConnectiveType';
 import Token from '../model/token/Token';
 
 export default class Lexer {
@@ -30,9 +31,9 @@ export default class Lexer {
 	}
 
 	private loadDefaultConnective(): void {
-		const NOT = new Connective('¬', (a: boolean) => !a, ['!', '~']);
-		const AND = new Connective('∧', (a: boolean, b: boolean) => a && b, ['&&', '&']);
-		const OR = new Connective('∨', (a: boolean, b: boolean) => a || b, ['||', '|']);
+		const NOT = new Connective('¬', ConnectiveType.UNARY_CONNECTIVE, (a: boolean) => !a, ['!', '~']);
+		const AND = new Connective('∧', ConnectiveType.BINARY_CONNECTIVE, (a: boolean, b: boolean) => a && b, ['&&', '&']);
+		const OR = new Connective('∨', ConnectiveType.BINARY_CONNECTIVE, (a: boolean, b: boolean) => a || b, ['||', '|']);
 
 		this.addConnective(NOT);
 		this.addConnective(AND);
