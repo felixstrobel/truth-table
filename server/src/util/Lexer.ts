@@ -1,7 +1,7 @@
 // @ts-nocheck
 
-import Connective from '../model/Connective';
-import Token from '../model/tokens/Token';
+import Connective from '../model/connective/Connective';
+import Token from '../model/token/Token';
 
 export default class Lexer {
 	private input: string;

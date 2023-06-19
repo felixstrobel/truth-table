@@ -1,4 +1,4 @@
-import { EvalFunction } from '../types';
+import { EvalFunction } from '../../types';
 
 export default class Connective {
 	private readonly officialSymbol: string;
