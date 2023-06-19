@@ -21,6 +21,24 @@ abstract class Operator {
     }
 
     abstract evaluate(...assignments: boolean[]): boolean;
+
+    /**
+     * Getter for the unified symbol of the operator.
+     *
+     * @returns the unified symbol
+     */
+    public getUnifiedSymbol(): string {
+        return this.unifiedSymbol;
+    }
+
+    /**
+     * Getter for the alternative symbols - synonyms - of the operator.
+     *
+     * @returns the alternative symbols
+     */
+    public getAlternativeSymbols(): string[] {
+        return this.alternativeSymbols;
+    }
 }
 
 export default Operator;
