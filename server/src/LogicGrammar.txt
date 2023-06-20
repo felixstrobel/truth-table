@@ -1,0 +1,33 @@
+ExpressionDeclaration
+    ::= Expression (',' Expression)*
+
+Expression
+    ::= '(' Expression ')'
+    ::= BooleanExpression
+    ::= IdentifierExpression
+    ::= UnaryOperatorExpression
+    ::= BinaryOperatorExpression
+
+BooleanExpression
+    ::= ('1'|'0')
+
+IdentifierExpression
+    ::= ([a-zA-Z]|('{'[a-zA-Z][a-zA-Z0-9]*'}'))
+
+UnaryOperatorExpression
+    ::= UnaryOperator Expression
+
+BinaryOperatorExpression
+    ::= Expression BinaryOperator Expression
+
+UnaryOperator
+    ::= ('¬'|'!'|'~')
+
+BinaryOperator
+    ::= ('∧'|'&'|'&&')
+    ::= ('⊼'|'¬∧'|'¬&'|'¬&&'|'!∧'|'!&'|'!&&'|'~∧'|'~&'|'~&&')
+    ::= ('∨'|'|'|'||')
+    ::= ('⊽'|'¬∨'|'¬|'|'¬||'|'!∨'|'!|'|'!||'|'~∨'|'~|'|'~||')
+    ::= ('→'|'>'|'->'|'=>')                                     
+    ::= ('↔'|'='|'=='|'<>'|'<=>'|'<->')
+    ::= ('↮'|'!='|'<!>'|'<!=>')
