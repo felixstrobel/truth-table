@@ -52,7 +52,13 @@ export default class Parser {
 		this.operators = OperatorFactory.getAllOperators();
 		this.operators.reverse();
 
-		return this.parseTerm(0);
+		const term = this.parseTerm(0);
+
+		if (this.currentToken.getTokenType() !== TokenType.EOF) {
+			throw new Error("Unexpected token " + this.currentToken.getSymbol());
+		}
+
+		return term;
 	}
 
 	private parseTerm(index: number): Term {
@@ -101,7 +107,7 @@ export default class Parser {
 			return buf;
 		}
 
-		throw new Error("what?");
+		throw new Error("Unexpected token " + this.currentToken.getSymbol());
 	}
 }
 
