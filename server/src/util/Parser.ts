@@ -5,6 +5,8 @@ import Term from "../model/term/Term";
 import BinaryTerm from "../model/term/BinaryTerm";
 import UnaryTerm from "../model/term/UnaryTerm";
 import Variable from "../model/term/Variable";
+import OperatorFactory from "../model/operators/factory/OperatorFactory";
+import Operator from "../model/operators/Operator";
 
 /**
  * TODO DOC
@@ -14,7 +16,7 @@ import Variable from "../model/term/Variable";
 export default class Parser {
 	private readonly lexer: Lexer;
 	private readonly variables: Set<string> = new Set();
-	private tokens: Token[] = [];
+	private operators: Operator[] = [];
 	private currentToken: Token | null = null;
 
 	/**
@@ -26,54 +28,61 @@ export default class Parser {
 		this.lexer = lexer;
 	}
 
-	public parse(): Term {
-		this.updateToken();
-		return this.or();
+	/**
+	 * Returns all variables in the parsed string or an empty set if the string
+	 * hasn't been parsed.
+	 *
+	 * @returns all variables in the parsed string.
+	 */
+	public getVariables(): Set<string> {
+		return this.variables;
 	}
 
+	/**
+	 * Updates the current token to the next token from the string.
+	 */
 	private updateToken() {
 		this.currentToken = this.lexer.nextToken();
 	}
 
-	private or(): Term {
-		let x: Term = this.and();
-		let y: Term;
+	public parse(): Term {
+		this.updateToken();
 
-		while (this.currentToken !== null && this.currentToken.getSymbol() === "∨") {
-			let op = this.currentToken.getOperator();
-			this.updateToken();
-			y = this.and();
-			x = new BinaryTerm(op!, x, y);
-		}
+		this.operators = OperatorFactory.getAllOperators();
+		this.operators.reverse();
 
-		return x;
+		return this.parseTerm(0);
 	}
 
-	private and(): Term {
-		let x: Term = this.not();
-		let y: Term;
-
-		while (this.currentToken !== null && this.currentToken.getSymbol() === "∧") {
-			let op = this.currentToken.getOperator();
-			this.updateToken();
-			y = this.not();
-			x = new BinaryTerm(op!, x, y);
+	private parseTerm(index: number): Term {
+		if (index >= this.operators.length) {
+			return this.parenthesis();
 		}
 
-		return x;
+		let leftTerm: Term = this.parseTerm(index + 1);
+		let rightTerm: Term;
+
+		while (
+			this.currentToken !== null &&
+			this.currentToken.getSymbol() === this.operators[index].getUnifiedSymbol()
+		) {
+			let operator = this.currentToken.getOperator();
+			this.updateToken();
+
+			rightTerm = this.parseTerm(index + 1);
+			// TODO handle unary term
+			leftTerm = new BinaryTerm(operator!, leftTerm, rightTerm);
+		}
+
+		return leftTerm;
 	}
 
-	private not(): Term {
-		if (this.currentToken?.getSymbol() === "¬") {
-			let op = this.currentToken.getOperator();
-			this.updateToken();
-			let y = this.not();
+	private parenthesis(): Term {
+		// TODO implement
+		return this.parseVariable();
+	}
 
-			return new UnaryTerm(op!, y);
-		}
-
-		// TODO Klammern
-
+	private parseVariable(): Term {
 		if (this.currentToken?.getTokenType() === TokenType.ATOM) {
 			this.variables.add(this.currentToken.getSymbol());
 			let buf = new Variable(this.currentToken.getSymbol());
