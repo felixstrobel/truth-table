@@ -1,3 +1,5 @@
+import Operator from "./Operator";
+
 /**
  * The UnaryOperator implements a unary Boolean function.
  *
@@ -5,8 +7,6 @@
  *
  * @author Felix Strobel <https://github.com/felixstrobel>
  */
-import Operator from "./Operator";
-
 class UnaryOperator extends Operator {
 	private readonly evaluation: Function;
 
