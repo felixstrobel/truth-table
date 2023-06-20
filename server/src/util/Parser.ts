@@ -27,13 +27,12 @@ export default class Parser {
 	}
 
 	public parse(): Term {
-		this.tokens = this.lexer.lex();
 		this.updateToken();
 		return this.or();
 	}
 
 	private updateToken() {
-		this.currentToken = this.tokens.shift() ?? null;
+		this.currentToken = this.lexer.nextToken();
 	}
 
 	private or(): Term {

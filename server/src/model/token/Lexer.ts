@@ -94,6 +94,7 @@ export default class Lexer {
 	 * tokens in the order it was extracted from the string.
 	 *
 	 * @returns An array of tokens generated from the input string.
+	 * @deprecated
 	 */
 	public lex(): Token[] {
 		this.replaceOperators();
@@ -105,6 +106,23 @@ export default class Lexer {
 		}
 
 		return tokens;
+	}
+
+	/**
+	 * Performs lexical analysis on the input string and returns the next token
+	 * from the string.
+	 *
+	 * @returns The next token generated from the input string.
+	 */
+	public nextToken(): Token {
+		// TODO not execute every time
+		this.replaceOperators();
+
+		if (this.hasNext()) {
+			return this.handleNext();
+		}
+
+		return new Token(TokenType.EOF, "", null);
 	}
 
 	/**
@@ -125,7 +143,6 @@ export default class Lexer {
 		this.currentIndex++;
 		const symbol: string = this.input.charAt(this.currentIndex);
 
-		let tokenType: TokenType;
 		const operator = this.getOperator(symbol);
 
 		if (operator instanceof UnaryOperator) {
