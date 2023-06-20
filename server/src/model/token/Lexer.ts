@@ -24,6 +24,11 @@ export default class Lexer {
 	 */
 	constructor(input: string) {
 		this.input = input.trim();
+		this.input = this.input.replace(/\s/, "");
+
+		if (this.input.length === 0) {
+			throw new Error("Input may not be empty");
+		}
 
 		this.loadDefaultOperators();
 	}
