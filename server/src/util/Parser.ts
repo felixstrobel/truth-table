@@ -7,6 +7,7 @@ import UnaryTerm from "../model/term/UnaryTerm";
 import Variable from "../model/term/Variable";
 import OperatorFactory from "../model/operators/factory/OperatorFactory";
 import Operator from "../model/operators/Operator";
+import UnaryOperator from "../model/operators/UnaryOperator";
 
 /**
  * TODO DOC
@@ -17,7 +18,7 @@ export default class Parser {
 	private readonly lexer: Lexer;
 	private readonly variables: Set<string> = new Set();
 	private operators: Operator[] = [];
-	private currentToken: Token | null = null;
+	private currentToken: Token = new Token(TokenType.EOF, "", null);
 
 	/**
 	 * Constructs a {@link Parser} object.
@@ -59,18 +60,28 @@ export default class Parser {
 			return this.parenthesis();
 		}
 
+		// unary
+		if (
+			this.currentToken.getSymbol() === this.operators[index].getUnifiedSymbol() &&
+			this.currentToken.getOperator() instanceof UnaryOperator
+		) {
+			let operator = this.currentToken.getOperator();
+			this.updateToken();
+			let y = this.parseTerm(index);
+
+			return new UnaryTerm(operator!, y);
+		}
+
+		// binary
 		let leftTerm: Term = this.parseTerm(index + 1);
 		let rightTerm: Term;
 
-		while (
-			this.currentToken !== null &&
-			this.currentToken.getSymbol() === this.operators[index].getUnifiedSymbol()
-		) {
+		while (this.currentToken.getSymbol() === this.operators[index].getUnifiedSymbol()) {
 			let operator = this.currentToken.getOperator();
 			this.updateToken();
 
 			rightTerm = this.parseTerm(index + 1);
-			// TODO handle unary term
+
 			leftTerm = new BinaryTerm(operator!, leftTerm, rightTerm);
 		}
 
