@@ -1,3 +1,4 @@
+import Operator from "../operators/Operator";
 import TokenType from "./TokenType";
 
 /**
@@ -8,16 +9,19 @@ import TokenType from "./TokenType";
 export default class Token {
 	private readonly tokenType: TokenType;
 	private readonly symbol: string;
+	private readonly operator: Operator | null;
 
 	/**
 	 * Constructs a {@link Token} object.
 	 *
 	 * @param tokenType The type of the token.
 	 * @param symbol The symbol associated with the token.
+	 * @param operator The operator associated with the token ot null if the token doesn't have an operator.
 	 */
-	constructor(tokenType: TokenType, symbol: string) {
+	constructor(tokenType: TokenType, symbol: string, operator: Operator | null = null) {
 		this.tokenType = tokenType;
 		this.symbol = symbol;
+		this.operator = operator;
 	}
 
 	/**

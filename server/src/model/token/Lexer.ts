@@ -129,20 +129,18 @@ export default class Lexer {
 		const operator = this.getOperator(symbol);
 
 		if (operator instanceof UnaryOperator) {
-			tokenType = TokenType.UNARY_OPERATOR;
+			return new Token(TokenType.UNARY_OPERATOR, symbol, operator);
 		} else if (operator instanceof BinaryOperator) {
-			tokenType = TokenType.BINARY_OPERATOR;
+			return new Token(TokenType.BINARY_OPERATOR, symbol, operator);
 		} else if (symbol === "(") {
-			tokenType = TokenType.PARENTHESIS_OPEN;
+			return new Token(TokenType.PARENTHESIS_OPEN, symbol, null);
 		} else if (symbol === ")") {
-			tokenType = TokenType.PARENTHESIS_CLOSE;
+			return new Token(TokenType.PARENTHESIS_CLOSE, symbol, null);
 		} else if (symbol.match(/[A-Z]/)) {
-			tokenType = TokenType.ATOM;
+			return new Token(TokenType.ATOM, symbol, null);
 		} else {
-			tokenType = TokenType.UNKNOWN;
+			return new Token(TokenType.UNKNOWN, symbol, null);
 		}
-
-		return new Token(tokenType, symbol);
 	}
 
 	/**
