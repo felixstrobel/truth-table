@@ -40,4 +40,12 @@ export default class Token {
 	public getSymbol(): string {
 		return this.symbol;
 	}
+
+	/**
+	 * Returns the symbol associated with the token.
+	 * @returns The symbol associated with the token.
+	 */
+	public getOperator(): Operator | null {
+		return this.operator;
+	}
 }
