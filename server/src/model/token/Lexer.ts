@@ -1,9 +1,9 @@
-import BinaryOperator from "../model/operators/BinaryOperator";
-import Operator from "../model/operators/Operator";
-import UnaryOperator from "../model/operators/UnaryOperator";
-import OperatorFactory from "../model/operators/factory/OperatorFactory";
-import Token from "../model/token/Token";
-import TokenType from "../model/token/TokenType";
+import BinaryOperator from "../operators/BinaryOperator";
+import Operator from "../operators/Operator";
+import UnaryOperator from "../operators/UnaryOperator";
+import OperatorFactory from "../operators/factory/OperatorFactory";
+import Token from "./Token";
+import TokenType from "./TokenType";
 
 /**
  * Performs lexical analysis on a given string.
