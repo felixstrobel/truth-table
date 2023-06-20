@@ -31,7 +31,7 @@ class UnaryOperator extends Operator {
 	 * @returns the result of the evaluation
 	 */
 	public evaluate(assignment: boolean): boolean {
-		if (!assignment) throw new Error("insufficient number of variable assignments");
+		if (assignment === undefined) throw new Error("insufficient number of variable assignments");
 
 		return this.evaluation(assignment);
 	}
