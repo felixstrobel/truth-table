@@ -37,7 +37,7 @@ enum TokenType {
 	/**
 	 * Represents the end-of-file token.
 	 */
-	EOF,
+	EOL,
 }
 
 export default TokenType;
