@@ -46,6 +46,11 @@ export default class Parser {
 		this.currentToken = this.lexer.nextToken();
 	}
 
+	/**
+	 * Parses the expression and returns the resulting AST.
+	 *
+	 * @returns the term representing the AST.
+	 */
 	public parse(): Term {
 		this.updateToken();
 
@@ -73,9 +78,9 @@ export default class Parser {
 		) {
 			let operator = this.currentToken.getOperator();
 			this.updateToken();
-			let y = this.parseTerm(index);
+			let term = this.parseTerm(index + 1);
 
-			return new UnaryTerm(operator!, y);
+			return new UnaryTerm(operator!, term);
 		}
 
 		// binary
@@ -95,8 +100,19 @@ export default class Parser {
 	}
 
 	private parenthesis(): Term {
-		// TODO implement
-		return this.parseVariable();
+		if (this.currentToken.getTokenType() !== TokenType.PARENTHESIS_OPEN) {
+			return this.parseVariable();
+		}
+
+		this.updateToken();
+		let term = this.parseTerm(0);
+
+		if (this.currentToken.getTokenType() !== TokenType.PARENTHESIS_CLOSE) {
+			throw new Error("Expected closing bracket");
+		}
+
+		this.updateToken();
+		return term;
 	}
 
 	private parseVariable(): Term {
