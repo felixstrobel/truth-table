@@ -26,7 +26,7 @@ export default class Lexer {
 	 * @param input The input string to be processed by the lexer.
 	 */
 	constructor(input: string) {
-		this.input = input.replace(/\s/, "");
+		this.input = input.replace(/\s/g, "");
 
 		if (this.input.length === 0) {
 			throw new Error("Input may not be empty");
