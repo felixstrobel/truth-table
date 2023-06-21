@@ -8,6 +8,7 @@ import Variable from "../model/term/Variable";
 import OperatorFactory from "../model/operators/factory/OperatorFactory";
 import Operator from "../model/operators/Operator";
 import UnaryOperator from "../model/operators/UnaryOperator";
+import BooleanTerm from "../model/term/BooleanTerm";
 
 /**
  * TODO DOC
@@ -18,7 +19,7 @@ export default class Parser {
 	private readonly lexer: Lexer;
 	private readonly variables: Set<string> = new Set();
 	private operators: Operator[] = [];
-	private currentToken: Token = new Token(TokenType.EOF, "", null);
+	private currentToken: Token = new Token(TokenType.EOL, "", null);
 
 	/**
 	 * Constructs a {@link Parser} object.
@@ -59,7 +60,7 @@ export default class Parser {
 
 		const term = this.parseTerm(0);
 
-		if (this.currentToken.getTokenType() !== TokenType.EOF) {
+		if (this.currentToken.getTokenType() !== TokenType.EOL) {
 			throw new Error("Unexpected token " + this.currentToken.getSymbol());
 		}
 
@@ -123,10 +124,16 @@ export default class Parser {
 			return buf;
 		}
 
+		return this.parseBoolean();
+	}
+
+	private parseBoolean(): Term {
+		if (this.currentToken?.getTokenType() === TokenType.BOOLEAN) {
+			let buf = new BooleanTerm(this.currentToken.getSymbol());
+			this.updateToken();
+			return buf;
+		}
+
 		throw new Error("Unexpected token " + this.currentToken.getSymbol());
 	}
 }
-
-// A|(B&C)|C
-// (A|(B&C))|C
-// (A|B)|C
