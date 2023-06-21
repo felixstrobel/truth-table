@@ -80,7 +80,7 @@ export default class Lexer {
 	 * @returns The next token generated.
 	 */
 	public nextToken(): Token {
-		if (this.input.length > this.location + 1) {
+		if (this.input.length <= this.location + 1) {
 			return new Token(TokenType.EOL, "", null);
 		}
 
