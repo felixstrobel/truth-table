@@ -1,7 +1,8 @@
-import BinaryOperator from "../operators/BinaryOperator";
 import Operator from "../operators/Operator";
 import UnaryOperator from "../operators/UnaryOperator";
+import BinaryOperator from "../operators/BinaryOperator";
 import OperatorFactory from "../operators/factory/OperatorFactory";
+
 import Token from "./Token";
 import TokenType from "./TokenType";
 
@@ -10,12 +11,14 @@ import TokenType from "./TokenType";
  * It tokenizes the string by identifiers that can be changed.
  * For token types see {@link TokenType}.
  *
+ * @todo Replace alternative symbols for operators
+ *
  * @author Max Lohrmann <https://github.com/Max0440>
  */
 export default class Lexer {
 	private input: string;
+	private location: number = -1;
 	private operators: Operator[] = [];
-	private currentIndex: number = -1;
 
 	/**
 	 * Constructs a {@link Lexer} object.
@@ -23,8 +26,7 @@ export default class Lexer {
 	 * @param input The input string to be processed by the lexer.
 	 */
 	constructor(input: string) {
-		this.input = input.trim();
-		this.input = this.input.replace(/\s/, "");
+		this.input = input.replace(/\s/, "");
 
 		if (this.input.length === 0) {
 			throw new Error("Input may not be empty");
@@ -43,7 +45,7 @@ export default class Lexer {
 	}
 
 	/**
-	 * Loads the default operator (NOT, AND, OR) into the lexer.
+	 * Loads the default operator (NOT, AND, OR, ...) into the lexer.
 	 */
 	private loadDefaultOperators(): void {
 		const allOperators = OperatorFactory.getAllOperators();
@@ -70,107 +72,37 @@ export default class Lexer {
 	}
 
 	/**
-	 * Replaces alternate symbols of a operator with its official symbol in
-	 * the input string.
-	 *
-	 * @param operator The operator to be replaced.
-	 */
-	private replaceOperator(operator: Operator): void {
-		const officialSymbol = operator.getUnifiedSymbol();
-		const otherSymbols = operator.getAlternativeSymbols();
-
-		for (const symbol of otherSymbols) {
-			this.input = this.input.replace(symbol, officialSymbol);
-		}
-	}
-
-	/**
-	 * Replaces all alternate symbols of all operators in the input string
-	 * with their official symbols.
-	 */
-	private replaceOperators(): void {
-		for (const operator of this.operators) {
-			this.replaceOperator(operator);
-		}
-	}
-
-	/**
-	 * Performs lexical analysis on the input string and returns an array of
-	 * tokens in the order it was extracted from the string.
-	 *
-	 * @returns An array of tokens generated from the input string.
-	 * @deprecated
-	 */
-	public lex(): Token[] {
-		this.replaceOperators();
-
-		const tokens: Token[] = [];
-
-		while (this.hasNext()) {
-			tokens.push(this.handleNext());
-		}
-
-		return tokens;
-	}
-
-	/**
 	 * Performs lexical analysis on the input string and returns the next token
 	 * from the string.
+	 * For the possible token types see {@link TokenTypes}.
+	 * If the string is fully parsed the will return a EOL token.
 	 *
-	 * @returns The next token generated from the input string.
+	 * @returns The next token generated.
 	 */
 	public nextToken(): Token {
-		// TODO not execute every time
-		this.replaceOperators();
-
-		if (this.hasNext()) {
-			return this.handleNext();
+		if (this.input.length > this.location + 1) {
+			return new Token(TokenType.EOL, "", null);
 		}
 
-		return new Token(TokenType.EOF, "", null);
-	}
+		this.location++;
+		const currentCharacter: string = this.input.charAt(this.location);
 
-	/**
-	 * Checks if there are more characters to process in the input string.
-	 *
-	 * @returns A boolean indicating whether there are more characters to process or not.
-	 */
-	private hasNext(): boolean {
-		return this.input.length > this.currentIndex + 1;
-	}
-
-	/**
-	 * Handles the next character in the input string and generates a token.
-	 *
-	 * @returns A token generated from the next character.
-	 */
-	private handleNext(): Token {
-		this.currentIndex++;
-		const symbol: string = this.input.charAt(this.currentIndex);
-
-		const operator = this.getOperator(symbol);
+		const operator = this.getOperator(currentCharacter);
 
 		if (operator instanceof UnaryOperator) {
-			return new Token(TokenType.UNARY_OPERATOR, symbol, operator);
+			return new Token(TokenType.UNARY_OPERATOR, currentCharacter, operator);
 		} else if (operator instanceof BinaryOperator) {
-			return new Token(TokenType.BINARY_OPERATOR, symbol, operator);
-		} else if (symbol === "(") {
-			return new Token(TokenType.PARENTHESIS_OPEN, symbol, null);
-		} else if (symbol === ")") {
-			return new Token(TokenType.PARENTHESIS_CLOSE, symbol, null);
-		} else if (symbol.match(/[A-Z]/)) {
-			return new Token(TokenType.ATOM, symbol, null);
+			return new Token(TokenType.BINARY_OPERATOR, currentCharacter, operator);
+		} else if (currentCharacter === "(") {
+			return new Token(TokenType.PARENTHESIS_OPEN, currentCharacter, null);
+		} else if (currentCharacter === ")") {
+			return new Token(TokenType.PARENTHESIS_CLOSE, currentCharacter, null);
+		} else if (currentCharacter.match(/[A-Z]/)) {
+			return new Token(TokenType.ATOM, currentCharacter, null);
+		} else if (currentCharacter.match(/[01]/)) {
+			return new Token(TokenType.BOOLEAN, currentCharacter, null);
 		} else {
-			return new Token(TokenType.UNKNOWN, symbol, null);
+			return new Token(TokenType.UNKNOWN, currentCharacter, null);
 		}
-	}
-
-	/**
-	 * Returns the input string the lexer processes.
-	 *
-	 * @returns The input string.
-	 */
-	public getInput() {
-		return this.input;
 	}
 }
