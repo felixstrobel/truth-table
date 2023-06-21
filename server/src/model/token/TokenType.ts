@@ -5,6 +5,11 @@
  */
 enum TokenType {
 	/**
+	 * Represents a boolean token (0 and 1).
+	 */
+	BOOLEAN,
+
+	/**
 	 * Represents an atom token (e.g. variable).
 	 */
 	ATOM,
