@@ -1,21 +1,9 @@
 "use client";
 import Header from "@/components/Header";
-import {
-    Box,
-    Button,
-    Flex,
-    Grid,
-    IconButton,
-    Input,
-    InputGroup,
-    InputRightElement,
-    Select,
-    Stack,
-} from "@chakra-ui/react";
-import {CopyIcon} from "@chakra-ui/icons";
-import {useState} from "react";
+import {Flex} from "@chakra-ui/react";
 import Footer from "@/components/Footer";
 import Insertion from "@/components/Insertion";
+import TableRepresentation from "@/components/TableRepresentation";
 
 export default function Home() {
     return (
@@ -24,6 +12,7 @@ export default function Home() {
                 <Header/>
 
                 <Insertion/>
+                <TableRepresentation />
 
                 <Footer/>
             </Flex>

@@ -1,14 +1,14 @@
 import {
     Box,
-    Button, Container,
-    Flex, FormControl, FormLabel,
+    Button,
+    Flex,
     Grid,
     IconButton,
     Input,
     InputGroup,
     InputRightElement,
-    Select, Spacer,
-    Stack, Tooltip
+    Stack,
+    Tooltip
 } from "@chakra-ui/react";
 import {CopyIcon} from "@chakra-ui/icons";
 import {useState} from "react";
@@ -47,7 +47,8 @@ export default function Insertion() {
             <Flex w={"full"} flexDir={"row"} flexWrap={"wrap"} justifyContent={"center"}>
                 {quickButtons.map((button) => {
                     return (
-                        <Button variant={"outline"} w={12} h={12} mr={4} key={button} onClick={() => setValue(value + button)}>
+                        <Button variant={"outline"} w={12} h={12} mr={4} key={button}
+                                onClick={() => setValue(value + button)}>
                             {button}
                         </Button>
                     );
