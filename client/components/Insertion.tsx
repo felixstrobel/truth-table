@@ -13,6 +13,7 @@ import {
 import {CopyIcon} from "@chakra-ui/icons";
 import {useState} from "react";
 import CustomSelect from "@/components/CustomSelect";
+import TableRepresentation from "@/components/TableRepresentation";
 
 export default function Insertion() {
     const [value, setValue] = useState<string>("");
@@ -56,6 +57,6 @@ export default function Insertion() {
                 <CustomSelect/>
             </Flex>
         </Stack>
-        <Box>{/*TODO Cheatsheat*/}</Box>
+        <TableRepresentation/>
     </Grid>
 }

@@ -3,7 +3,6 @@ import Header from "@/components/Header";
 import {Flex} from "@chakra-ui/react";
 import Footer from "@/components/Footer";
 import Insertion from "@/components/Insertion";
-import TableRepresentation from "@/components/TableRepresentation";
 
 export default function Home() {
     return (
@@ -12,7 +11,6 @@ export default function Home() {
                 <Header/>
 
                 <Insertion/>
-                <TableRepresentation />
 
                 <Footer/>
             </Flex>
