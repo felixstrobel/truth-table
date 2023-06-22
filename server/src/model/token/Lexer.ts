@@ -33,6 +33,7 @@ export default class Lexer {
 		}
 
 		this.loadDefaultOperators();
+		this.replaceOperatorSymbols();
 	}
 
 	/**
@@ -52,6 +53,34 @@ export default class Lexer {
 
 		for (const operator of allOperators) {
 			this.addOperator(operator);
+		}
+	}
+
+	/**
+	 * Replaces all alternative symbols of the operators set in the operator list
+	 * by the unified symbol.
+	 */
+	private replaceOperatorSymbols(): void {
+		// create list with all alternative operator symbols associated with the unified symbol
+		const operatorMap = new Map();
+
+		for (const operator of this.operators) {
+			const unifiedSymbol = operator.getUnifiedSymbol();
+			for (const alternativeSymbol of operator.getAlternativeSymbols()) {
+				operatorMap.set(alternativeSymbol, unifiedSymbol);
+			}
+		}
+
+		// sort map by operator length
+		const sortedOperatorMap = new Map(
+			[...operatorMap.entries()].sort((a: [string, string], b: [string, string]) => {
+				return b[0].length - a[0].length;
+			})
+		);
+
+		// replace all operators
+		for (const entry of sortedOperatorMap.entries()) {
+			this.input = this.input.split(entry[0]).join(entry[1]);
 		}
 	}
 
