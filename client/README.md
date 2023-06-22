@@ -32,3 +32,15 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+parser.toString: ((A∧B)∨C)
+[
+  { A: false, B: false, C: false, '=': false },
+  { A: false, B: false, C: true, '=': true },  
+  { A: false, B: true, C: false, '=': false }, 
+  { A: false, B: true, C: true, '=': true },   
+  { A: true, B: false, C: false, '=': false }, 
+  { A: true, B: false, C: true, '=': true },   
+  { A: true, B: true, C: false, '=': true },   
+  { A: true, B: true, C: true, '=': true }     
+]
