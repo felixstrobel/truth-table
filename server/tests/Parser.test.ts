@@ -1,4 +1,4 @@
-import Bridge from "../src/Bridge";
+import Bridge from "./Bridge";
 
 describe("Testing basic functions & unary operator", () => {
 	test("Single variable", () => {

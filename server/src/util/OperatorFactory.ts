@@ -1,6 +1,6 @@
-import Operator from "../Operator";
-import BinaryOperator from "../BinaryOperator";
-import UnaryOperator from "../UnaryOperator";
+import Operator from "../model/operator/Operator";
+import BinaryOperator from "../model/operator/BinaryOperator";
+import UnaryOperator from "../model/operator/UnaryOperator";
 
 /**
  * The OperatorFactory creates the operators, supported by default.

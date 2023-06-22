@@ -1,14 +1,14 @@
-import Lexer from "../model/token/Lexer";
-import Token from "../model/token/Token";
-import TokenType from "../model/token/TokenType";
-import Term from "../model/term/Term";
-import BinaryTerm from "../model/term/BinaryTerm";
-import UnaryTerm from "../model/term/UnaryTerm";
-import Variable from "../model/term/Variable";
-import OperatorFactory from "../model/operators/factory/OperatorFactory";
-import Operator from "../model/operators/Operator";
-import UnaryOperator from "../model/operators/UnaryOperator";
-import BooleanTerm from "../model/term/BooleanTerm";
+import Lexer from "./Lexer";
+import Token from "./model/token/Token";
+import TokenType from "./model/token/TokenType";
+import Term from "./model/term/Term";
+import BinaryTerm from "./model/term/BinaryTerm";
+import UnaryTerm from "./model/term/UnaryTerm";
+import Variable from "./model/term/Variable";
+import OperatorFactory from "./util/OperatorFactory";
+import Operator from "./model/operator/Operator";
+import UnaryOperator from "./model/operator/UnaryOperator";
+import BooleanTerm from "./model/term/BooleanTerm";
 
 /**
  * TODO DOC

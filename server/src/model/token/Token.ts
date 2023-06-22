@@ -1,4 +1,4 @@
-import Operator from "../operators/Operator";
+import Operator from "../operator/Operator";
 import TokenType from "./TokenType";
 
 /**

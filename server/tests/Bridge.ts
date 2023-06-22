@@ -1,5 +1,5 @@
-import Lexer from "./model/token/Lexer";
-import Parser from "./util/Parser";
+import Lexer from "../src/Lexer";
+import Parser from "../src/Parser";
 
 export default class Bridge {
 	public static parse(input: string): any {
@@ -9,7 +9,7 @@ export default class Bridge {
 		const term = parser.parse();
 		const generator = this.assignmentGenerator(parser.getVariables());
 
-		let a = [];
+		let a: any[] = [];
 
 		for (const constants of generator) {
 			let x: any = {};
