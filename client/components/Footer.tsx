@@ -1,20 +1,80 @@
+"use client";
+
+import {Box, Container, SimpleGrid, Stack, Flex, Spacer} from "@chakra-ui/react";
+
 export default function Footer() {
-    return <footer>
-        <div>
-            <div>
-                {/*Buy us a coffe TODO*/}
-            </div>
-            <address className="flex flex-row">
-                <span>Proudly provided by</span>
-                <span>
-                <a href="mailto:webmaster@example.com">Felix Strobel</a> &and;
-                    <a href="mailto:webmaster@example.com">Max Lohrmann</a>
-            </span>
-            </address>
-            <div>
-                {/*Feedback section*/}
-            </div>
-        </div>
-        <span><a href="#">IMPRINT</a></span>
-    </footer>
+	return (
+		<Box bg="gray.700" color="gray.200" width={"full"} >
+			<Container as={Stack} maxW={"100%"} py={5}>
+				<SimpleGrid columns={{base: 1, sm: 2, md: 3}} spacing={8}>
+					<Container textAlign={"center"}>
+						<a href="https://www.paypal.com/donate/?hosted_button_id=FMWQ2NMB943BA">Buy us a coffee</a>
+					</Container>
+					<Container textAlign={"center"}>Proudly provided by Felix ∧ Max</Container>
+					<Container textAlign={"center"}>Feel free to leave some feedback!</Container>
+					{/* <Stack align={"flex-start"}>
+							<p>Company</p>
+							<p>About Us</p>
+							<p>Blog</p>
+							<p>Careers</p>
+							<p>Contact Us</p>
+						</Stack> */}
+				</SimpleGrid>
+			</Container>
+
+			<Container pb={2} pt={5}>
+				<Flex justifyContent={"center"}>
+					<a href="https://www.paypal.com/donate/?hosted_button_id=FMWQ2NMB943BA">Impressum</a>
+					<span>&nbsp;© 2023</span>
+				</Flex>
+			</Container>
+
+			{/* <Box borderTopWidth={1} borderStyle={"solid"} borderColor={useColorModeValue("gray.200", "gray.700")}>
+					<Container
+						as={Stack}
+						maxW={"6xl"}
+						py={4}
+						direction={{ base: "column", md: "row" }}
+						spacing={4}
+						justify={{ md: "space-between" }}
+						align={{ md: "center" }}
+					>
+						<Text>© 2022 Chakra Templates. All rights reserved</Text>
+						<Stack direction={"row"} spacing={6}>
+							<SocialButton label={"Twitter"}>
+								<FaTwitter />
+							</SocialButton>
+							<SocialButton label={"YouTube"}>
+								<FaYoutube />
+							</SocialButton>
+							<SocialButton label={"Instagram"}>
+								<FaInstagram />
+							</SocialButton>
+						</Stack>
+					</Container>
+				</Box> */}
+		</Box>
+	);
 }
+
+/**
+ * 
+	return (
+		<footer>
+			<div>
+				<div>{}</div>
+				<address className='flex flex-row'>
+					<span>Proudly provided by</span>
+					<span>
+						<ato:webmaster@example.com'>Felix Strobel</a> &and;
+						<ato:webmaster@example.com'>Max Lohrmann</ato:webmaster@example.com>
+					</span>
+				</address>
+				<div>{}</div>
+			</div>
+			<span>
+				<aMPRINT</a>
+			</span>
+		</footer>
+	);
+ */
