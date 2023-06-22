@@ -34,6 +34,21 @@ export default class Lexer {
 
 		this.loadDefaultOperators();
 		this.replaceOperatorSymbols();
+
+		// TODO redo
+		// place AND operators
+		let buf = this.input.charAt(0);
+		for (let i = 1; i < this.input.length; i++) {
+			const currentChar = this.input.charAt(i);
+			const previousChar = this.input.charAt(i - 1);
+			if (currentChar.match(/[A-Z]/) && previousChar.match(/[A-Z]/)) {
+				buf += "∧";
+				buf += currentChar;
+			} else {
+				buf += currentChar;
+			}
+		}
+		this.input = buf;
 	}
 
 	/**
