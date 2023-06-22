@@ -39,6 +39,7 @@ describe("Testing all basic operator with alternative symbols", () => {
 			{ A: true, B: true, "=": true },
 		];
 
+		expect(Bridge.parse("AB")).toEqual(output);
 		expect(Bridge.parse("A∧B")).toEqual(output);
 		expect(Bridge.parse("A&B")).toEqual(output);
 		expect(Bridge.parse("A&&B")).toEqual(output);
@@ -181,5 +182,30 @@ describe("Testing user shit", () => {
 		expect(() => Bridge.parse("💀")).toThrow(Error);
 
 		expect(() => Bridge.parse("Entering some bs")).toThrow(Error);
+	});
+});
+
+describe("Testing complex expressions and different syntax", () => {
+	test("Testing complex expressions", () => {
+		expect(Bridge.parse("(AB|AC<=>C)&&A")).toEqual([
+			{ A: false, B: false, C: false, "=": false },
+			{ A: false, B: false, C: true, "=": false },
+			{ A: false, B: true, C: false, "=": false },
+			{ A: false, B: true, C: true, "=": false },
+			{ A: true, B: false, C: false, "=": true },
+			{ A: true, B: false, C: true, "=": true },
+			{ A: true, B: true, C: false, "=": false },
+			{ A: true, B: true, C: true, "=": true },
+		]);
+		expect(Bridge.parse("(AB|AC<=>C)&&A<>0")).toEqual([
+			{ A: false, B: false, C: false, "=": true },
+			{ A: false, B: false, C: true, "=": true },
+			{ A: false, B: true, C: false, "=": true },
+			{ A: false, B: true, C: true, "=": true },
+			{ A: true, B: false, C: false, "=": false },
+			{ A: true, B: false, C: true, "=": false },
+			{ A: true, B: true, C: false, "=": true },
+			{ A: true, B: true, C: true, "=": false },
+		]);
 	});
 });
