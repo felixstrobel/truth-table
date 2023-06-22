@@ -1,6 +1,7 @@
 "use client";
 
 import {Box, Container, SimpleGrid, Stack, Flex, Spacer} from "@chakra-ui/react";
+import Link from "next/link";
 
 export default function Footer() {
 	return (
@@ -24,8 +25,8 @@ export default function Footer() {
 
 			<Container pb={2} pt={5}>
 				<Flex justifyContent={"center"}>
-					<a href="https://www.paypal.com/donate/?hosted_button_id=FMWQ2NMB943BA">Impressum</a>
-					<span>&nbsp;© 2023</span>
+					<Link href="https://www.paypal.com/donate/?hosted_button_id=FMWQ2NMB943BA">Imprint</Link>
+					<span>&nbsp;&copy; {new Date().getFullYear()}</span>
 				</Flex>
 			</Container>
 

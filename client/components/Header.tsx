@@ -6,7 +6,7 @@ export default function Header() {
     const {colorMode, toggleColorMode} = useColorMode()
 
     return <Grid w={"full"} minH={18} p={3} templateColumns={"1fr 8fr 1fr"} alignItems={"center"} position={"sticky"}
-                 bgColor={"red.400"}>
+                 className={"bg-gray-900"}>
         {/*TODO add a little transparency to tooltip and change description dynamically*/}
         <GridItem>
             <Tooltip hasArrow label={`switch to ${colorMode === "dark" ? "light" : "dark"} mode`} borderRadius={"lg"}>
