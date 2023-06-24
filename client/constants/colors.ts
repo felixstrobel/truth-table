@@ -6,6 +6,7 @@ export const colors: {[name: string]: [string, string]} = {
 	bodyColor: ["#000", "#fff"],
 
 	inputBorderColor: ["#000", "#fff"],
+	tableBorderColor: ["#000", "#fff"],
 	
 	footerBg: ["#fff", "#000"],
 	footerColor: ["#000", "#fff"],

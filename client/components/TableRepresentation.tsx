@@ -27,6 +27,7 @@ export default function TableRepresentation() {
 								fontWeight={"extrabold"}
 								color={useColorModeValue(...colors.bodyColor)}
 								textAlign={"center"}
+								borderColor={useColorModeValue(...colors.tableBorderColor)}
 							>
 								{column[0]}
 							</Th>
@@ -37,7 +38,7 @@ export default function TableRepresentation() {
 					{data.map((evaluation, index) => (
 						<Tr key={index}>
 							{Object.entries(evaluation).map((column, index) => (
-								<Td key={index} textAlign={"center"}>
+								<Td key={index} textAlign={"center"} borderColor={useColorModeValue(...colors.tableBorderColor)}>
 									{column[1] ? "T" : "F"}
 								</Td>
 							))}
