@@ -1,7 +1,8 @@
 "use client";
-import {Grid, GridItem, Box, Heading, IconButton, Tooltip, useColorMode} from "@chakra-ui/react";
+import {Grid, GridItem, Box, Heading, IconButton, Tooltip, useColorMode, useColorModeValue} from "@chakra-ui/react";
 import {MoonIcon, SunIcon} from "@chakra-ui/icons";
 import {useState, useEffect} from "react";
+import { colors } from "@/colors";
 
 export default function Header() {
 	const {colorMode, toggleColorMode} = useColorMode();
@@ -38,7 +39,8 @@ export default function Header() {
 				p={3}
 				templateColumns={"1fr 8fr 1fr"}
 				alignItems={"center"}
-				className={"bg-gray-900"}
+				bg={useColorModeValue(...colors.headerBg)}
+				color={useColorModeValue(...colors.headerColor)}
 				zIndex={99}
 			>
 				{/*TODO add a little transparency to tooltip and change description dynamically*/}

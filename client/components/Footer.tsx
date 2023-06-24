@@ -1,11 +1,12 @@
 "use client";
 
-import {Box, Container, SimpleGrid, Stack, Flex, Spacer} from "@chakra-ui/react";
+import {colors} from "@/colors";
+import {Box, Container, SimpleGrid, Stack, Flex, Spacer, useColorModeValue} from "@chakra-ui/react";
 import Link from "next/link";
 
 export default function Footer() {
 	return (
-		<Box bg="gray.700" color="gray.200" width={"full"} >
+		<Box bg={useColorModeValue(...colors.footerBg)} color={useColorModeValue(...colors.footerColor)} width={"full"}>
 			<Container as={Stack} maxW={"100%"} py={5}>
 				<SimpleGrid columns={{base: 1, sm: 2, md: 3}} spacing={8}>
 					<Container textAlign={"center"}>
@@ -13,13 +14,6 @@ export default function Footer() {
 					</Container>
 					<Container textAlign={"center"}>Proudly provided by Felix ∧ Max</Container>
 					<Container textAlign={"center"}>Feel free to leave some feedback!</Container>
-					{/* <Stack align={"flex-start"}>
-							<p>Company</p>
-							<p>About Us</p>
-							<p>Blog</p>
-							<p>Careers</p>
-							<p>Contact Us</p>
-						</Stack> */}
 				</SimpleGrid>
 			</Container>
 
@@ -29,31 +23,6 @@ export default function Footer() {
 					<span>&nbsp;&copy; {new Date().getFullYear()}</span>
 				</Flex>
 			</Container>
-
-			{/* <Box borderTopWidth={1} borderStyle={"solid"} borderColor={useColorModeValue("gray.200", "gray.700")}>
-					<Container
-						as={Stack}
-						maxW={"6xl"}
-						py={4}
-						direction={{ base: "column", md: "row" }}
-						spacing={4}
-						justify={{ md: "space-between" }}
-						align={{ md: "center" }}
-					>
-						<Text>© 2022 Chakra Templates. All rights reserved</Text>
-						<Stack direction={"row"} spacing={6}>
-							<SocialButton label={"Twitter"}>
-								<FaTwitter />
-							</SocialButton>
-							<SocialButton label={"YouTube"}>
-								<FaYoutube />
-							</SocialButton>
-							<SocialButton label={"Instagram"}>
-								<FaInstagram />
-							</SocialButton>
-						</Stack>
-					</Container>
-				</Box> */}
 		</Box>
 	);
 }

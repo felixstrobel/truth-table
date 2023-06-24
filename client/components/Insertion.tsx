@@ -9,11 +9,13 @@ import {
 	InputRightElement,
 	Stack,
 	Tooltip,
+	useColorModeValue,
 } from "@chakra-ui/react";
 import {CopyIcon} from "@chakra-ui/icons";
 import {useState} from "react";
 import CustomSelect from "@/components/CustomSelect";
 import TableRepresentation from "@/components/TableRepresentation";
+import { colors } from "@/colors";
 
 export default function Insertion() {
 	const [value, setValue] = useState<string>("");
@@ -32,7 +34,7 @@ export default function Insertion() {
 			flexGrow={1}
 		>
 			<Stack w={"70%"} alignItems={"center"}>
-				<InputGroup w={"70%"} size={"lg"} mb={4}>
+				<InputGroup w={"70%"} size={"lg"} mb={4} borderColor={useColorModeValue(...colors.inputBorderColor)}>
 					<Input
 						type={"text"}
 						value={value}
@@ -61,6 +63,7 @@ export default function Insertion() {
 								h={12}
 								mr={4}
 								key={button}
+								borderColor={useColorModeValue(...colors.inputBorderColor)}
 								onClick={() => setValue(value + button)}
 							>
 								{button}

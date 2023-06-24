@@ -1,4 +1,5 @@
-import {Table, TableCaption, TableContainer, Tbody, Td, Th, Thead, Tr} from "@chakra-ui/react";
+import {Table, TableCaption, TableContainer, Tbody, Td, Th, Thead, Tr, useColorModeValue} from "@chakra-ui/react";
+import {colors} from "@/colors";
 
 export default function TableRepresentation() {
 	// TODO: get data from parser
@@ -20,7 +21,13 @@ export default function TableRepresentation() {
 				<Thead>
 					<Tr>
 						{Object.entries(data[0]).map((column) => (
-							<Th key={column[0]} fontSize={"xl"} fontWeight={"extrabold"} textAlign={"center"}>
+							<Th
+								key={column[0]}
+								fontSize={"xl"}
+								fontWeight={"extrabold"}
+								color={useColorModeValue(...colors.bodyColor)}
+								textAlign={"center"}
+							>
 								{column[0]}
 							</Th>
 						))}
