@@ -1,6 +1,6 @@
 "use client";
 
-import {colors} from "@/colors";
+import {colors} from "@/constants/colors";
 import {Box, Container, SimpleGrid, Stack, Flex, Spacer, useColorModeValue} from "@chakra-ui/react";
 import Link from "next/link";
 

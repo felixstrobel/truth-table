@@ -2,7 +2,7 @@
 import {Grid, GridItem, Box, Heading, IconButton, Tooltip, useColorMode, useColorModeValue} from "@chakra-ui/react";
 import {MoonIcon, SunIcon} from "@chakra-ui/icons";
 import {useState, useEffect} from "react";
-import { colors } from "@/colors";
+import { colors } from "@/constants/colors";
 
 export default function Header() {
 	const {colorMode, toggleColorMode} = useColorMode();

@@ -3,7 +3,7 @@ import Header from "@/components/Header";
 import {Flex, Box, useColorModeValue} from "@chakra-ui/react";
 import Footer from "@/components/Footer";
 import Insertion from "@/components/Insertion";
-import {colors} from "@/colors";
+import {colors} from "@/constants/colors";
 
 export default function Home() {
 	return (

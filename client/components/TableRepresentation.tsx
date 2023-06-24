@@ -1,5 +1,5 @@
 import {Table, TableCaption, TableContainer, Tbody, Td, Th, Thead, Tr, useColorModeValue} from "@chakra-ui/react";
-import {colors} from "@/colors";
+import {colors} from "@/constants/colors";
 
 export default function TableRepresentation() {
 	// TODO: get data from parser

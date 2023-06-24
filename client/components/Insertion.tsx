@@ -15,7 +15,7 @@ import {CopyIcon} from "@chakra-ui/icons";
 import {useState} from "react";
 import CustomSelect from "@/components/CustomSelect";
 import TableRepresentation from "@/components/TableRepresentation";
-import { colors } from "@/colors";
+import { colors } from "@/constants/colors";
 
 export default function Insertion() {
 	const [value, setValue] = useState<string>("");
