@@ -9,25 +9,24 @@ export default function Header() {
 
 	useEffect(() => {
 		const handleScroll = () => {
-			if (document.body.scrollTop > 5 || document.documentElement.scrollTop > 5) {
+			console.log(document.documentElement.scrollTop, scroll);
+			if (!scroll && document.documentElement.scrollTop > 100) {
 				setScroll(true);
-			} else {
+				console.log("true");
+			} else if (scroll && document.documentElement.scrollTop < 70) {
 				setScroll(false);
+				console.log("false");
 			}
 		};
 
 		window.addEventListener("scroll", handleScroll);
 		return () => window.removeEventListener("scroll", handleScroll);
-	}, []);
+	}, [scroll]);
 
-	/**
-     * BUG: If you have to scroll with a large navbar,
-     * but no more with a smaller one, it jumps back
-     * and forth between large and small
-     */
+	// BUG: Resizing of the font is causing strange shit on webkit (safari)
 	return (
 		<>
-			<Box minH={scroll ? 70 : 100} w={"full"}>
+			<Box minH={scroll ? 70 : 100} transition={"min-height 0.4s"} w={"full"}>
 				s
 			</Box>
 			<Grid
