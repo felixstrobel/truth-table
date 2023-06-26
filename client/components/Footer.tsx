@@ -17,7 +17,7 @@ export default function Footer() {
 				</SimpleGrid>
 			</Container>
 
-			<Container pb={2} pt={5}>
+			<Container py={5}>
 				<Flex justifyContent={"center"}>
 					<Link href="https://www.paypal.com/donate/?hosted_button_id=FMWQ2NMB943BA">Imprint</Link>
 					<span>&nbsp;&copy; {new Date().getFullYear()}</span>
