@@ -1,17 +1,7 @@
 "use client";
-import {
-    Box,
-    Grid,
-    GridItem,
-    Heading,
-    IconButton,
-    Tooltip,
-    useColorMode,
-    useColorModeValue,
-} from "@chakra-ui/react";
+import { Box, Grid, GridItem, Heading, IconButton, Tooltip, useColorMode } from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { useEffect, useState } from "react";
-import { colors } from "@/constants/colors";
 
 export default function Header() {
     const { colorMode, toggleColorMode } = useColorMode();
@@ -33,20 +23,16 @@ export default function Header() {
     // BUG: Resizing of the font is causing strange shit on webkit (safari)
     return (
         <>
-            <Box minH={scroll ? 70 : 100} transition={"min-height 0.4s"} w={"full"}>
-                s
-            </Box>
+            <Box w={"full"} minH={scroll ? 70 : 100} transition={"min-height 0.4s"}></Box>
             <Grid
                 position={"fixed"}
                 top={0}
-                w={"full"}
-                minH={scroll ? 70 : 100}
-                transition={"min-height 0.4s"}
-                p={3}
                 templateColumns={"1fr 8fr 1fr"}
                 alignItems={"center"}
-                backgroundColor={"neutral.900"}
-                color={"brand."}
+                w={"full"}
+                minH={scroll ? 70 : 100}
+                p={3}
+                transition={"min-height 0.4s"}
                 zIndex={99}
             >
                 {/*TODO add a little transparency to tooltip and change description dynamically*/}

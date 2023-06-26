@@ -61,7 +61,6 @@ export default function Insertion() {
                                 h={12}
                                 mr={4}
                                 key={button}
-                                borderColor={useColorModeValue(...colors.inputBorderColor)}
                                 onClick={() => setValue(value + button)}
                             >
                                 {button}

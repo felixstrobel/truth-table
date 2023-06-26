@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function Footer() {
     return (
-        <Box bg={"brand.100"} color={useColorModeValue(...colors.footerColor)} width={"full"}>
+        <Box width={"full"}>
             <Container as={Stack} maxW={"100%"} py={5}>
                 <SimpleGrid columns={{ base: 1, sm: 2, md: 3 }} spacing={8}>
                     <Container textAlign={"center"}>

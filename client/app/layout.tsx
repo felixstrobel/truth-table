@@ -5,7 +5,7 @@ import "./globals.css";
 
 import React from "react";
 import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
-import { theme } from "@/theme";
+import theme from "@/theme";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
