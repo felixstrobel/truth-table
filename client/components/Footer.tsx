@@ -5,32 +5,34 @@ import { Box, Container, Flex, SimpleGrid, Stack, useColorModeValue } from "@cha
 import Link from "next/link";
 
 export default function Footer() {
-  return (
-    <Box
-      bg={useColorModeValue(...colors.footerBg)}
-      color={useColorModeValue(...colors.footerColor)}
-      width={"full"}
-    >
-      <Container as={Stack} maxW={"100%"} py={5}>
-        <SimpleGrid columns={{ base: 1, sm: 2, md: 3 }} spacing={8}>
-          <Container textAlign={"center"}>
-            <a href="https://www.paypal.com/donate/?hosted_button_id=FMWQ2NMB943BA">
-              Buy us a coffee
-            </a>
-          </Container>
-          <Container textAlign={"center"}>Proudly provided by Felix ∧ Max</Container>
-          <Container textAlign={"center"}>Feel free to leave some feedback!</Container>
-        </SimpleGrid>
-      </Container>
+    return (
+        <Box
+            bg={useColorModeValue(...colors.footerBg)}
+            color={useColorModeValue(...colors.footerColor)}
+            width={"full"}
+        >
+            <Container as={Stack} maxW={"100%"} py={5}>
+                <SimpleGrid columns={{ base: 1, sm: 2, md: 3 }} spacing={8}>
+                    <Container textAlign={"center"}>
+                        <a href="https://www.paypal.com/donate/?hosted_button_id=FMWQ2NMB943BA">
+                            Buy us a coffee
+                        </a>
+                    </Container>
+                    <Container textAlign={"center"}>Proudly provided by Felix ∧ Max</Container>
+                    <Container textAlign={"center"}>Feel free to leave some feedback!</Container>
+                </SimpleGrid>
+            </Container>
 
-      <Container py={5}>
-        <Flex justifyContent={"center"}>
-          <Link href="https://www.paypal.com/donate/?hosted_button_id=FMWQ2NMB943BA">Imprint</Link>
-          <span>&nbsp;&copy; {new Date().getFullYear()}</span>
-        </Flex>
-      </Container>
-    </Box>
-  );
+            <Container py={5}>
+                <Flex justifyContent={"center"}>
+                    <Link href="https://www.paypal.com/donate/?hosted_button_id=FMWQ2NMB943BA">
+                        Imprint
+                    </Link>
+                    <span>&nbsp;&copy; {new Date().getFullYear()}</span>
+                </Flex>
+            </Container>
+        </Box>
+    );
 }
 
 /**
