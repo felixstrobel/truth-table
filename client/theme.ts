@@ -1,12 +1,15 @@
-import { extendTheme, StyleConfig } from "@chakra-ui/react";
+import { extendTheme } from "@chakra-ui/react";
 
-export const theme: Record<string, StyleConfig> = extendTheme({
+export const theme = extendTheme({
     config: {
         initialColorMode: "dark",
         useSystemColorMode: false,
     },
     colors: {
-        brand: "#4cb489",
-        accent: "#2e274f",
+        brand: "#f5f5f5", // Tailwind: neutral.100
+        accent: "#56a15d",
+        neutral: {
+            900: "#171717", // Tailwind: neutral.900
+        },
     },
 });

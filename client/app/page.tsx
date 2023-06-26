@@ -11,7 +11,7 @@ export default function Home() {
             width={"100vw"}
             minH={"100vh"}
             overflow={"hidden"}
-            backgroundColor={useColorModeValue(...colors.bodyBg)}
+            backgroundColor={"neutral.900"}
             color={useColorModeValue(...colors.bodyColor)}
             wrap={"wrap"}
             minHeight={"100vh"}

@@ -32,12 +32,7 @@ export default function Insertion() {
             flexGrow={1}
         >
             <Stack w={"70%"} alignItems={"center"}>
-                <InputGroup
-                    w={"70%"}
-                    size={"lg"}
-                    mb={4}
-                    borderColor={useColorModeValue(...colors.inputBorderColor)}
-                >
+                <InputGroup w={"70%"} size={"lg"} mb={4} borderColor={"accent.100"}>
                     <Input
                         type={"text"}
                         value={value}

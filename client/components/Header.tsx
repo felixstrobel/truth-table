@@ -45,8 +45,8 @@ export default function Header() {
                 p={3}
                 templateColumns={"1fr 8fr 1fr"}
                 alignItems={"center"}
-                bg={useColorModeValue(...colors.headerBg)}
-                color={useColorModeValue(...colors.headerColor)}
+                backgroundColor={"neutral.900"}
+                color={"brand."}
                 zIndex={99}
             >
                 {/*TODO add a little transparency to tooltip and change description dynamically*/}
