@@ -46,6 +46,7 @@ export default function Header() {
                             onClick={toggleColorMode}
                             size={"md"}
                             variant={"ghost"}
+                            colorScheme={"neutral"}
                             icon={
                                 colorMode === "dark" ? (
                                     <MoonIcon boxSize={5} />
@@ -62,6 +63,8 @@ export default function Header() {
                         m={"auto"}
                         transition={"font-size 0.4s"}
                         fontSize={scroll ? "4xl" : "6xl"}
+                        colorScheme={"neutral"}
+                        whiteSpace={"nowrap"}
                     >
                         Truth Table Wizard
                     </Heading>

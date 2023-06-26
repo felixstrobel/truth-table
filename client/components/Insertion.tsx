@@ -7,13 +7,11 @@ import {
     InputRightElement,
     Stack,
     Tooltip,
-    useColorModeValue,
 } from "@chakra-ui/react";
 import { CopyIcon } from "@chakra-ui/icons";
 import { useState } from "react";
 import CustomSelect from "@/components/CustomSelect";
 import TableRepresentation from "@/components/TableRepresentation";
-import { colors } from "@/constants/colors";
 
 export default function Insertion() {
     const [value, setValue] = useState<string>("");
@@ -32,17 +30,24 @@ export default function Insertion() {
             flexGrow={1}
         >
             <Stack w={"70%"} alignItems={"center"}>
-                <InputGroup w={"70%"} size={"lg"} mb={4} borderColor={"accent.100"}>
+                <InputGroup colorScheme={"neutral"} w={"70%"} size={"lg"} mb={4}>
                     <Input
+                        colorScheme={"neutral"}
                         type={"text"}
                         value={value}
                         onChange={e => setValue(e.target.value)}
                         placeholder={"Enter Boolean Expression ..."}
                     />
                     <InputRightElement>
-                        <Tooltip hasArrow label={"copy expression"} borderRadius={"lg"}>
+                        <Tooltip
+                            colorScheme={"neutral"}
+                            hasArrow
+                            label={"copy expression"}
+                            borderRadius={"lg"}
+                        >
                             <IconButton
                                 variant={"ghost"}
+                                colorScheme={"neutral"}
                                 onClick={copyInputToClipBoard}
                                 icon={<CopyIcon />}
                                 aria-label={"Copy expression to clipboard"}
@@ -56,7 +61,8 @@ export default function Insertion() {
                     {quickButtons.map(button => {
                         return (
                             <Button
-                                variant={"outline"}
+                                colorScheme={"neutral"}
+                                variant={"ghost"}
                                 w={12}
                                 h={12}
                                 mr={4}

@@ -38,12 +38,15 @@ export default function CustomSelect() {
     ];
 
     return (
-        <Popover placement={"bottom-end"} initialFocusRef={initRef}>
+        <Popover colorScheme={"neutral"} placement={"bottom-end"} initialFocusRef={initRef}>
             {({ isOpen, onClose }) => (
                 <>
                     <PopoverTrigger>
-                        <Button h={12} borderEndRadius={0}>
-                            {activeOption.icon} <Text mx={2}>{activeOption.text}</Text>
+                        <Button colorScheme={"neutral"} h={12} borderEndRadius={0}>
+                            {activeOption.icon}{" "}
+                            <Text colorScheme={"neutral"} mx={2}>
+                                {activeOption.text}
+                            </Text>
                             {isOpen ? (
                                 <ChevronUpIcon boxSize={5} />
                             ) : (
@@ -52,6 +55,7 @@ export default function CustomSelect() {
                         </Button>
                     </PopoverTrigger>
                     <IconButton
+                        colorScheme={"neutral"}
                         ml={0.5}
                         h={12}
                         w={12}
@@ -67,6 +71,7 @@ export default function CustomSelect() {
                                 .map((option: CustomSelectOption) => {
                                     return (
                                         <Button
+                                            colorScheme={"neutral"}
                                             ref={initRef}
                                             key={option.text}
                                             borderRadius={0}

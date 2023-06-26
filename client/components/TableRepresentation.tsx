@@ -32,7 +32,7 @@ export default function TableRepresentation() {
             placeItems={"center"}
             fontSize={"lg"}
         >
-            <Table variant="simple">
+            <Table variant="simple" colorScheme={"neutral"}>
                 <Thead>
                     <Tr>
                         {Object.entries(data[0]).map(column => (

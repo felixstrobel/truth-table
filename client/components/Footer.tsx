@@ -10,9 +10,9 @@ export default function Footer() {
             <Container as={Stack} maxW={"100%"} py={5}>
                 <SimpleGrid columns={{ base: 1, sm: 2, md: 3 }} spacing={8}>
                     <Container textAlign={"center"}>
-                        <a href="https://www.paypal.com/donate/?hosted_button_id=FMWQ2NMB943BA">
+                        <Link href="https://www.paypal.com/donate/?hosted_button_id=FMWQ2NMB943BA">
                             Buy us a coffee
-                        </a>
+                        </Link>
                     </Container>
                     <Container textAlign={"center"}>Proudly provided by Felix ∧ Max</Container>
                     <Container textAlign={"center"}>Feel free to leave some feedback!</Container>
@@ -30,25 +30,3 @@ export default function Footer() {
         </Box>
     );
 }
-
-/**
- *
- return (
- <footer>
- <div>
- <div>{}</div>
- <address className='flex flex-row'>
- <span>Proudly provided by</span>
- <span>
- <ato:webmaster@example.com'>Felix Strobel</a> &and;
- <ato:webmaster@example.com'>Max Lohrmann</ato:webmaster@example.com>
- </span>
- </address>
- <div>{}</div>
- </div>
- <span>
- <aMPRINT</a>
- </span>
- </footer>
- );
- */
