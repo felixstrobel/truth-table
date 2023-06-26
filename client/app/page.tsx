@@ -1,9 +1,8 @@
 "use client";
 import Header from "@/components/Header";
-import { Flex, useColorModeValue } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import Footer from "@/components/Footer";
 import Insertion from "@/components/Insertion";
-import { colors } from "@/constants/colors";
 
 export default function Home() {
     return (
@@ -11,8 +10,6 @@ export default function Home() {
             width={"100vw"}
             minH={"100vh"}
             overflow={"hidden"}
-            backgroundColor={"neutral.900"}
-            color={useColorModeValue(...colors.bodyColor)}
             wrap={"wrap"}
             minHeight={"100vh"}
             flexDirection={"column"}
