@@ -1,36 +1,25 @@
 import {
-    Box,
     Button,
     Flex,
-    Grid,
     IconButton,
     Input,
     InputGroup,
     InputRightElement,
     Stack,
     Tooltip,
-    useColorModeValue,
 } from "@chakra-ui/react";
 import { CopyIcon } from "@chakra-ui/icons";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import CustomSelect from "@/components/CustomSelect";
 import TableRepresentation from "@/components/TableRepresentation";
-import { colors } from "@/constants/colors";
-import Lexer from "@/assets/Lexer";
-import Parser from "@/assets/Parser";
-import Term from "@/assets/model/term/Term";
-import { TableFormat, evaluate } from "@/assets/Evaluater";
 
 export default function Insertion() {
     const [value, setValue] = useState<string>("");
-    const [tableData, setTableData] = useState<TableFormat>([]);
     const quickButtons = ["¬", "∧", "⊼", "∨", "⊽", "→", "↔", "↮", "(", ")", ",", "A", "B", "C"];
 
     const copyInputToClipBoard = () => {
         navigator.clipboard.writeText(value).catch(e => console.log(e));
     };
-
-    useEffect(() => setTableData(evaluate(value)), [value]);
 
     return (
         <Flex
@@ -41,22 +30,24 @@ export default function Insertion() {
             flexGrow={1}
         >
             <Stack w={"70%"} alignItems={"center"}>
-                <InputGroup
-                    w={"70%"}
-                    size={"lg"}
-                    mb={4}
-                    borderColor={useColorModeValue(...colors.inputBorderColor)}
-                >
+                <InputGroup colorScheme={"neutral"} w={"70%"} size={"lg"} mb={4}>
                     <Input
+                        colorScheme={"neutral"}
                         type={"text"}
                         value={value}
                         onChange={e => setValue(e.target.value)}
                         placeholder={"Enter Boolean Expression ..."}
                     />
                     <InputRightElement>
-                        <Tooltip hasArrow label={"copy expression"} borderRadius={"lg"}>
+                        <Tooltip
+                            colorScheme={"neutral"}
+                            hasArrow
+                            label={"copy expression"}
+                            borderRadius={"lg"}
+                        >
                             <IconButton
                                 variant={"ghost"}
+                                colorScheme={"neutral"}
                                 onClick={copyInputToClipBoard}
                                 icon={<CopyIcon />}
                                 aria-label={"Copy expression to clipboard"}
@@ -70,12 +61,12 @@ export default function Insertion() {
                     {quickButtons.map(button => {
                         return (
                             <Button
-                                variant={"outline"}
+                                colorScheme={"neutral"}
+                                variant={"ghost"}
                                 w={12}
                                 h={12}
                                 mr={4}
                                 key={button}
-                                borderColor={useColorModeValue(...colors.inputBorderColor)}
                                 onClick={() => setValue(value + button)}
                             >
                                 {button}
@@ -85,7 +76,7 @@ export default function Insertion() {
                     <CustomSelect />
                 </Flex>
             </Stack>
-            <TableRepresentation tableData={tableData} />
+            <TableRepresentation />
         </Flex>
     );
 }
