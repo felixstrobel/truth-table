@@ -10,13 +10,10 @@ export default function Header() {
 
 	useEffect(() => {
 		const handleScroll = () => {
-			console.log(document.documentElement.scrollTop, scroll);
 			if (!scroll && document.documentElement.scrollTop > 100) {
 				setScroll(true);
-				console.log("true");
 			} else if (scroll && document.documentElement.scrollTop < 70) {
 				setScroll(false);
-				console.log("false");
 			}
 		};
 
