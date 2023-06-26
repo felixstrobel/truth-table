@@ -1,13 +1,13 @@
 export const colors: {[name: string]: [string, string]} = {
-	headerBg: ["#fff", "#000"],
+	headerBg: ["#FFB085", "#000"],
 	headerColor: ["#000", "#fff"],
 
-	bodyBg: ["#fff", "#000"],
+	bodyBg: ["#FEF1E6", "#000"],
 	bodyColor: ["#000", "#fff"],
 
 	inputBorderColor: ["#000", "#fff"],
 	tableBorderColor: ["#000", "#fff"],
 	
-	footerBg: ["#fff", "#000"],
+	footerBg: ["#90AACB", "#000"],
 	footerColor: ["#000", "#fff"],
 };
