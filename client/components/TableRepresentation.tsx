@@ -1,14 +1,4 @@
-import {
-    Table,
-    TableContainer,
-    Tbody,
-    Td,
-    Th,
-    Thead,
-    Tr,
-    useColorModeValue,
-} from "@chakra-ui/react";
-import { colors } from "@/constants/colors";
+import { Table, TableContainer, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
 import { TableFormat } from "@/assets/Evaluater";
 import ParserError from "@/assets/model/ParserError";
 
@@ -28,7 +18,7 @@ export default function TableRepresentation({ tableData }: { tableData: TableFor
             placeItems={"center"}
             fontSize={"lg"}
         >
-            <Table variant="simple">
+            <Table variant="simple" colorScheme={"neutral"}>
                 <Thead>
                     <Tr>
                         {Object.entries(tableData[0]).map(column => (
@@ -36,9 +26,7 @@ export default function TableRepresentation({ tableData }: { tableData: TableFor
                                 key={column[0]}
                                 fontSize={"xl"}
                                 fontWeight={"extrabold"}
-                                color={useColorModeValue(...colors.bodyColor)}
                                 textAlign={"center"}
-                                borderColor={useColorModeValue(...colors.tableBorderColor)}
                             >
                                 {column[0]}
                             </Th>
@@ -49,11 +37,7 @@ export default function TableRepresentation({ tableData }: { tableData: TableFor
                     {tableData.map((evaluation, index) => (
                         <Tr key={index}>
                             {Object.entries(evaluation).map((column, index) => (
-                                <Td
-                                    key={index}
-                                    textAlign={"center"}
-                                    borderColor={useColorModeValue(...colors.tableBorderColor)}
-                                >
+                                <Td key={index} textAlign={"center"}>
                                     {column[1] ? "T" : "F"}
                                 </Td>
                             ))}

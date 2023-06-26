@@ -9,17 +9,21 @@ import {
     Tooltip,
 } from "@chakra-ui/react";
 import { CopyIcon } from "@chakra-ui/icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CustomSelect from "@/components/CustomSelect";
 import TableRepresentation from "@/components/TableRepresentation";
+import { evaluate, TableFormat } from "@/assets/Evaluater";
 
 export default function Insertion() {
     const [value, setValue] = useState<string>("");
+    const [tableData, setTableData] = useState<TableFormat>([]);
     const quickButtons = ["¬", "∧", "⊼", "∨", "⊽", "→", "↔", "↮", "(", ")", ",", "A", "B", "C"];
 
     const copyInputToClipBoard = () => {
         navigator.clipboard.writeText(value).catch(e => console.log(e));
     };
+
+    useEffect(() => setTableData(evaluate(value)), [value]);
 
     return (
         <Flex
@@ -76,7 +80,7 @@ export default function Insertion() {
                     <CustomSelect />
                 </Flex>
             </Stack>
-            <TableRepresentation />
+            <TableRepresentation tableData={tableData} />
         </Flex>
     );
 }
