@@ -8,15 +8,16 @@ import {
     PopoverTrigger,
     Text,
 } from "@chakra-ui/react";
-import {
-    ChevronDownIcon,
-    ChevronUpIcon,
-    CopyIcon,
-    ExternalLinkIcon,
-    InfoIcon,
-    UnlockIcon,
-} from "@chakra-ui/icons";
+import { ChevronDownIcon, ChevronUpIcon, CopyIcon, ExternalLinkIcon } from "@chakra-ui/icons";
 import { useRef, useState } from "react";
+import HtmlIcon from "@/components/icons/HtmlIcon";
+import LatexIcon from "@/components/icons/LatexIcon";
+
+const options: CustomSelectOption[] = [
+    { icon: <HtmlIcon boxSize={8} />, text: "HTML" },
+    { icon: <ExternalLinkIcon boxSize={4} />, text: "Link" },
+    { icon: <LatexIcon boxSize={10} />, text: "Latex" },
+];
 
 interface CustomSelectOption {
     icon: any;
@@ -25,17 +26,7 @@ interface CustomSelectOption {
 
 export default function CustomSelect() {
     const initRef = useRef<any>();
-    const [activeOption, setActiveOption] = useState<CustomSelectOption>({
-        icon: <UnlockIcon />,
-        text: "HTML",
-    });
-
-    // TODO use correct Icons for Latex and HTML
-    const options: CustomSelectOption[] = [
-        { icon: <UnlockIcon boxSize={4} />, text: "HTML" },
-        { icon: <ExternalLinkIcon boxSize={4} />, text: "Link" },
-        { icon: <InfoIcon boxSize={4} />, text: "Latex" },
-    ];
+    const [activeOption, setActiveOption] = useState<CustomSelectOption>(options[0]);
 
     return (
         <Popover colorScheme={"neutral"} placement={"bottom-end"} initialFocusRef={initRef}>
