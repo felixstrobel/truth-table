@@ -20,7 +20,7 @@ export default function Insertion() {
     const quickButtons = ["¬", "∧", "⊼", "∨", "⊽", "→", "↔", "↮", "(", ")", ",", "A", "B", "C"];
 
     const copyInputToClipBoard = () => {
-        navigator.clipboard.writeText(value).catch(e => console.log(e));
+        navigator.clipboard.writeText(value).catch((e) => console.log(e));
     };
 
     useEffect(() => setTableData(evaluate(value)), [value]);
@@ -39,7 +39,7 @@ export default function Insertion() {
                         colorScheme={"neutral"}
                         type={"text"}
                         value={value}
-                        onChange={e => setValue(e.target.value)}
+                        onChange={(e) => setValue(e.target.value)}
                         placeholder={"Enter Boolean Expression ..."}
                     />
                     <InputRightElement>
@@ -62,7 +62,7 @@ export default function Insertion() {
 
                 {/*TODO fix flex wrap*/}
                 <Flex w={"full"} flexDir={"row"} flexWrap={"wrap"} justifyContent={"center"}>
-                    {quickButtons.map(button => {
+                    {quickButtons.map((button) => {
                         return (
                             <Button
                                 colorScheme={"neutral"}
@@ -77,6 +77,17 @@ export default function Insertion() {
                             </Button>
                         );
                     })}
+
+                    <Button
+                        colorScheme={"neutral"}
+                        variant={"outline"}
+                        w={12}
+                        h={12}
+                        mr={4}
+                        onClick={() => setValue(value.substring(0, value.length - 1))}
+                    >
+                        {"DEL"}
+                    </Button>
                     <CustomSelect />
                 </Flex>
             </Stack>
