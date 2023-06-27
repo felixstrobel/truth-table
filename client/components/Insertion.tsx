@@ -12,7 +12,7 @@ import { CopyIcon } from "@chakra-ui/icons";
 import { useEffect, useState } from "react";
 import CustomSelect from "@/components/CustomSelect";
 import TableRepresentation from "@/components/TableRepresentation";
-import { evaluate, TableFormat } from "@/assets/Evaluater";
+import { evaluate, TableFormat } from "@/assets/Adapter";
 
 export default function Insertion() {
     const [value, setValue] = useState<string>("");
@@ -66,7 +66,7 @@ export default function Insertion() {
                         return (
                             <Button
                                 colorScheme={"neutral"}
-                                variant={"ghost"}
+                                variant={"outline"}
                                 w={12}
                                 h={12}
                                 mr={4}

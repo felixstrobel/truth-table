@@ -1,5 +1,5 @@
 import { Table, TableContainer, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
-import { TableFormat } from "@/assets/Evaluater";
+import { TableFormat } from "@/assets/Adapter";
 import ParserError from "@/assets/model/ParserError";
 
 export default function TableRepresentation({ tableData }: { tableData: TableFormat }) {
