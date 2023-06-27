@@ -60,7 +60,7 @@ function generateTable(parser: Parser, term: Term): TableFormat {
             row[key] = val;
         }
 
-        row["="] = term.eval(constants);
+        row[term.toString()] = term.eval(constants);
 
         data.push(row);
     }
