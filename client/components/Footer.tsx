@@ -1,32 +1,35 @@
 "use client";
-
-import { colors } from "@/constants/colors";
-import { Box, Container, Flex, SimpleGrid, Stack, useColorModeValue } from "@chakra-ui/react";
+import { Box, Button, Grid, GridItem, Stack, Text } from "@chakra-ui/react";
 import Link from "next/link";
 
-export default function Footer() {
+const Footer = () => {
     return (
-        <Box width={"full"}>
-            <Container as={Stack} maxW={"100%"} py={5}>
-                <SimpleGrid columns={{ base: 1, sm: 2, md: 3 }} spacing={8}>
-                    <Container textAlign={"center"}>
-                        <Link href="https://www.paypal.com/donate/?hosted_button_id=FMWQ2NMB943BA">
-                            Buy us a coffee
-                        </Link>
-                    </Container>
-                    <Container textAlign={"center"}>Proudly provided by Felix ∧ Max</Container>
-                    <Container textAlign={"center"}>Feel free to leave some feedback!</Container>
-                </SimpleGrid>
-            </Container>
-
-            <Container py={5}>
-                <Flex justifyContent={"center"}>
-                    <Link href="https://www.paypal.com/donate/?hosted_button_id=FMWQ2NMB943BA">
-                        Imprint
-                    </Link>
-                    <span>&nbsp;&copy; {new Date().getFullYear()}</span>
-                </Flex>
-            </Container>
+        <Box as={"footer"} w={"full"} mt={20} mb={4}>
+            <Grid templateColumns={"1fr 1fr 1fr"}>
+                <GridItem justifySelf={"start"}>
+                    <Text>Do you like what you see? Buy us a drink 🍹</Text>
+                    <Button
+                        size={"sm"}
+                        as={Link}
+                        href={"https://www.paypal.com/donate/?hosted_button_id=FMWQ2NMB943BA"}
+                    >
+                        Donate
+                    </Button>
+                </GridItem>
+                <GridItem justifySelf={"center"}>
+                    <Text>Proudly provided by Felix ∧ Max</Text>
+                </GridItem>
+                <GridItem justifySelf={"end"}>
+                    <Text>Feel free to leave some feedback!</Text>
+                </GridItem>
+            </Grid>
+            <Stack direction={"row"} justifyContent={"center"}>
+                {/* TODO: Add legal notice and refer to it */}
+                <Link href="">Legal Notice</Link>
+                <Text>&copy; {new Date().getFullYear()}</Text>
+            </Stack>
         </Box>
     );
-}
+};
+
+export default Footer;
