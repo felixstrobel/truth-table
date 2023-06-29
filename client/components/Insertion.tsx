@@ -23,7 +23,7 @@ interface InsertionProps {
 
 const Insertion = ({ onChange }: InsertionProps) => {
     const [value, setValue] = useState<string>("");
-    const [infoMessage, setInfoMessage] = useState<ReactNode>(<span>&nsbp;</span>);
+    const [infoMessage, setInfoMessage] = useState<ReactNode>(<span></span>);
 
     const quickButtons = ["¬", "∧", "⊼", "∨", "⊽", "→", "↔", "↮", "(", ")", ",", "A", "B", "C"];
 
@@ -35,15 +35,19 @@ const Insertion = ({ onChange }: InsertionProps) => {
         const data = evaluate(value);
 
         if (data instanceof ParserError) {
-            let x = data.input.slice(data.position, data.input.length);
-            setInfoMessage(
-                <span>
-                    {data.message.toLowerCase() + ": " + data.input.slice(0, data.position)}
-                    <Text as={"span"} color={"red.400"}>
-                        {x}
-                    </Text>
-                </span>
-            );
+            if (!data.position) {
+                setInfoMessage(<span>{data.message}</span>);
+            } else {
+                setInfoMessage(
+                    <span>
+                        {data.message + ": " + data.input.slice(0, data.position)}
+                        <Text as={"span"} color={"red.400"}>
+                            {data.input.slice(data.position, data.position + 1)}
+                        </Text>
+                        {data.input.slice(data.position + 1, data.input.length)}
+                    </span>
+                );
+            }
             return;
         }
 
