@@ -1,6 +1,7 @@
 import {
     Button,
     Flex,
+    Heading,
     IconButton,
     Input,
     InputGroup,
@@ -33,11 +34,16 @@ const Insertion = ({ onChange }: InsertionProps) => {
 
         if (data instanceof ParserError) {
             setInfoMessage(data.message);
-        } else {
-            setInfoMessage("No expression entered");
-            onChange(data);
+            return;
         }
-    }, [value]);
+
+        onChange(data);
+        if (data.length === 0) {
+            setInfoMessage("No expression entered");
+        } else {
+            setInfoMessage("");
+        }
+    }, [value, onChange]);
 
     return (
         <Stack w={"full"} py={20} alignItems={"center"}>
@@ -73,6 +79,8 @@ const Insertion = ({ onChange }: InsertionProps) => {
                     </Tooltip>
                 </InputRightElement>
             </InputGroup>
+
+            <Heading>{infoMessage}</Heading>
 
             {/* TODO: fix flex-wrap */}
             <Flex w={"full"} flexDir={"row"} flexWrap={"wrap"} justifyContent={"center"}>
