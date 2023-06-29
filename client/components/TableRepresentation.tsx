@@ -1,14 +1,12 @@
 import { Table, TableContainer, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
-import { TableFormat } from "@/assets/Evaluater";
+import { TableFormat } from "@/assets/Adapter";
 import ParserError from "@/assets/model/ParserError";
 
 const TableRepresentation = ({ tableData }: { tableData: TableFormat }) => {
-    if (tableData instanceof ParserError) {
-        return <p>{tableData.message}</p>;
+    if (tableData instanceof ParserError || tableData.length === 0) {
+        return;
     }
-    if (tableData.length === 0) {
-        return <p>Empty</p>;
-    }
+
     // TODO: fix keys
     return (
         <TableContainer
@@ -21,7 +19,7 @@ const TableRepresentation = ({ tableData }: { tableData: TableFormat }) => {
             <Table variant="simple" colorScheme={"neutral"}>
                 <Thead>
                     <Tr>
-                        {Object.entries(tableData[0]).map(column => (
+                        {Object.entries(tableData[0]).map((column) => (
                             <Th
                                 key={column[0]}
                                 fontSize={"xl"}
