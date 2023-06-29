@@ -34,7 +34,14 @@ export default function Insertion() {
             flexGrow={1}
         >
             <Stack w={"70%"} alignItems={"center"}>
-                <InputGroup colorScheme={"neutral"} w={"70%"} size={"lg"} mb={4}>
+                <InputGroup
+                    colorScheme={"neutral"}
+                    borderColor={"neutral.400"}
+                    _dark={{ borderColor: "whiteAlpha.300" }}
+                    w={"70%"}
+                    size={"lg"}
+                    mb={4}
+                >
                     <Input
                         colorScheme={"neutral"}
                         type={"text"}

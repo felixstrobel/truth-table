@@ -2,7 +2,7 @@ import { Table, TableContainer, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/reac
 import { TableFormat } from "@/assets/Evaluater";
 import ParserError from "@/assets/model/ParserError";
 
-export default function TableRepresentation({ tableData }: { tableData: TableFormat }) {
+const TableRepresentation = ({ tableData }: { tableData: TableFormat }) => {
     if (tableData instanceof ParserError) {
         return <p>{tableData.message}</p>;
     }
@@ -47,4 +47,6 @@ export default function TableRepresentation({ tableData }: { tableData: TableFor
             </Table>
         </TableContainer>
     );
-}
+};
+
+export default TableRepresentation;
