@@ -63,7 +63,7 @@ export default class Parser {
 
         if (this.currentToken.getTokenType() !== TokenType.EOL) {
             throw new ParserError(
-                "Unexpected token at end",
+                "unexpected token",
                 this.lexer.getInput(),
                 this.lexer.getLocation()
             );
@@ -115,7 +115,7 @@ export default class Parser {
 
         if (this.currentToken.getTokenType() !== TokenType.PARENTHESIS_CLOSE) {
             throw new ParserError(
-                "Expected closing bracket",
+                "expected closing bracket",
                 this.lexer.getInput(),
                 this.lexer.getLocation()
             );
@@ -145,13 +145,13 @@ export default class Parser {
 
         if (this.currentToken.getTokenType() === TokenType.EOL) {
             throw new ParserError(
-                "Unexpected end of expression",
+                "unexpected end of expression",
                 this.lexer.getInput()
             );
         }
 
         throw new ParserError(
-            "Unexpected token",
+            "unexpected token",
             this.lexer.getInput(),
             this.lexer.getLocation()
         );
