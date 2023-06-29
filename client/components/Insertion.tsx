@@ -17,7 +17,11 @@ import TableRepresentation from "@/components/TableRepresentation";
 import { evaluate, TableFormat } from "@/assets/Adapter";
 import ParserError from "@/assets/model/ParserError";
 
-export default function Insertion() {
+interface InsertionProps {
+    onChange: Function;
+}
+
+const Insertion = ({ onChange }: InsertionProps) => {
     const [value, setValue] = useState<string>("");
     const [tableData, setTableData] = useState<TableFormat>([]);
     const [infoMessage, setInfoMessage] = useState("");
@@ -40,39 +44,39 @@ export default function Insertion() {
     }, [value]);
 
     return (
-        <Flex
-            flexWrap={"wrap"}
-            flexDirection={"column"}
-            alignContent={"center"}
-            justifyContent={"space-evenly"}
-            flexGrow={1}
-        >
-            <Stack w={"70%"} alignItems={"center"}>
-                <InputGroup colorScheme={"neutral"} w={"70%"} size={"lg"} mb={4}>
-                    <Input
+        <Stack w={"full"} py={20} alignItems={"center"}>
+            <InputGroup
+                colorScheme={"neutral"}
+                borderColor={"neutral.400"}
+                _dark={{ borderColor: "whiteAlpha.300" }}
+                w={"70%"}
+                size={"lg"}
+                mb={4}
+            >
+                <Input
+                    colorScheme={"neutral"}
+                    type={"text"}
+                    value={value}
+                    onChange={e => setValue(e.target.value)}
+                    placeholder={"Enter Boolean Expression ..."}
+                />
+                <InputRightElement>
+                    <Tooltip
                         colorScheme={"neutral"}
-                        type={"text"}
-                        value={value}
-                        onChange={(e) => setValue(e.target.value)}
-                        placeholder={"Enter Boolean Expression ..."}
-                    />
-                    <InputRightElement>
-                        <Tooltip
+                        hasArrow
+                        label={"copy expression"}
+                        borderRadius={"lg"}
+                    >
+                        <IconButton
+                            variant={"ghost"}
                             colorScheme={"neutral"}
-                            hasArrow
-                            label={"copy expression"}
-                            borderRadius={"lg"}
-                        >
-                            <IconButton
-                                variant={"ghost"}
-                                colorScheme={"neutral"}
-                                onClick={copyInputToClipBoard}
-                                icon={<CopyIcon />}
-                                aria-label={"Copy expression to clipboard"}
-                            />
-                        </Tooltip>
-                    </InputRightElement>
-                </InputGroup>
+                            onClick={copyInputToClipBoard}
+                            icon={<CopyIcon />}
+                            aria-label={"Copy expression to clipboard"}
+                        />
+                    </Tooltip>
+                </InputRightElement>
+            </InputGroup>
 
                 {/*TODO fix flex wrap*/}
                 <Flex w={"full"} flexDir={"row"} flexWrap={"wrap"} justifyContent={"center"}>
@@ -113,4 +117,6 @@ export default function Insertion() {
             <TableRepresentation tableData={tableData} />
         </Flex>
     );
-}
+};
+
+export default Insertion;
