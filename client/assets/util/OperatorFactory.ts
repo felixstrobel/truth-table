@@ -16,8 +16,8 @@ class OperatorFactory {
 		return [
 			this.createNegation(),
 			this.createNAND(),
-			this.createConjunction(),
 			this.createNOR(),
+			this.createConjunction(),
 			this.createDisjunction(),
 			this.createConditional(),
 			this.createBiconditional(),
