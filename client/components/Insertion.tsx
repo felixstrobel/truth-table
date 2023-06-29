@@ -1,4 +1,5 @@
 import {
+    Box,
     Button,
     Flex,
     IconButton,
@@ -7,23 +8,36 @@ import {
     InputRightElement,
     Stack,
     Tooltip,
+    Text,
 } from "@chakra-ui/react";
 import { CopyIcon } from "@chakra-ui/icons";
 import { useEffect, useState } from "react";
 import CustomSelect from "@/components/CustomSelect";
 import TableRepresentation from "@/components/TableRepresentation";
 import { evaluate, TableFormat } from "@/assets/Adapter";
+import ParserError from "@/assets/model/ParserError";
 
 export default function Insertion() {
     const [value, setValue] = useState<string>("");
     const [tableData, setTableData] = useState<TableFormat>([]);
+    const [infoMessage, setInfoMessage] = useState("");
+
     const quickButtons = ["¬", "∧", "⊼", "∨", "⊽", "→", "↔", "↮", "(", ")", ",", "A", "B", "C"];
 
     const copyInputToClipBoard = () => {
         navigator.clipboard.writeText(value).catch((e) => console.log(e));
     };
 
-    useEffect(() => setTableData(evaluate(value)), [value]);
+    useEffect(() => {
+        const data = evaluate(value);
+
+        if (data instanceof ParserError) {
+            setInfoMessage(data.message);
+        } else {
+            setInfoMessage("No expression entered");
+            setTableData(data);
+        }
+    }, [value]);
 
     return (
         <Flex
@@ -91,6 +105,11 @@ export default function Insertion() {
                     <CustomSelect />
                 </Flex>
             </Stack>
+            <Box>
+                <Text textAlign={"center"} fontSize={"4xl"}>
+                    {infoMessage}
+                </Text>
+            </Box>
             <TableRepresentation tableData={tableData} />
         </Flex>
     );
