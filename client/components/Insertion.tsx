@@ -1,5 +1,4 @@
 import {
-    Box,
     Button,
     Flex,
     IconButton,
@@ -8,12 +7,10 @@ import {
     InputRightElement,
     Stack,
     Tooltip,
-    Text,
 } from "@chakra-ui/react";
 import { CopyIcon } from "@chakra-ui/icons";
 import { useEffect, useState } from "react";
 import CustomSelect from "@/components/CustomSelect";
-import TableRepresentation from "@/components/TableRepresentation";
 import { evaluate, TableFormat } from "@/assets/Adapter";
 import ParserError from "@/assets/model/ParserError";
 
@@ -23,7 +20,6 @@ interface InsertionProps {
 
 const Insertion = ({ onChange }: InsertionProps) => {
     const [value, setValue] = useState<string>("");
-    const [tableData, setTableData] = useState<TableFormat>([]);
     const [infoMessage, setInfoMessage] = useState("");
 
     const quickButtons = ["¬", "∧", "⊼", "∨", "⊽", "→", "↔", "↮", "(", ")", ",", "A", "B", "C"];
@@ -39,7 +35,7 @@ const Insertion = ({ onChange }: InsertionProps) => {
             setInfoMessage(data.message);
         } else {
             setInfoMessage("No expression entered");
-            setTableData(data);
+            onChange(data);
         }
     }, [value]);
 
@@ -57,7 +53,7 @@ const Insertion = ({ onChange }: InsertionProps) => {
                     colorScheme={"neutral"}
                     type={"text"}
                     value={value}
-                    onChange={e => setValue(e.target.value)}
+                    onChange={(e) => setValue(e.target.value)}
                     placeholder={"Enter Boolean Expression ..."}
                 />
                 <InputRightElement>
@@ -78,44 +74,36 @@ const Insertion = ({ onChange }: InsertionProps) => {
                 </InputRightElement>
             </InputGroup>
 
-                {/*TODO fix flex wrap*/}
-                <Flex w={"full"} flexDir={"row"} flexWrap={"wrap"} justifyContent={"center"}>
-                    {quickButtons.map((button) => {
-                        return (
-                            <Button
-                                colorScheme={"neutral"}
-                                variant={"outline"}
-                                w={12}
-                                h={12}
-                                mr={4}
-                                key={button}
-                                onClick={() => setValue(value + button)}
-                            >
-                                {button}
-                            </Button>
-                        );
-                    })}
-
-                    <Button
-                        colorScheme={"neutral"}
-                        variant={"outline"}
-                        w={12}
-                        h={12}
-                        mr={4}
-                        onClick={() => setValue(value.substring(0, value.length - 1))}
-                    >
-                        {"DEL"}
-                    </Button>
-                    <CustomSelect />
-                </Flex>
-            </Stack>
-            <Box>
-                <Text textAlign={"center"} fontSize={"4xl"}>
-                    {infoMessage}
-                </Text>
-            </Box>
-            <TableRepresentation tableData={tableData} />
-        </Flex>
+            {/* TODO: fix flex-wrap */}
+            <Flex w={"full"} flexDir={"row"} flexWrap={"wrap"} justifyContent={"center"}>
+                {quickButtons.map((button) => {
+                    return (
+                        <Button
+                            colorScheme={"neutral"}
+                            variant={"ghost"}
+                            w={12}
+                            h={12}
+                            mr={4}
+                            key={button}
+                            onClick={() => setValue(value + button)}
+                        >
+                            {button}
+                        </Button>
+                    );
+                })}
+                <Button
+                    colorScheme={"neutral"}
+                    variant={"outline"}
+                    w={12}
+                    h={12}
+                    mr={4}
+                    onClick={() => setValue(value.substring(0, value.length - 1))}
+                >
+                    {"DEL"}
+                </Button>
+                <CustomSelect />
+            </Flex>
+        </Stack>
     );
 };
 

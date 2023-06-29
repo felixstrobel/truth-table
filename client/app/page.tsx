@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import Insertion from "@/components/Insertion";
 import TableRepresentation from "@/components/TableRepresentation";
 import { useState } from "react";
-import { TableFormat } from "@/assets/Evaluater";
+import { TableFormat } from "@/assets/Adapter";
 
 const Home = () => {
     const [tableData, setTableData] = useState<TableFormat>([]);
