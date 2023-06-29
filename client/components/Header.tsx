@@ -48,7 +48,7 @@ const Header = () => {
             </GridItem>
 
             <GridItem display={"flex"} justifyContent={"center"} alignItems={"center"}>
-                <Heading colorScheme={"neutral"} whiteSpace={"nowrap"}>
+                <Heading as={"h1"} colorScheme={"neutral"} whiteSpace={"nowrap"}>
                     Truth Table Wizard
                 </Heading>
             </GridItem>

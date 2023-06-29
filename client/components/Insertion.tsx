@@ -1,4 +1,5 @@
 import {
+    Box,
     Button,
     Flex,
     Heading,
@@ -7,10 +8,11 @@ import {
     InputGroup,
     InputRightElement,
     Stack,
+    Text,
     Tooltip,
 } from "@chakra-ui/react";
 import { CopyIcon } from "@chakra-ui/icons";
-import { useEffect, useState } from "react";
+import { ReactChildren, ReactNode, useEffect, useState } from "react";
 import CustomSelect from "@/components/CustomSelect";
 import { evaluate, TableFormat } from "@/assets/Adapter";
 import ParserError from "@/assets/model/ParserError";
@@ -21,7 +23,7 @@ interface InsertionProps {
 
 const Insertion = ({ onChange }: InsertionProps) => {
     const [value, setValue] = useState<string>("");
-    const [infoMessage, setInfoMessage] = useState("");
+    const [infoMessage, setInfoMessage] = useState<ReactNode>(<span>&nsbp;</span>);
 
     const quickButtons = ["¬", "∧", "⊼", "∨", "⊽", "→", "↔", "↮", "(", ")", ",", "A", "B", "C"];
 
@@ -33,16 +35,20 @@ const Insertion = ({ onChange }: InsertionProps) => {
         const data = evaluate(value);
 
         if (data instanceof ParserError) {
-            setInfoMessage(data.message);
+            let x = data.input.slice(data.position, data.input.length);
+            setInfoMessage(
+                <span>
+                    {data.message.toLowerCase() + ": " + data.input.slice(0, data.position)}
+                    <Text as={"span"} color={"red.400"}>
+                        {x}
+                    </Text>
+                </span>
+            );
             return;
         }
 
         onChange(data);
-        if (data.length === 0) {
-            setInfoMessage("No expression entered");
-        } else {
-            setInfoMessage("");
-        }
+        setInfoMessage(null);
     }, [value, onChange]);
 
     return (
@@ -53,7 +59,6 @@ const Insertion = ({ onChange }: InsertionProps) => {
                 _dark={{ borderColor: "whiteAlpha.300" }}
                 w={"70%"}
                 size={"lg"}
-                mb={4}
             >
                 <Input
                     colorScheme={"neutral"}
@@ -80,7 +85,11 @@ const Insertion = ({ onChange }: InsertionProps) => {
                 </InputRightElement>
             </InputGroup>
 
-            <Heading>{infoMessage}</Heading>
+            <Box h={6}>
+                <Text color={"neutral.700"} fontSize={"sm"} fontWeight={"semibold"}>
+                    {infoMessage}
+                </Text>
+            </Box>
 
             {/* TODO: fix flex-wrap */}
             <Flex w={"full"} flexDir={"row"} flexWrap={"wrap"} justifyContent={"center"}>
