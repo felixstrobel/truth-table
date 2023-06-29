@@ -80,7 +80,7 @@ const Insertion = ({ onChange }: InsertionProps) => {
                     return (
                         <Button
                             colorScheme={"neutral"}
-                            variant={"ghost"}
+                            variant={"outline"}
                             w={12}
                             h={12}
                             mr={4}
