@@ -19,7 +19,7 @@ const Header = () => {
                 </Heading>
             </GridItem>
 
-            <GridItem justifySelf={"end"} alignSelf={{ base: "center", md: "start" }}>
+            <GridItem justifySelf={"end"} alignSelf={{ base: "center", sm: "start" }}>
                 <Tooltip
                     hasArrow
                     openDelay={800}
@@ -30,14 +30,14 @@ const Header = () => {
                 >
                     <IconButton
                         onClick={toggleColorMode}
-                        size={"lg"}
+                        size={{ base: "md", md: "lg" }}
                         variant={"ghost"}
                         colorScheme={"neutral"}
                         icon={
                             colorMode === "dark" ? (
-                                <MoonIcon boxSize={6} />
+                                <MoonIcon boxSize={{ base: 4, sm: 6 }} />
                             ) : (
-                                <SunIcon boxSize={6} />
+                                <SunIcon boxSize={{ base: 4, sm: 6 }} />
                             )
                         }
                         aria-label={"Switch color mode"}

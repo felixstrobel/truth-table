@@ -33,7 +33,7 @@ const CustomSelect = () => {
         <Popover colorScheme={"neutral"} placement={"bottom-end"} initialFocusRef={initRef}>
             {({ isOpen, onClose }) => (
                 <>
-                    <Box my={2}>
+                    <Box m={2}>
                         <PopoverTrigger>
                             <Button colorScheme={"neutral"} h={12} borderEndRadius={0}>
                                 {activeOption.icon} <Text mx={2}>{activeOption.text}</Text>

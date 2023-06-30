@@ -16,7 +16,7 @@ const Home = () => {
             mx={"auto"}
             px={{ base: "4", sm: "6", lg: "8" }}
             maxW={"8xl"}
-            h={"100vh"}
+            minH={"100vh"}
             flexDirection={"column"}
         >
             <Header />

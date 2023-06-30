@@ -55,7 +55,7 @@ const InputSection = ({ onChange }: InsertionProps) => {
     }, [value, onChange]);
 
     return (
-        <Stack mt={{ base: 10, lg: 20 }} alignItems={"center"}>
+        <Stack my={{ base: 10, lg: 20 }} alignItems={"center"}>
             <InputGroup
                 borderColor={"neutral.400"}
                 _dark={{ borderColor: "whiteAlpha.300" }}
@@ -69,6 +69,7 @@ const InputSection = ({ onChange }: InsertionProps) => {
                     onChange={(e) => setValue(e.target.value)}
                     variant={"filled"}
                     colorScheme={"neutral"}
+                    letterSpacing={2}
                 />
                 <InputRightElement>
                     <Tooltip
@@ -91,13 +92,17 @@ const InputSection = ({ onChange }: InsertionProps) => {
             </InputGroup>
 
             {/* TODO: do it the correct way! You are awesome and more than able to to this task! I believe in you :) */}
-            <Box h={6}>
-                <Text color={"neutral.700"} fontSize={"sm"} fontWeight={"semibold"}>
-                    {infoMessage}
-                </Text>
-            </Box>
+            {/*<Box h={6}>*/}
+            {/*    <Text color={"neutral.700"} fontSize={"sm"} fontWeight={"semibold"}>*/}
+            {/*        {infoMessage}*/}
+            {/*    </Text>*/}
+            {/*</Box>*/}
 
-            <Flex flexDirection={"row"} flexWrap={"wrap"} justifyContent={"start"}>
+            <Flex
+                flexDirection={"row"}
+                flexWrap={"wrap"}
+                justifyContent={{ base: "center", md: "start" }}
+            >
                 {quickButtons.map((buttonText) => {
                     return (
                         <Button
@@ -105,8 +110,7 @@ const InputSection = ({ onChange }: InsertionProps) => {
                             variant={"outline"}
                             w={12}
                             h={12}
-                            mr={4}
-                            my={2}
+                            m={2}
                             key={buttonText}
                             onClick={() => setValue(value + buttonText)}
                         >
@@ -119,8 +123,7 @@ const InputSection = ({ onChange }: InsertionProps) => {
                     variant={"outline"}
                     w={12}
                     h={12}
-                    mr={4}
-                    my={2}
+                    m={2}
                     onClick={() => setValue(value.substring(0, value.length - 1))}
                 >
                     {"DEL"}
