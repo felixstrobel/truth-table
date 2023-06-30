@@ -1,34 +1,32 @@
-"use client";
 import { Grid, GridItem, Heading, IconButton, Tooltip, useColorMode } from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
-import { useEffect, useState } from "react";
 
 const Header = () => {
     const { colorMode, toggleColorMode } = useColorMode();
-    const [scroll, setScroll] = useState<boolean>(false);
 
-    useEffect(() => {
-        const handleScroll = () => {
-            if (!scroll && document.documentElement.scrollTop > 100) {
-                setScroll(true);
-            } else if (scroll && document.documentElement.scrollTop < 70) {
-                setScroll(false);
-            }
-        };
-
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, [scroll]);
-
-    // BUG: Resizing of the font is causing strange shit on webkit (safari)
     return (
-        <Grid p={3} w={"full"} h={"20"} templateColumns={"1fr 8fr 1fr"}>
-            {/*TODO add a little transparency to tooltip and change description dynamically*/}
-            <GridItem>
+        <Grid as={"header"} py={4} w={"full"} templateColumns={"1fr 6fr 1fr"}>
+            <GridItem />
+
+            <GridItem justifySelf={"center"} alignSelf={{ base: "center", md: "start" }}>
+                <Heading
+                    as={"h1"}
+                    colorScheme={"neutral"}
+                    fontSize={{ base: "3xl", md: "5xl" }}
+                    whiteSpace={"nowrap"}
+                >
+                    Truth Table
+                </Heading>
+            </GridItem>
+
+            <GridItem justifySelf={"end"} alignSelf={{ base: "center", md: "start" }}>
                 <Tooltip
                     hasArrow
+                    openDelay={800}
+                    closeOnClick={false}
                     label={`switch to ${colorMode === "dark" ? "light" : "dark"} mode`}
-                    borderRadius={"lg"}
+                    colorScheme={"neutral"}
+                    borderRadius={"md"}
                 >
                     <IconButton
                         onClick={toggleColorMode}
@@ -45,12 +43,6 @@ const Header = () => {
                         aria-label={"Switch color mode"}
                     />
                 </Tooltip>
-            </GridItem>
-
-            <GridItem display={"flex"} justifyContent={"center"} alignItems={"center"}>
-                <Heading as={"h1"} colorScheme={"neutral"} whiteSpace={"nowrap"}>
-                    Truth Table Wizard
-                </Heading>
             </GridItem>
         </Grid>
     );

@@ -14,10 +14,9 @@ const Home = () => {
         <Flex
             mx={"auto"}
             px={{ base: "4", sm: "6", lg: "8" }}
-            maxW={"7xl"}
+            maxW={"8xl"}
             h={"100vh"}
             flexDirection={"column"}
-            overflow={"hidden"}
         >
             <Header />
 
