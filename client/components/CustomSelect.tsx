@@ -1,4 +1,6 @@
+import { useRef, useState } from "react";
 import {
+    Box,
     Button,
     IconButton,
     Popover,
@@ -9,7 +11,6 @@ import {
     Text,
 } from "@chakra-ui/react";
 import { ChevronDownIcon, ChevronUpIcon, CopyIcon, ExternalLinkIcon } from "@chakra-ui/icons";
-import { useRef, useState } from "react";
 import HtmlIcon from "@/components/icons/HtmlIcon";
 import LatexIcon from "@/components/icons/LatexIcon";
 
@@ -24,7 +25,7 @@ interface CustomSelectOption {
     text: string;
 }
 
-export default function CustomSelect() {
+const CustomSelect = () => {
     const initRef = useRef<any>();
     const [activeOption, setActiveOption] = useState<CustomSelectOption>(options[0]);
 
@@ -32,33 +33,32 @@ export default function CustomSelect() {
         <Popover colorScheme={"neutral"} placement={"bottom-end"} initialFocusRef={initRef}>
             {({ isOpen, onClose }) => (
                 <>
-                    <PopoverTrigger>
-                        <Button colorScheme={"neutral"} h={12} borderEndRadius={0}>
-                            {activeOption.icon}{" "}
-                            <Text colorScheme={"neutral"} mx={2}>
-                                {activeOption.text}
-                            </Text>
-                            {isOpen ? (
-                                <ChevronUpIcon boxSize={5} />
-                            ) : (
-                                <ChevronDownIcon boxSize={5} />
-                            )}
-                        </Button>
-                    </PopoverTrigger>
-                    <IconButton
-                        colorScheme={"neutral"}
-                        ml={0.5}
-                        h={12}
-                        w={12}
-                        borderStartRadius={0}
-                        icon={<CopyIcon boxSize={4} />}
-                        aria-label={"copy the truth table as " + activeOption.text}
-                    />
+                    <Box my={2}>
+                        <PopoverTrigger>
+                            <Button colorScheme={"neutral"} h={12} borderEndRadius={0}>
+                                {activeOption.icon} <Text mx={2}>{activeOption.text}</Text>
+                                {isOpen ? (
+                                    <ChevronUpIcon boxSize={5} />
+                                ) : (
+                                    <ChevronDownIcon boxSize={5} />
+                                )}
+                            </Button>
+                        </PopoverTrigger>
+                        <IconButton
+                            colorScheme={"neutral"}
+                            ml={0.5}
+                            h={12}
+                            w={12}
+                            borderStartRadius={0}
+                            icon={<CopyIcon boxSize={4} />}
+                            aria-label={"copy the truth table as " + activeOption.text}
+                        />
+                    </Box>
                     <PopoverContent w={"4xs"}>
                         <PopoverArrow />
                         <PopoverBody display={"flex"} flexDir={"column"} m={0} p={0}>
                             {options
-                                .filter(option => option.text !== activeOption.text)
+                                .filter((option) => option.text !== activeOption.text)
                                 .map((option: CustomSelectOption) => {
                                     return (
                                         <Button
@@ -84,4 +84,6 @@ export default function CustomSelect() {
             )}
         </Popover>
     );
-}
+};
+
+export default CustomSelect;

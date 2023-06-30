@@ -1,8 +1,8 @@
+import { ReactNode, useEffect, useState } from "react";
 import {
     Box,
     Button,
     Flex,
-    Heading,
     IconButton,
     Input,
     InputGroup,
@@ -12,20 +12,19 @@ import {
     Tooltip,
 } from "@chakra-ui/react";
 import { CopyIcon } from "@chakra-ui/icons";
-import { ReactChildren, ReactNode, useEffect, useState } from "react";
 import CustomSelect from "@/components/CustomSelect";
-import { evaluate, TableFormat } from "@/assets/Adapter";
+import { evaluate } from "@/assets/Adapter";
 import ParserError from "@/assets/model/ParserError";
 
 interface InsertionProps {
     onChange: Function;
 }
 
-const Insertion = ({ onChange }: InsertionProps) => {
+const InputSection = ({ onChange }: InsertionProps) => {
     const [value, setValue] = useState<string>("");
     const [infoMessage, setInfoMessage] = useState<ReactNode>(<span></span>);
 
-    const quickButtons = ["¬", "∧", "⊼", "∨", "⊽", "→", "↔", "↮", "(", ")", ",", "A", "B", "C"];
+    const quickButtons = ["¬", "∧", "⊼", "∨", "⊽", "→", "⇔", "↮", "(", ")", ",", "A", "B", "C"];
 
     const copyInputToClipBoard = () => {
         navigator.clipboard.writeText(value).catch((e) => console.log(e));
@@ -56,27 +55,29 @@ const Insertion = ({ onChange }: InsertionProps) => {
     }, [value, onChange]);
 
     return (
-        <Stack w={"full"} py={20} alignItems={"center"}>
+        <Stack mt={{ base: 10, lg: 20 }} alignItems={"center"}>
             <InputGroup
-                colorScheme={"neutral"}
                 borderColor={"neutral.400"}
                 _dark={{ borderColor: "whiteAlpha.300" }}
-                w={"70%"}
+                w={{ base: "full", md: "85%", lg: "70%" }}
                 size={"lg"}
             >
                 <Input
-                    colorScheme={"neutral"}
                     type={"text"}
                     value={value}
-                    onChange={(e) => setValue(e.target.value)}
                     placeholder={"Enter Boolean Expression ..."}
+                    onChange={(e) => setValue(e.target.value)}
+                    variant={"filled"}
+                    colorScheme={"neutral"}
                 />
                 <InputRightElement>
                     <Tooltip
-                        colorScheme={"neutral"}
                         hasArrow
+                        openDelay={800}
+                        placement={"top"}
                         label={"copy expression"}
-                        borderRadius={"lg"}
+                        colorScheme={"neutral"}
+                        borderRadius={"md"}
                     >
                         <IconButton
                             variant={"ghost"}
@@ -89,15 +90,15 @@ const Insertion = ({ onChange }: InsertionProps) => {
                 </InputRightElement>
             </InputGroup>
 
+            {/* TODO: do it the correct way! You are awesome and more than able to to this task! I believe in you :) */}
             <Box h={6}>
                 <Text color={"neutral.700"} fontSize={"sm"} fontWeight={"semibold"}>
                     {infoMessage}
                 </Text>
             </Box>
 
-            {/* TODO: fix flex-wrap */}
-            <Flex w={"full"} flexDir={"row"} flexWrap={"wrap"} justifyContent={"center"}>
-                {quickButtons.map((button) => {
+            <Flex flexDirection={"row"} flexWrap={"wrap"} justifyContent={"start"}>
+                {quickButtons.map((buttonText) => {
                     return (
                         <Button
                             colorScheme={"neutral"}
@@ -105,10 +106,11 @@ const Insertion = ({ onChange }: InsertionProps) => {
                             w={12}
                             h={12}
                             mr={4}
-                            key={button}
-                            onClick={() => setValue(value + button)}
+                            my={2}
+                            key={buttonText}
+                            onClick={() => setValue(value + buttonText)}
                         >
-                            {button}
+                            {buttonText}
                         </Button>
                     );
                 })}
@@ -118,6 +120,7 @@ const Insertion = ({ onChange }: InsertionProps) => {
                     w={12}
                     h={12}
                     mr={4}
+                    my={2}
                     onClick={() => setValue(value.substring(0, value.length - 1))}
                 >
                     {"DEL"}
@@ -128,4 +131,4 @@ const Insertion = ({ onChange }: InsertionProps) => {
     );
 };
 
-export default Insertion;
+export default InputSection;

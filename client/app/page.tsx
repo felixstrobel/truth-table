@@ -1,10 +1,11 @@
 "use client";
+
+import { useState } from "react";
 import Header from "@/components/Header";
 import { Flex, Spacer } from "@chakra-ui/react";
 import Footer from "@/components/Footer";
-import Insertion from "@/components/Insertion";
-import TableRepresentation from "@/components/TableRepresentation";
-import { useState } from "react";
+import InputSection from "@/components/InputSection";
+import CustomTable from "@/components/CustomTable";
 import { TableFormat } from "@/assets/Adapter";
 
 const Home = () => {
@@ -21,8 +22,8 @@ const Home = () => {
             <Header />
 
             {/* Main Section*/}
-            <Insertion onChange={setTableData} />
-            <TableRepresentation tableData={tableData} />
+            <InputSection onChange={setTableData} />
+            <CustomTable tableData={tableData} />
 
             <Spacer />
             <Footer />

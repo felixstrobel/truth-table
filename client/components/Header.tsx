@@ -12,7 +12,7 @@ const Header = () => {
                 <Heading
                     as={"h1"}
                     colorScheme={"neutral"}
-                    fontSize={{ base: "3xl", md: "5xl" }}
+                    fontSize={{ base: "3xl", sm: "5xl", md: "7xl" }}
                     whiteSpace={"nowrap"}
                 >
                     Truth Table
@@ -30,14 +30,14 @@ const Header = () => {
                 >
                     <IconButton
                         onClick={toggleColorMode}
-                        size={"md"}
+                        size={"lg"}
                         variant={"ghost"}
                         colorScheme={"neutral"}
                         icon={
                             colorMode === "dark" ? (
-                                <MoonIcon boxSize={5} />
+                                <MoonIcon boxSize={6} />
                             ) : (
-                                <SunIcon boxSize={5} />
+                                <SunIcon boxSize={6} />
                             )
                         }
                         aria-label={"Switch color mode"}
