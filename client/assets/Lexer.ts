@@ -19,6 +19,7 @@ export default class Lexer {
     private input: string;
     private location: number = -1;
     private operators: Operator[] = [];
+    private previousToken: Token | null = null;
 
     /**
      * Constructs a {@link Lexer} object.
@@ -28,27 +29,22 @@ export default class Lexer {
     constructor(input: string) {
         this.input = input.replace(/\s/g, "");
 
-        // if (this.input.length === 0) {
-        // 	throw new Error("Input may not be empty");
-        // }
-
         this.loadDefaultOperators();
-        this.replaceOperatorSymbols();
 
         // TODO redo
         // place AND operators
-        let buf = this.input.charAt(0);
-        for (let i = 1; i < this.input.length; i++) {
-            const currentChar = this.input.charAt(i);
-            const previousChar = this.input.charAt(i - 1);
-            if (currentChar.match(/[A-Z]/) && previousChar.match(/[A-Z]/)) {
-                buf += "∧";
-                buf += currentChar;
-            } else {
-                buf += currentChar;
-            }
-        }
-        this.input = buf;
+        // let buf = this.input.charAt(0);
+        // for (let i = 1; i < this.input.length; i++) {
+        //     const currentChar = this.input.charAt(i);
+        //     const previousChar = this.input.charAt(i - 1);
+        //     if (currentChar.match(/[A-Z]/) && previousChar.match(/[A-Z]/)) {
+        //         buf += "∧";
+        //         buf += currentChar;
+        //     } else {
+        //         buf += currentChar;
+        //     }
+        // }
+        // this.input = buf;
     }
 
     /**
@@ -71,44 +67,32 @@ export default class Lexer {
         }
     }
 
-    /**
-     * Replaces all alternative symbols of the operators set in the operator list
-     * by the unified symbol.
-     */
-    private replaceOperatorSymbols(): void {
+    private getNextOperator(): Operator | null {
         // create list with all alternative operator symbols associated with the unified symbol
-        const operatorMap = new Map();
+        const operatorMap = new Map<string, Operator>();
 
         for (const operator of this.operators) {
-            const unifiedSymbol = operator.getUnifiedSymbol();
+            operatorMap.set(operator.getUnifiedSymbol(), operator);
+
             for (const alternativeSymbol of operator.getAlternativeSymbols()) {
-                operatorMap.set(alternativeSymbol, unifiedSymbol);
+                operatorMap.set(alternativeSymbol, operator);
             }
         }
 
         // sort map by operator length
         const sortedOperatorMap = new Map(
-            [...operatorMap.entries()].sort((a: [string, string], b: [string, string]) => {
+            [...operatorMap.entries()].sort((a: [string, Operator], b: [string, Operator]) => {
                 return b[0].length - a[0].length;
             })
         );
 
-        // replace all operators
         for (const entry of sortedOperatorMap.entries()) {
-            this.input = this.input.split(entry[0]).join(entry[1]);
-        }
-    }
-
-    /**
-     * Retrieves a operator object based on its symbol.
-     *
-     * @param symbol The symbol of the operator.
-     * @returns The operator object with the specified symbol, or null if not found.
-     */
-    private getOperator(symbol: string): Operator | null {
-        for (const operator of this.operators) {
-            if (operator.getUnifiedSymbol() === symbol) {
-                return operator;
+            if (this.input.length < this.location + entry[0].length) {
+                continue;
+            }
+            if (this.input.substring(this.location, this.location + entry[0].length) === entry[0]) {
+                this.location += entry[0].length - 1;
+                return entry[1];
             }
         }
 
@@ -124,30 +108,72 @@ export default class Lexer {
      * @returns The next token generated.
      */
     public nextToken(): Token {
+        this.previousToken = this.extractToken();
+        return this.previousToken;
+    }
+
+    private extractToken(): Token {
         if (this.input.length <= this.location + 1) {
             return new Token(TokenType.EOL, "", null);
         }
 
         this.location++;
-        const currentCharacter: string = this.input.charAt(this.location);
+        let currentCharacter: string = this.input.charAt(this.location);
 
-        const operator = this.getOperator(currentCharacter);
+        if (currentCharacter === "(") {
+            const omittedOperator = this.omitAndOperator();
+            if (omittedOperator) return omittedOperator;
 
-        if (operator instanceof UnaryOperator) {
-            return new Token(TokenType.UNARY_OPERATOR, currentCharacter, operator);
-        } else if (operator instanceof BinaryOperator) {
-            return new Token(TokenType.BINARY_OPERATOR, currentCharacter, operator);
-        } else if (currentCharacter === "(") {
             return new Token(TokenType.PARENTHESIS_OPEN, currentCharacter, null);
-        } else if (currentCharacter === ")") {
-            return new Token(TokenType.PARENTHESIS_CLOSE, currentCharacter, null);
-        } else if (currentCharacter.match(/[A-Z]/)) {
-            return new Token(TokenType.ATOM, currentCharacter, null);
-        } else if (currentCharacter.match(/[01]/)) {
-            return new Token(TokenType.BOOLEAN, currentCharacter, null);
-        } else {
-            return new Token(TokenType.UNKNOWN, currentCharacter, null);
         }
+        if (currentCharacter === ")") {
+            return new Token(TokenType.PARENTHESIS_CLOSE, currentCharacter, null);
+        }
+        if (currentCharacter.match(/[01]/)) {
+            const omittedOperator = this.omitAndOperator();
+            if (omittedOperator) return omittedOperator;
+
+            return new Token(TokenType.BOOLEAN, currentCharacter, null);
+        }
+        if (currentCharacter.match(/[a-zA-Z]/)) {
+            const omittedOperator = this.omitAndOperator();
+            if (omittedOperator) return omittedOperator;
+
+            while (this.input.charAt(this.location + 1).match(/[0-9]/)) {
+                this.location++;
+                currentCharacter += this.input.charAt(this.location);
+            }
+
+            return new Token(TokenType.ATOM, currentCharacter.toUpperCase(), null);
+        }
+
+        const operator = this.getNextOperator();
+        if (operator instanceof UnaryOperator) {
+            return new Token(TokenType.UNARY_OPERATOR, operator.getUnifiedSymbol(), operator);
+        } else if (operator instanceof BinaryOperator) {
+            return new Token(TokenType.BINARY_OPERATOR, operator.getUnifiedSymbol(), operator);
+        }
+
+        return new Token(TokenType.UNKNOWN, currentCharacter, null);
+    }
+
+    private omitAndOperator(): Token | null {
+        if (
+            this.previousToken?.getTokenType() === TokenType.ATOM ||
+            this.previousToken?.getTokenType() === TokenType.PARENTHESIS_CLOSE ||
+            this.previousToken?.getTokenType() === TokenType.BOOLEAN
+        ) {
+            this.location--;
+
+            const conjunction = OperatorFactory.createConjunction();
+            return new Token(
+                TokenType.BINARY_OPERATOR,
+                conjunction.getUnifiedSymbol(),
+                conjunction
+            );
+        }
+
+        return null;
     }
 
     public getLocation(): number {
