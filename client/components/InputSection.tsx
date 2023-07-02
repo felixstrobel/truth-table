@@ -91,12 +91,11 @@ const InputSection = ({ onChange }: InsertionProps) => {
                 </InputRightElement>
             </InputGroup>
 
-            {/* TODO: do it the correct way! You are awesome and more than able to to this task! I believe in you :) */}
-            {/*<Box h={6}>*/}
-            {/*    <Text color={"neutral.700"} fontSize={"sm"} fontWeight={"semibold"}>*/}
-            {/*        {infoMessage}*/}
-            {/*    </Text>*/}
-            {/*</Box>*/}
+            <Box h={6}>
+                <Text color={"neutral.500"} fontSize={"lg"} fontWeight={"semibold"}>
+                    {infoMessage}
+                </Text>
+            </Box>
 
             <Flex
                 flexDirection={"row"}
