@@ -5,7 +5,7 @@ import Term from "./model/term/Term";
 
 export type TableFormat = { [x: string]: boolean }[] | ParserError;
 
-export const evaluate = (input: string): TableFormat => {
+export const evaluate = (input: string, reverseSorting: boolean = false): TableFormat => {
     if (input.length === 0) {
         return [];
     }
@@ -25,7 +25,7 @@ export const evaluate = (input: string): TableFormat => {
         return [];
     }
 
-    return generateTable(parser, term);
+    return generateTable(parser, term, reverseSorting);
 };
 
 /**
@@ -33,9 +33,9 @@ export const evaluate = (input: string): TableFormat => {
  *
  * @param constants Set of constants.
  */
-function* assignmentGenerator(constants: Set<string>) {
-    for (let i = 0; i < Math.pow(2, constants.size); i++) {
-        const binaryString = i.toString(2).padStart(constants.size, "0");
+function* assignmentGenerator(constants: string[]) {
+    for (let i = 0; i < Math.pow(2, constants.length); i++) {
+        const binaryString = i.toString(2).padStart(constants.length, "0");
 
         let map = new Map<string, boolean>();
 
@@ -47,8 +47,15 @@ function* assignmentGenerator(constants: Set<string>) {
     }
 }
 
-function generateTable(parser: Parser, term: Term): TableFormat {
-    const generator = assignmentGenerator(parser.getVariables());
+function generateTable(parser: Parser, term: Term, reverseSorting: boolean): TableFormat {
+    const variables = [...parser.getVariables()].sort((a: string, b: string) => {
+        if (reverseSorting) {
+            return b.localeCompare(a);
+        } else {
+            return a.localeCompare(b);
+        }
+    });
+    const generator = assignmentGenerator(variables);
     const data: { [x: string]: boolean }[] = [];
 
     for (const constants of generator) {
