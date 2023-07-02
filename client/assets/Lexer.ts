@@ -27,24 +27,9 @@ export default class Lexer {
      * @param input The input string to be processed by the lexer.
      */
     constructor(input: string) {
-        this.input = input.replace(/\s/g, "");
+        this.input = input;
 
         this.loadDefaultOperators();
-
-        // TODO redo
-        // place AND operators
-        // let buf = this.input.charAt(0);
-        // for (let i = 1; i < this.input.length; i++) {
-        //     const currentChar = this.input.charAt(i);
-        //     const previousChar = this.input.charAt(i - 1);
-        //     if (currentChar.match(/[A-Z]/) && previousChar.match(/[A-Z]/)) {
-        //         buf += "∧";
-        //         buf += currentChar;
-        //     } else {
-        //         buf += currentChar;
-        //     }
-        // }
-        // this.input = buf;
     }
 
     /**
@@ -113,38 +98,34 @@ export default class Lexer {
     }
 
     private extractToken(): Token {
-        if (this.input.length <= this.location + 1) {
+        this.location++;
+
+        // skip spaces
+        while (this.input.charAt(this.location).match(/\s/)) {
+            this.location++;
+        }
+
+        // EOL
+        if (this.input.length <= this.location) {
             return new Token(TokenType.EOL, "", null);
         }
 
-        this.location++;
         let currentCharacter: string = this.input.charAt(this.location);
 
         if (currentCharacter === "(") {
-            const omittedOperator = this.omitAndOperator();
-            if (omittedOperator) return omittedOperator;
-
-            return new Token(TokenType.PARENTHESIS_OPEN, currentCharacter, null);
+            return this.handleOpenParenthesis();
         }
         if (currentCharacter === ")") {
-            return new Token(TokenType.PARENTHESIS_CLOSE, currentCharacter, null);
+            return this.handleCloseParenthesis();
         }
-        if (currentCharacter.match(/[01]/)) {
-            const omittedOperator = this.omitAndOperator();
-            if (omittedOperator) return omittedOperator;
-
-            return new Token(TokenType.BOOLEAN, currentCharacter, null);
+        if (currentCharacter === "{") {
+            return this.handleMultiDigitVar();
         }
         if (currentCharacter.match(/[a-zA-Z]/)) {
-            const omittedOperator = this.omitAndOperator();
-            if (omittedOperator) return omittedOperator;
-
-            while (this.input.charAt(this.location + 1).match(/[0-9]/)) {
-                this.location++;
-                currentCharacter += this.input.charAt(this.location);
-            }
-
-            return new Token(TokenType.ATOM, currentCharacter.toUpperCase(), null);
+            return this.handleSingleDigitVar();
+        }
+        if (currentCharacter.match(/[01]/)) {
+            return this.handleBoolean();
         }
 
         const operator = this.getNextOperator();
@@ -155,6 +136,65 @@ export default class Lexer {
         }
 
         return new Token(TokenType.UNKNOWN, currentCharacter, null);
+    }
+
+    private handleOpenParenthesis() {
+        const omittedOperator = this.omitAndOperator();
+        if (omittedOperator) return omittedOperator;
+
+        return new Token(TokenType.PARENTHESIS_OPEN, this.input.charAt(this.location), null);
+    }
+
+    private handleCloseParenthesis() {
+        return new Token(TokenType.PARENTHESIS_CLOSE, this.input.charAt(this.location), null);
+    }
+
+    private handleBoolean() {
+        const omittedOperator = this.omitAndOperator();
+        if (omittedOperator) return omittedOperator;
+
+        return new Token(TokenType.BOOLEAN, this.input.charAt(this.location), null);
+    }
+
+    private handleSingleDigitVar() {
+        const omittedOperator = this.omitAndOperator();
+        if (omittedOperator) return omittedOperator;
+
+        // TODO decide whether to difference between upper and lower case letters
+        return new Token(TokenType.ATOM, this.input.charAt(this.location).toUpperCase(), null);
+    }
+
+    private handleMultiDigitVar() {
+        const omittedOperator = this.omitAndOperator();
+        if (omittedOperator) return omittedOperator;
+
+        // TODO return location of { when input is not complete
+        let variable = "";
+
+        this.location++;
+        if (this.input.length <= this.location) {
+            return new Token(TokenType.EOL, "", null);
+        }
+        if (!this.input.charAt(this.location).match(/[a-zA-Z]/)) {
+            return new Token(TokenType.UNKNOWN, this.input.charAt(this.location), null);
+        }
+        variable += this.input.charAt(this.location);
+
+        this.location++;
+        while (this.input.charAt(this.location).match(/[a-zA-Z\d]/)) {
+            variable += this.input.charAt(this.location);
+            this.location++;
+        }
+
+        if (this.input.length <= this.location) {
+            return new Token(TokenType.EOL, "", null);
+        }
+        if (this.input.charAt(this.location) !== "}") {
+            return new Token(TokenType.UNKNOWN, this.input.charAt(this.location), null);
+        }
+
+        // TODO decide whether to difference between upper and lower case letters
+        return new Token(TokenType.ATOM, variable.toUpperCase(), null);
     }
 
     private omitAndOperator(): Token | null {
