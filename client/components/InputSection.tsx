@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useEffect, useReducer, useState } from "react";
 import {
     Box,
     Button,
@@ -21,10 +21,40 @@ interface InsertionProps {
 }
 
 const InputSection = ({ onChange }: InsertionProps) => {
-    const [value, setValue] = useState<string>("");
     const [infoMessage, setInfoMessage] = useState<ReactNode>(<span></span>);
+    const [value, updateValue] = useReducer(
+        (state: string, action: { setValue?: string; quickButtonAction?: string }): string => {
+            if (action.setValue) {
+                return state;
+            }
+            if (action.quickButtonAction === "DEL") {
+                return state.substring(0, state.length - 1);
+            }
+            if (action.quickButtonAction) {
+                return state + action.quickButtonAction;
+            }
+            throw new Error();
+        },
+        ""
+    );
 
-    const quickButtons = ["¬", "∧", "⊼", "∨", "⊽", "→", "⇔", "↮", "(", ")", ",", "A", "B", "C"];
+    const quickButtons = [
+        "¬",
+        "∧",
+        "⊼",
+        "∨",
+        "⊽",
+        "→",
+        "⇔",
+        "↮",
+        "(",
+        ")",
+        ",",
+        "A",
+        "B",
+        "C",
+        "DEL",
+    ];
 
     const copyInputToClipBoard = () => {
         navigator.clipboard.writeText(value).catch((e) => console.log(e));
@@ -66,7 +96,7 @@ const InputSection = ({ onChange }: InsertionProps) => {
                     type={"text"}
                     value={value}
                     placeholder={"Enter Boolean Expression ..."}
-                    onChange={(e) => setValue(e.target.value)}
+                    onChange={(e) => updateValue({ setValue: e.target.value })}
                     variant={"filled"}
                     colorScheme={"neutral"}
                     letterSpacing={2}
@@ -111,22 +141,12 @@ const InputSection = ({ onChange }: InsertionProps) => {
                             h={12}
                             m={2}
                             key={buttonText}
-                            onClick={() => setValue(value + buttonText)}
+                            onClick={() => updateValue({ quickButtonAction: buttonText })}
                         >
                             {buttonText}
                         </Button>
                     );
                 })}
-                <Button
-                    colorScheme={"neutral"}
-                    variant={"outline"}
-                    w={12}
-                    h={12}
-                    m={2}
-                    onClick={() => setValue(value.substring(0, value.length - 1))}
-                >
-                    {"DEL"}
-                </Button>
                 <CustomSelect />
             </Flex>
         </Stack>
