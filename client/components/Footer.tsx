@@ -47,7 +47,7 @@ const Footer = () => {
                 <GridItem colSpan={{ base: 1, md: 2 }} justifySelf={"center"} alignSelf={"end"}>
                     <Stack mt={4} direction={"row"} justifyContent={"center"} fontSize={"sm"}>
                         {/* TODO: Add legal notice and refer to it */}
-                        <Link href="">Legal Notice</Link>
+                        <Link href="/legal-notice">Legal Notice</Link>
                         <Text>&copy; {new Date().getFullYear()}</Text>
                     </Stack>
                 </GridItem>
