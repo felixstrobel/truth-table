@@ -168,7 +168,6 @@ export default class Lexer {
         const omittedOperator = this.omitAndOperator();
         if (omittedOperator) return omittedOperator;
 
-        // TODO return location of { when input is not complete
         let variable = "";
 
         this.location++;
