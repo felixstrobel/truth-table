@@ -8,7 +8,7 @@ const Footer = () => {
             <Grid
                 templateColumns={{ base: "1fr", md: "1fr 1fr 1fr" }}
                 templateRows={{ base: "4fr 1.5fr 1.5fr 1fr", md: "2fr 1fr" }}
-                gap={{ base: "0em", md: "2em" }}
+                columnGap={{ base: "0em", md: "2em" }}
             >
                 <GridItem
                     justifySelf={{ base: "center", md: "start" }}
