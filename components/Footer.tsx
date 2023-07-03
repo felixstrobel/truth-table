@@ -47,7 +47,9 @@ const Footer = () => {
                     alignSelf={{ base: "center", md: "start" }}
                     textAlign={{ base: "center", md: "right" }}
                 >
-                    <Text>Feel free to leave some feedback!</Text>
+                    <Link href={"mailto:mail@truth-table.com"}>
+                        Click here to leave some feedback!
+                    </Link>
                 </GridItem>
                 <GridItem colSpan={{ base: 1, md: 3 }} justifySelf={"center"} alignSelf={"end"}>
                     <Stack mt={4} direction={"row"} justifyContent={"center"} fontSize={"sm"}>
