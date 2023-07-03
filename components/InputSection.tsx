@@ -39,8 +39,9 @@ const InputSection = ({ onChange, reversOrder }: InputProps) => {
             }
             return "";
         },
-        ""
+        window?.localStorage.getItem("input") ?? ""
     );
+    useEffect(() => window?.localStorage.setItem("input", value), [value]);
 
     const quickButtons = [
         "¬",

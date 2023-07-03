@@ -1,6 +1,7 @@
 "use client";
 import { Box, Button, Grid, GridItem, Stack, Text } from "@chakra-ui/react";
 import Link from "next/link";
+import CustomLink from "./CustomLink";
 
 const Footer = () => {
     return (
@@ -48,24 +49,13 @@ const Footer = () => {
                     alignSelf={{ base: "center", md: "start" }}
                     textAlign={{ base: "center", md: "right" }}
                 >
-                    <Link href={"mailto:mail@truth-table.com"}>
+                    <CustomLink href={"mailto:mail@truth-table.com"}>
                         Click here to leave some feedback!
-                    </Link>
+                    </CustomLink>
                 </GridItem>
                 <GridItem colSpan={{ base: 1, md: 3 }} justifySelf={"center"} alignSelf={"end"}>
                     <Stack mt={4} direction={"row"} justifyContent={"center"} fontSize={"sm"}>
-                        <Text
-                            as={Link}
-                            href="/legal"
-                            _hover={{
-                                textDecorationThickness: 2,
-                                textDecorationLine: "underline",
-                                textDecorationColor: "purple.400",
-                                textUnderlineOffset: 4,
-                            }}
-                        >
-                            Legal Notice
-                        </Text>
+                        <CustomLink href="/legal">Legal Notice</CustomLink>
                         <Text>&copy; {new Date().getFullYear()} All rights reserved.</Text>
                     </Stack>
                 </GridItem>
