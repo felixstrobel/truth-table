@@ -54,6 +54,8 @@ const InputSection = ({ onChange, reversOrder }: InputProps) => {
         "(",
         ")",
         ",",
+        "0",
+        "1",
         "A",
         "B",
         "C",
@@ -162,7 +164,7 @@ const InputSection = ({ onChange, reversOrder }: InputProps) => {
                         </Button>
                     );
                 })}
-                <CustomSelect />
+                {/* <CustomSelect /> */}
             </Flex>
         </Stack>
     );
