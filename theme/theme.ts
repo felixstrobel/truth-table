@@ -26,7 +26,15 @@ const colors = {
 const comfortaa = Comfortaa({
     subsets: ["latin-ext"],
     display: "swap",
-    fallback: ["Arial", "Helvetica Neue"],
+    fallback: [
+        "Arial",
+        "Helvetica Neue",
+        "Roboto",
+        "sans-serif",
+        "ui-sans-serif",
+        "system-ui",
+        "-apple-system",
+    ],
 });
 
 export default extendTheme({

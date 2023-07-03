@@ -154,6 +154,7 @@ const InputSection = ({ onChange }: InputProps) => {
                             h={12}
                             m={2}
                             key={buttonText}
+                            fontSize={"lg"}
                             onClick={() => updateValue({ quickButtonAction: buttonText })}
                         >
                             {buttonText}
