@@ -7,7 +7,7 @@ const Footer = () => {
         <Box as={"footer"} w={"full"} mt={20} mb={4}>
             <Grid
                 templateColumns={{ base: "1fr", md: "1fr 1fr 1fr" }}
-                templateRows={{ base: "4fr 1.5fr 1.5fr 1fr", md: "2fr 1fr" }}
+                templateRows={{ base: "3fr 1.5fr 1.5fr 1fr", md: "2fr 1fr" }}
                 columnGap={{ base: "0em", md: "2em" }}
             >
                 <GridItem
@@ -33,11 +33,10 @@ const Footer = () => {
                     </Stack>
                 </GridItem>
                 <GridItem
-                    // colSpan={{ base: 1, md: 2 }}
-                    // pt={2}
                     justifySelf={"center"}
-                    alignSelf={"start"}
+                    alignSelf={{ base: "center", md: "start" }}
                     textAlign={"center"}
+                    gridRow={{ base: "3 / 4", md: "auto" }}
                 >
                     <Text fontSize={"lg"} fontWeight={"bold"}>
                         Proudly provided by Felix ∧ Max
