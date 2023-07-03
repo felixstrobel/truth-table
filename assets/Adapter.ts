@@ -6,26 +6,34 @@ import Term from "./model/term/Term";
 export type TableFormat = { [x: string]: boolean }[] | ParserError;
 
 export const evaluate = (input: string, reverseSorting: boolean = false): TableFormat => {
-    if (input.length === 0) {
+    const expressions = input.split(",");
+    if (expressions.length === 0 || (expressions.length === 1 && expressions[0] === "")) {
         return [];
     }
 
-    const lexer = new Lexer(input);
-    const parser = new Parser(lexer);
+    const terms: Term[] = [];
+    let variables: Set<string> = new Set();
+    for (const expression of expressions) {
+        const lexer = new Lexer(expression);
+        const parser = new Parser(lexer);
 
-    let term;
-    try {
-        term = parser.parse();
-    } catch (e) {
-        if (e instanceof ParserError) {
-            return e;
+        let term;
+        try {
+            term = parser.parse();
+        } catch (e) {
+            if (e instanceof ParserError) {
+                return e;
+            }
+
+            console.error(e);
+            return [];
         }
 
-        console.error(e);
-        return [];
+        terms.push(term);
+        variables = new Set([...variables, ...parser.getVariables()]);
     }
 
-    return generateTable(parser, term, reverseSorting);
+    return generateTable(variables, terms, reverseSorting);
 };
 
 /**
@@ -47,15 +55,19 @@ function* assignmentGenerator(constants: string[]) {
     }
 }
 
-function generateTable(parser: Parser, term: Term, reverseSorting: boolean): TableFormat {
-    const variables = [...parser.getVariables()].sort((a: string, b: string) => {
+function generateTable(
+    variables: Set<string>,
+    terms: Term[],
+    reverseSorting: boolean
+): TableFormat {
+    const sortedVariables = [...variables].sort((a: string, b: string) => {
         if (reverseSorting) {
             return b.localeCompare(a);
         } else {
             return a.localeCompare(b);
         }
     });
-    const generator = assignmentGenerator(variables);
+    const generator = assignmentGenerator(sortedVariables);
     const data: { [x: string]: boolean }[] = [];
 
     for (const constants of generator) {
@@ -67,7 +79,9 @@ function generateTable(parser: Parser, term: Term, reverseSorting: boolean): Tab
             row[key] = val;
         }
 
-        row[term.toString()] = term.eval(constants);
+        for (const term of terms) {
+            row[term.toString()] = term.eval(constants);
+        }
 
         data.push(row);
     }
