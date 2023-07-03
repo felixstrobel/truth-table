@@ -20,4 +20,4 @@
 | NOR                   | ⊽       | ¬∨, ¬\|, ¬\|\|, !∨, !\|, !\|\|, ~∨, ~\|, ~\|\| |
 | Conditional           | →       | >, ->, =>                                      |
 | Biconditional         | ↔       | =, ==, <>, <=>, <->                            |
-| Exclusive Disjunction | ↮       | !=, <!>, <!=>                                  |
+| Exclusive Disjunction | ⇹       | !=, <!>, <!=>                                  |

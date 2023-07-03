@@ -54,7 +54,7 @@ class OperatorFactory {
 	}
 
 	public static createExclusiveDisjunction(): Operator {
-		return new BinaryOperator((x: boolean, y: boolean) => (!x && y) || (x && !y), "↮", ["!=", "<!>", "<!=>"]);
+		return new BinaryOperator((x: boolean, y: boolean) => (!x && y) || (x && !y), "⇹", ["!=", "<!>", "<!=>"]);
 	}
 }
 
