@@ -6,10 +6,14 @@ const Footer = () => {
     return (
         <Box as={"footer"} w={"full"} mt={20} mb={4}>
             <Grid
-                templateColumns={{ base: "1fr", md: "1fr 1fr" }}
-                templateRows={{ base: "4fr 2fr 2fr 1fr", md: "4fr 2fr 1fr" }}
+                templateColumns={{ base: "1fr", md: "1fr 1fr 1fr" }}
+                templateRows={{ base: "4fr 1.5fr 1.5fr 1fr", md: "2fr 1fr" }}
+                gap={{ base: "0em", md: "2em" }}
             >
-                <GridItem justifySelf={{ base: "center", md: "start" }}>
+                <GridItem
+                    justifySelf={{ base: "center", md: "start" }}
+                    textAlign={{ base: "center", md: "left" }}
+                >
                     <Stack alignItems={{ base: "center", md: "start" }}>
                         <Text>Do you like what you see? Buy us a drink!</Text>
                         <Button
@@ -29,22 +33,24 @@ const Footer = () => {
                     </Stack>
                 </GridItem>
                 <GridItem
-                    justifySelf={{ base: "center", md: "end" }}
-                    alignSelf={{ base: "center", md: "start" }}
-                >
-                    <Text>Feel free to leave some feedback!</Text>
-                </GridItem>
-                <GridItem
-                    colSpan={{ base: 1, md: 2 }}
-                    pt={2}
+                    // colSpan={{ base: 1, md: 2 }}
+                    // pt={2}
                     justifySelf={"center"}
-                    alignSelf={"center"}
+                    alignSelf={"start"}
+                    textAlign={"center"}
                 >
                     <Text fontSize={"lg"} fontWeight={"bold"}>
                         Proudly provided by Felix ∧ Max
                     </Text>
                 </GridItem>
-                <GridItem colSpan={{ base: 1, md: 2 }} justifySelf={"center"} alignSelf={"end"}>
+                <GridItem
+                    justifySelf={{ base: "center", md: "end" }}
+                    alignSelf={{ base: "center", md: "start" }}
+                    textAlign={{ base: "center", md: "right" }}
+                >
+                    <Text>Feel free to leave some feedback!</Text>
+                </GridItem>
+                <GridItem colSpan={{ base: 1, md: 3 }} justifySelf={"center"} alignSelf={"end"}>
                     <Stack mt={4} direction={"row"} justifyContent={"center"} fontSize={"sm"}>
                         <Link href="/legal-notice">Legal Notice</Link>
                         <Text>&copy; {new Date().getFullYear()}</Text>
