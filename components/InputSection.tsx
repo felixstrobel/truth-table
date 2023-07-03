@@ -107,6 +107,7 @@ const InputSection = ({ onChange, reversOrder }: InputProps) => {
                         variant={"filled"}
                         colorScheme={"neutral"}
                         letterSpacing={2}
+                        focusBorderColor={"purple.400"}
                     />
                     <InputRightElement>
                         <Tooltip
@@ -138,7 +139,7 @@ const InputSection = ({ onChange, reversOrder }: InputProps) => {
             </Stack>
 
             <Box h={6}>
-                <Text color={"neutral.500"} fontSize={"lg"} fontWeight={"semibold"}>
+                <Text color={"neutral.500"} fontSize={"lg"} fontWeight={"bold"}>
                     {infoMessage}
                 </Text>
             </Box>

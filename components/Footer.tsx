@@ -53,7 +53,18 @@ const Footer = () => {
                 </GridItem>
                 <GridItem colSpan={{ base: 1, md: 3 }} justifySelf={"center"} alignSelf={"end"}>
                     <Stack mt={4} direction={"row"} justifyContent={"center"} fontSize={"sm"}>
-                        <Link href="/legal">Legal Notice</Link>
+                        <Text
+                            as={Link}
+                            href="/legal"
+                            _hover={{
+                                textDecorationThickness: 2,
+                                textDecorationLine: "underline",
+                                textDecorationColor: "purple.400",
+                                textUnderlineOffset: 4,
+                            }}
+                        >
+                            Legal Notice
+                        </Text>
                         <Text>&copy; {new Date().getFullYear()} All rights reserved.</Text>
                     </Stack>
                 </GridItem>
