@@ -15,7 +15,7 @@ enum TokenType {
 	ATOM,
 
 	/**
-	 * Represents a unary operator token (e.g. not).
+	 * Represents an unary operator token (e.g. not).
 	 */
 	UNARY_OPERATOR,
 
@@ -30,7 +30,7 @@ enum TokenType {
 	PARENTHESIS_OPEN,
 
 	/**
-	 * Represents an closing parenthesis token.
+	 * Represents a closing parenthesis token.
 	 */
 	PARENTHESIS_CLOSE,
 
