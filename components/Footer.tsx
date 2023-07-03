@@ -23,6 +23,7 @@ const Footer = () => {
                             w={"36"}
                             size={"md"}
                             as={Link}
+                            rel="nofollow"
                             href={"https://www.paypal.com/donate/?hosted_button_id=FMWQ2NMB943BA"}
                             bgGradient={"linear(to-br, pink.300, purple.800)"}
                             _hover={{ bgGradient: "linear(to-br, pink.400, purple.900)" }}
