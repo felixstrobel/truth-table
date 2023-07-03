@@ -42,13 +42,17 @@ export default extendTheme({
     colors,
     styles: {
         global: (props: StyleFunctionProps) => ({
-            body: {
+            "body": {
                 bg: mode(colors.neutral["200"], colors.neutral["900"])(props),
             },
+            "*::selection": { backgroundColor: "purple.400" },
         }),
     },
     fonts: {
         body: comfortaa.style.fontFamily,
         heading: comfortaa.style.fontFamily,
+    },
+    shadows: {
+        outline: "0 0 0 2px #9F7AEA",
     },
 });

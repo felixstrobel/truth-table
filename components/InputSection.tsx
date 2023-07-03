@@ -146,11 +146,7 @@ const InputSection = ({ onChange, reversOrder }: InputProps) => {
                 </Text>
             </Box>
 
-            <Flex
-                flexDirection={"row"}
-                flexWrap={"wrap"}
-                justifyContent={"center"}
-            >
+            <Flex flexDirection={"row"} flexWrap={"wrap"} justifyContent={"center"}>
                 {quickButtons.map((buttonText) => {
                     return (
                         <Button
