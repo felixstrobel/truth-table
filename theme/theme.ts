@@ -26,6 +26,7 @@ const colors = {
 const comfortaa = Comfortaa({
     subsets: ["latin-ext"],
     display: "swap",
+    fallback: ["Arial", "Helvetica Neue"],
 });
 
 export default extendTheme({

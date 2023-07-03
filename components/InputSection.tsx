@@ -7,27 +7,16 @@ import {
     Input,
     InputGroup,
     InputRightElement,
-    Modal,
-    ModalBody,
-    ModalCloseButton,
-    ModalContent,
-    ModalHeader,
-    ModalOverlay,
     Stack,
-    Table,
-    Tbody,
     Text,
-    Th,
-    Thead,
     Tooltip,
-    Tr,
-    Td,
     useDisclosure,
 } from "@chakra-ui/react";
 import { CopyIcon, QuestionOutlineIcon } from "@chakra-ui/icons";
 import CustomSelect from "@/components/CustomSelect";
 import { evaluate } from "@/assets/Adapter";
 import ParserError from "@/assets/model/ParserError";
+import HelpModal from "@/components/HelpModal";
 
 interface InputProps {
     onChange: Function;
@@ -142,72 +131,7 @@ const InputSection = ({ onChange }: InputProps) => {
                     aria-label={"show language specifications"}
                 />
 
-                {/* Modal to display language specifications */}
-                <Modal size={"3xl"} isOpen={isOpen} onClose={onClose}>
-                    <ModalOverlay />
-                    <ModalContent>
-                        <ModalHeader>Input Syntax</ModalHeader>
-                        <ModalCloseButton />
-                        <ModalBody>
-                            Here you can see which symbols we support and how you can enter one or
-                            more expressions.
-                            <Table>
-                                <Thead>
-                                    <Tr>
-                                        <Th>Operator</Th>
-                                        <Th>Unicode</Th>
-                                        <Th>Alternatives</Th>
-                                    </Tr>
-                                </Thead>
-                                <Tbody>
-                                    <Tr>
-                                        <Td>Negation</Td>
-                                        <Td>¬</Td>
-                                        <Td>!, ~</Td>
-                                    </Tr>
-                                    <Tr>
-                                        <Td>Conjunction</Td>
-                                        <Td>∧</Td>
-                                        <Td>&amp;, &amp;&amp;</Td>
-                                    </Tr>
-                                    <Tr>
-                                        <Td>NAND</Td>
-                                        <Td>⊼</Td>
-                                        <Td>
-                                            ¬∧, ¬&amp;, ¬&amp;&amp;, !∧, !&amp;, !&amp;&amp;, ~∧,
-                                            ~&amp;, ~&amp;&amp;
-                                        </Td>
-                                    </Tr>
-                                    <Tr>
-                                        <Td>Disjunction</Td>
-                                        <Td>∨</Td>
-                                        <Td>\|, \|\|</Td>
-                                    </Tr>
-                                    <Tr>
-                                        <Td>NOR</Td>
-                                        <Td>⊽</Td>
-                                        <Td>¬∨, ¬|, ¬||, !∨, !|, !||, ~∨, ~|, ~||</Td>
-                                    </Tr>
-                                    <Tr>
-                                        <Td>Conditional</Td>
-                                        <Td>→</Td>
-                                        <Td>&gt;, -&gt;, =&gt;</Td>
-                                    </Tr>
-                                    <Tr>
-                                        <Td>Biconditional</Td>
-                                        <Td>↔</Td>
-                                        <Td>=, ==, &lt;&gt;, &lt;=&gt;, &lt;-&gt;</Td>
-                                    </Tr>
-                                    <Tr>
-                                        <Td>Exclusive Disjunction</Td>
-                                        <Td>⇹</Td>
-                                        <Td>!=, &lt;!&gt;, &lt;!=&gt;</Td>
-                                    </Tr>
-                                </Tbody>
-                            </Table>
-                        </ModalBody>
-                    </ModalContent>
-                </Modal>
+                <HelpModal open={isOpen} onClose={onClose} />
             </Stack>
 
             <Box h={6}>

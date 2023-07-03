@@ -16,7 +16,7 @@ const CustomTable = ({ tableData }: { tableData: TableFormat }) => {
             placeItems={"center"}
             fontSize={"lg"}
         >
-            <Table variant="simple" colorScheme={"neutral"}>
+            <Table colorScheme={"neutral"}>
                 <Thead>
                     <Tr>
                         {Object.entries(tableData[0]).map((column) => (
