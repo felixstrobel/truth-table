@@ -130,6 +130,8 @@ const InputSection = ({ onChange, reversOrder }: InputProps) => {
 
                 <IconButton
                     size={"lg"}
+                    variant={"ghost"}
+                    backgroundColor={"whiteAlpha.50"}
                     onClick={onOpen}
                     icon={<QuestionOutlineIcon boxSize={5} />}
                     aria-label={"show language specifications"}
