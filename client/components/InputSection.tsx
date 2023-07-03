@@ -25,7 +25,7 @@ const InputSection = ({ onChange }: InsertionProps) => {
     const [value, updateValue] = useReducer(
         (state: string, action: { setValue?: string; quickButtonAction?: string }): string => {
             if (action.setValue) {
-                return state;
+                return action.setValue;
             }
             if (action.quickButtonAction === "DEL") {
                 return state.substring(0, state.length - 1);
@@ -33,7 +33,7 @@ const InputSection = ({ onChange }: InsertionProps) => {
             if (action.quickButtonAction) {
                 return state + action.quickButtonAction;
             }
-            throw new Error();
+            return "";
         },
         ""
     );
