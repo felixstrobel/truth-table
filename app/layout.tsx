@@ -15,6 +15,9 @@ const RootLayout = ({ children }: RootLayoutProps) => {
     return (
         <html lang="en">
             {/* TODO: add SEO */}
+            <head>
+                <link rel="manifest" href="/manifest.json" />
+            </head>
             <body>
                 <ColorModeScript initialColorMode={theme.config.initialColorMode} />
                 <ChakraProvider theme={theme}>{children}</ChakraProvider>
