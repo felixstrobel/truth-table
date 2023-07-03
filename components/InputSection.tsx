@@ -20,9 +20,10 @@ import HelpModal from "@/components/HelpModal";
 
 interface InputProps {
     onChange: Function;
+    reversOrder: boolean;
 }
 
-const InputSection = ({ onChange }: InputProps) => {
+const InputSection = ({ onChange, reversOrder }: InputProps) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [infoMessage, setInfoMessage] = useState<ReactNode>(<span></span>);
     const [value, updateValue] = useReducer(
@@ -64,7 +65,7 @@ const InputSection = ({ onChange }: InputProps) => {
     };
 
     useEffect(() => {
-        const data = evaluate(value);
+        const data = evaluate(value, reversOrder);
 
         if (data instanceof ParserError) {
             if (!data.position) {
@@ -85,7 +86,7 @@ const InputSection = ({ onChange }: InputProps) => {
 
         onChange(data);
         setInfoMessage(null);
-    }, [value, onChange]);
+    }, [value, onChange, reversOrder]);
 
     return (
         <Stack my={{ base: 10, lg: 20 }} alignItems={"center"}>

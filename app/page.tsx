@@ -10,6 +10,7 @@ import { TableFormat } from "@/assets/Adapter";
 
 const Home = () => {
     const [tableData, setTableData] = useState<TableFormat>([]);
+    const [reversOrder, setReversOrder] = useState<boolean>(false);
 
     return (
         <Flex
@@ -22,8 +23,8 @@ const Home = () => {
             <Header />
 
             {/* Main Section*/}
-            <InputSection onChange={setTableData} />
-            <CustomTable tableData={tableData} />
+            <InputSection onChange={setTableData} reversOrder={reversOrder} />
+            <CustomTable tableData={tableData} setReversOrder={setReversOrder} />
 
             <Spacer />
             <Footer />
