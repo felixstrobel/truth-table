@@ -1,6 +1,7 @@
 "use client";
+import CustomLink from "@/components/CustomLink";
 import Footer from "@/components/Footer";
-import { Text, Link, Button, Heading, Flex, Tooltip, useColorMode, Box } from "@chakra-ui/react";
+import { Text, Button, Heading, Flex, Box } from "@chakra-ui/react";
 import { useState } from "react";
 
 type Language = "DE" | "EN";
@@ -35,9 +36,11 @@ const LegalNotice = () => {
 
                     <Box>
                         <Heading>Kontakt</Heading>
-                        <Link href="tel:+4971134160675">Telefon: +49 711 34160675</Link>
+                        <CustomLink href="tel:+4971134160675">Telefon: +49 711 34160675</CustomLink>
                         <Text>Telefax: +49 711 95338338</Text>
-                        <Link href="mailto:mail@truth-table.com">E-Mail: mail@truth-table.com</Link>
+                        <CustomLink href="mailto:mail@truth-table.com">
+                            E-Mail: mail@truth-table.com
+                        </CustomLink>
                     </Box>
                 </Box>
 
@@ -74,9 +77,11 @@ const LegalNotice = () => {
 
                     <Box>
                         <Heading>Contact</Heading>
-                        <Link href="tel:+4971134160675">Phone: +49 711 34160675</Link>
+                        <CustomLink href="tel:+4971134160675">Phone: +49 711 34160675</CustomLink>
                         <Text>Fax: +49 711 95338338</Text>
-                        <Link href="mailto:mail@truth-table.com">E-Mail: mail@truth-table.com</Link>
+                        <CustomLink href="mailto:mail@truth-table.com">
+                            E-Mail: mail@truth-table.com
+                        </CustomLink>
                     </Box>
                 </Box>
 
