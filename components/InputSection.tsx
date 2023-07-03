@@ -39,8 +39,9 @@ const InputSection = ({ onChange, reversOrder }: InputProps) => {
             }
             return "";
         },
-        ""
+        window?.localStorage.getItem("input") ?? ""
     );
+    useEffect(() => window?.localStorage.setItem("input", value), [value]);
 
     const quickButtons = [
         "¬",
@@ -146,11 +147,7 @@ const InputSection = ({ onChange, reversOrder }: InputProps) => {
                 </Text>
             </Box>
 
-            <Flex
-                flexDirection={"row"}
-                flexWrap={"wrap"}
-                justifyContent={"center"}
-            >
+            <Flex flexDirection={"row"} flexWrap={"wrap"} justifyContent={"center"}>
                 {quickButtons.map((buttonText) => {
                     return (
                         <Button
