@@ -1,20 +1,20 @@
 "use client";
-import { Box, Button, Grid, GridItem, Stack, Text } from "@chakra-ui/react";
+import {Box, Button, Grid, GridItem, Stack, Text} from "@chakra-ui/react";
 import Link from "next/link";
 
 const Footer = () => {
     return (
         <Box as={"footer"} w={"full"} mt={20} mb={4}>
             <Grid
-                templateColumns={{ base: "1fr", md: "1fr 1fr 1fr" }}
-                templateRows={{ base: "3fr 1.5fr 1.5fr 1fr", md: "2fr 1fr" }}
-                columnGap={{ base: "0em", md: "2em" }}
+                templateColumns={{base: "1fr", md: "1fr 1fr 1fr"}}
+                templateRows={{base: "3fr 1.5fr 1.5fr 1fr", md: "2fr 1fr"}}
+                columnGap={{base: "0em", md: "2em"}}
             >
                 <GridItem
-                    justifySelf={{ base: "center", md: "start" }}
-                    textAlign={{ base: "center", md: "left" }}
+                    justifySelf={{base: "center", md: "start"}}
+                    textAlign={{base: "center", md: "left"}}
                 >
-                    <Stack alignItems={{ base: "center", md: "start" }}>
+                    <Stack alignItems={{base: "center", md: "start"}}>
                         <Text>Do you like what you see? Buy us a drink!</Text>
                         <Button
                             mt={2}
@@ -34,24 +34,24 @@ const Footer = () => {
                 </GridItem>
                 <GridItem
                     justifySelf={"center"}
-                    alignSelf={{ base: "center", md: "start" }}
+                    alignSelf={{base: "center", md: "start"}}
                     textAlign={"center"}
-                    gridRow={{ base: "3 / 4", md: "auto" }}
+                    gridRow={{base: "3 / 4", md: "auto"}}
                 >
                     <Text fontSize={"lg"} fontWeight={"bold"}>
                         Proudly provided by Felix ∧ Max
                     </Text>
                 </GridItem>
                 <GridItem
-                    justifySelf={{ base: "center", md: "end" }}
-                    alignSelf={{ base: "center", md: "start" }}
-                    textAlign={{ base: "center", md: "right" }}
+                    justifySelf={{base: "center", md: "end"}}
+                    alignSelf={{base: "center", md: "start"}}
+                    textAlign={{base: "center", md: "right"}}
                 >
                     <Text>Feel free to leave some feedback!</Text>
                 </GridItem>
-                <GridItem colSpan={{ base: 1, md: 3 }} justifySelf={"center"} alignSelf={"end"}>
+                <GridItem colSpan={{base: 1, md: 3}} justifySelf={"center"} alignSelf={"end"}>
                     <Stack mt={4} direction={"row"} justifyContent={"center"} fontSize={"sm"}>
-                        <Link href="/legal-notice">Legal Notice</Link>
+                        <Link href="/legal">Legal Notice</Link>
                         <Text>&copy; {new Date().getFullYear()}</Text>
                     </Stack>
                 </GridItem>
