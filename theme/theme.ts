@@ -1,6 +1,6 @@
 import { extendTheme, StyleFunctionProps, ThemeConfig } from "@chakra-ui/react";
 import { mode } from "@chakra-ui/theme-tools";
-import { Comfortaa } from "@next/font/google";
+import { Comfortaa } from "next/font/google";
 
 const config: ThemeConfig = {
     initialColorMode: "dark",
