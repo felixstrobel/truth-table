@@ -17,6 +17,7 @@ import CustomSelect from "@/components/CustomSelect";
 import { evaluate } from "@/assets/Adapter";
 import ParserError from "@/assets/model/ParserError";
 import HelpModal from "@/components/HelpModal";
+import { Select } from "chakra-react-select";
 
 interface InputProps {
     onChange: Function;
@@ -164,7 +165,7 @@ const InputSection = ({ onChange, reversOrder }: InputProps) => {
                         </Button>
                     );
                 })}
-                {/* <CustomSelect /> */}
+                {/*<CustomSelect />*/}
             </Flex>
         </Stack>
     );
