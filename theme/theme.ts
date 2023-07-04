@@ -48,9 +48,11 @@ export default extendTheme({
             "*": {
                 "&::-webkit-scrollbar": {
                     width: 2,
+                    height: 2,
                 },
                 "&::-webkit-scrollbar-track": {
                     width: 2,
+                    height: 2,
                 },
                 "&::-webkit-scrollbar-thumb": {
                     backgroundColor: mode("neutral.500", "neutral.700")(props),
