@@ -66,7 +66,11 @@ const CustomTable = ({ tableData, setReversOrder }: CustomTableProps) => {
                 <FormLabel htmlFor="reverse-order" mb="0">
                     Reverse variable order
                 </FormLabel>
-                <Switch id="reverse-order" onChange={(e) => setReversOrder(e.target.checked)} />
+                <Switch
+                    colorScheme={"purple"}
+                    id="reverse-order"
+                    onChange={(e) => setReversOrder(e.target.checked)}
+                />
             </FormControl>
         </>
     );
