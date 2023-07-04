@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import InputSection from "@/components/InputSection";
 import CustomTable from "@/components/CustomTable";
 import { TableFormat } from "@/assets/Adapter";
+import ScrollToTopButton from "@/components/ScrollToTopButton";
 
 const Home = () => {
     const [tableData, setTableData] = useState<TableFormat>([]);
@@ -28,6 +29,8 @@ const Home = () => {
 
             <Spacer />
             <Footer />
+
+            <ScrollToTopButton />
         </Flex>
     );
 };
