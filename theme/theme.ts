@@ -43,7 +43,19 @@ export default extendTheme({
     styles: {
         global: (props: StyleFunctionProps) => ({
             "body": {
-                bg: mode(colors.neutral["200"], colors.neutral["900"])(props),
+                bg: mode("neutral.100", "neutral.900")(props),
+            },
+            "*": {
+                "&::-webkit-scrollbar": {
+                    width: 2,
+                },
+                "&::-webkit-scrollbar-track": {
+                    width: 2,
+                },
+                "&::-webkit-scrollbar-thumb": {
+                    backgroundColor: mode("neutral.500", "neutral.700")(props),
+                    borderRadius: "md",
+                },
             },
             "*::selection": { backgroundColor: "purple.400" },
         }),
