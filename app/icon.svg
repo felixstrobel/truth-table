@@ -1,0 +1,21 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g clip-path="url(#clip0_10_2)">
+        <rect x="61" width="6" height="128" fill="currentColor"/>
+        <rect y="67" width="6" height="128" transform="rotate(-90 0 67)" fill="currentColor"/>
+        <path d="M30 14L47 45" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+        <path d="M13 45L30 14" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+        <path d="M99 114L82 83" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+        <path d="M116 83L99 114" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+        <path d="M83 22H115" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M115 36V22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M10 97C9.44772 97 9 97.4477 9 98C9 98.5523 9.44772 99 10 99V97ZM10 99H49V97H10V99Z"
+              fill="currentColor"/>
+        <path d="M39 87L49 98" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M39 109L49 98" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </g>
+    <defs>
+        <clipPath id="clip0_10_2">
+            <rect width="128" height="128" fill="transparent"/>
+        </clipPath>
+    </defs>
+</svg>

@@ -1,6 +1,5 @@
 "use client";
 
-import "./favicon.ico";
 import "./globals.css";
 
 import React from "react";
@@ -17,6 +16,7 @@ const RootLayout = ({ children }: RootLayoutProps) => {
             {/* TODO: add SEO */}
             <head>
                 <link rel="manifest" href="/manifest.json" />
+                <title>Truth Table Generator</title>
             </head>
             <body>
                 <ColorModeScript initialColorMode={theme.config.initialColorMode} />
