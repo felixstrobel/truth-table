@@ -1,4 +1,4 @@
-import { Box, Grid, GridItem, Heading, IconButton, Tooltip, useColorMode } from "@chakra-ui/react";
+import { Grid, GridItem, Heading, IconButton, Tooltip, useColorMode } from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 
 const Header = () => {
@@ -30,7 +30,8 @@ const Header = () => {
                 >
                     <IconButton
                         onClick={toggleColorMode}
-                        size={{ base: "md", md: "lg" }}
+                        w={{ base: 8, sm: 12 }}
+                        h={{ base: 10, sm: 12 }}
                         variant={"ghost"}
                         colorScheme={"neutral"}
                         icon={
