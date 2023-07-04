@@ -22,6 +22,7 @@ const Footer = () => {
                             p={6}
                             w={"36"}
                             size={"md"}
+                            color={"whiteAlpha.900"}
                             as={Link}
                             rel="nofollow"
                             href={"https://www.paypal.com/donate/?hosted_button_id=FMWQ2NMB943BA"}
