@@ -5,7 +5,7 @@ import CustomLink from "./CustomLink";
 
 const Footer = () => {
     return (
-        <Box as={"footer"} w={"full"} mt={20} mb={4}>
+        <Box as={"footer"} w={"full"} mt={20} mb={8}>
             <Grid
                 templateColumns={{ base: "1fr", md: "1fr 1fr 1fr" }}
                 templateRows={{ base: "3fr 1.5fr 1.5fr 1fr", md: "2fr 1fr" }}

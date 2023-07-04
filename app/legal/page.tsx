@@ -1,7 +1,7 @@
 "use client";
 import CustomLink from "@/components/CustomLink";
 import Footer from "@/components/Footer";
-import { Text, Button, Heading, Flex, Box } from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
 import { useState } from "react";
 
 type Language = "DE" | "EN";
@@ -19,29 +19,29 @@ const LegalNotice = () => {
                 flexDirection={"column"}
             >
                 <Box flexGrow={1}>
-                    <Box>
-                        <Button onClick={() => setLanguage("EN")}>
-                            Click here to change to the English version
-                        </Button>
-                    </Box>
+                    <Button mt={4} mb={12} onClick={() => setLanguage("EN")}>
+                        Click here to change to the English version
+                    </Button>
 
-                    <Heading as={"h1"}>Impressum</Heading>
+                    <Heading mb={8} as={"h1"}>
+                        Impressum
+                    </Heading>
 
-                    <Box>
-                        <Heading>Angaben gemäß § 5 TMG</Heading>
-                        <Text>Max Lohrmann</Text>
-                        <Text>Reithohl 1a</Text>
-                        <Text>76229 Karlsruhe</Text>
-                    </Box>
+                    <Heading mb={2} as={"h2"}>
+                        Angaben gemäß § 5 TMG
+                    </Heading>
+                    <Text>Max Lohrmann</Text>
+                    <Text>Reithohl 1a</Text>
+                    <Text>76229 Karlsruhe, Deutschland</Text>
 
-                    <Box>
-                        <Heading>Kontakt</Heading>
-                        <CustomLink href="tel:+4971134160675">Telefon: +49 711 34160675</CustomLink>
-                        <Text>Telefax: +49 711 95338338</Text>
-                        <CustomLink href="mailto:mail@truth-table.com">
-                            E-Mail: mail@truth-table.com
-                        </CustomLink>
-                    </Box>
+                    <Heading mt={4} mb={2}>
+                        Kontakt
+                    </Heading>
+                    <CustomLink href="tel:+4971134160675">Telefon: +49 711 34160675</CustomLink>
+                    <Text>Telefax: +49 711 95338338</Text>
+                    <CustomLink href="mailto:mail@truth-table.com">
+                        E-Mail: mail@truth-table.com
+                    </CustomLink>
                 </Box>
 
                 <Footer />
@@ -57,32 +57,29 @@ const LegalNotice = () => {
                 flexDirection={"column"}
             >
                 <Box flexGrow={1}>
-                    <Box>
-                        <Button onClick={() => setLanguage("DE")}>
-                            Klicken Sie hier, um zur deutschen Version zu wechseln
-                        </Button>
-                    </Box>
+                    <Button mt={4} mb={12} onClick={() => setLanguage("DE")}>
+                        Klicken Sie hier, um zur deutschen Version zu wechseln
+                    </Button>
 
-                    <Heading as={"h1"}>Legal Notice</Heading>
+                    <Heading mb={8} as={"h1"}>
+                        Legal Notice
+                    </Heading>
 
-                    <Box>
-                        <Heading>
-                            This Legal Notice complies with the German laws under § 5 TMG and § 55
-                            RStV
-                        </Heading>
-                        <Text>Max Lohrmann</Text>
-                        <Text>Reithohl 1a</Text>
-                        <Text>76229 Karlsruhe</Text>
-                    </Box>
+                    <Heading mb={2} as={"h2"}>
+                        This Legal Notice complies with the German laws under § 5 TMG and § 55 RStV
+                    </Heading>
+                    <Text>Max Lohrmann</Text>
+                    <Text>Reithohl 1a</Text>
+                    <Text>76229 Karlsruhe, Germany</Text>
 
-                    <Box>
-                        <Heading>Contact</Heading>
-                        <CustomLink href="tel:+4971134160675">Phone: +49 711 34160675</CustomLink>
-                        <Text>Fax: +49 711 95338338</Text>
-                        <CustomLink href="mailto:mail@truth-table.com">
-                            E-Mail: mail@truth-table.com
-                        </CustomLink>
-                    </Box>
+                    <Heading mt={4} mb={2}>
+                        Contact
+                    </Heading>
+                    <CustomLink href="tel:+4971134160675">Phone: +49 711 34160675</CustomLink>
+                    <Text>Fax: +49 711 95338338</Text>
+                    <CustomLink href="mailto:mail@truth-table.com">
+                        E-Mail: mail@truth-table.com
+                    </CustomLink>
                 </Box>
 
                 <Footer />
