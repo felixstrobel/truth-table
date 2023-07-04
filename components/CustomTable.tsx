@@ -13,6 +13,7 @@ import {
 } from "@chakra-ui/react";
 import { TableFormat } from "@/assets/Adapter";
 import ParserError from "@/assets/model/ParserError";
+import { useState } from "react";
 
 interface CustomTableProps {
     tableData: TableFormat;
@@ -38,31 +39,7 @@ const CustomTable = ({ tableData, setReversOrder }: CustomTableProps) => {
                     <Thead>
                         <Tr>
                             {Object.entries(tableData[0]).map((column) => {
-                                let copied: boolean = false;
-
-                                // TODO: change text by rerendering the tooltip. And start a countdown or when the
-                                //  tooltip isn't present anymore, the text should be resettet
-                                return (
-                                    <Tooltip
-                                        key={column[0]}
-                                        label={copied ? "Copied!" : "Click to copy expression"}
-                                        placement={"top"}
-                                        closeOnClick={false}
-                                    >
-                                        <Th
-                                            fontSize={"xl"}
-                                            color={"neutral.200"}
-                                            fontWeight={"extrabold"}
-                                            textAlign={"center"}
-                                            cursor={"pointer"}
-                                            onClick={() => {
-                                                copied = true;
-                                            }}
-                                        >
-                                            {column[0]}
-                                        </Th>
-                                    </Tooltip>
-                                );
+                                return <TableHeaderCell key={column[0]} data={column} />;
                             })}
                         </Tr>
                     </Thead>
@@ -71,7 +48,7 @@ const CustomTable = ({ tableData, setReversOrder }: CustomTableProps) => {
                             <Tr key={index}>
                                 {Object.entries(evaluation).map((column, index) => (
                                     <Td key={index} textAlign={"center"}>
-                                        {column[1] ? "T" : "F"}
+                                        {column[1].value ? "T" : "F"}
                                     </Td>
                                 ))}
                             </Tr>
@@ -79,17 +56,67 @@ const CustomTable = ({ tableData, setReversOrder }: CustomTableProps) => {
                     </Tbody>
                 </Table>
             </TableContainer>
-            <FormControl display="flex" alignItems="center" justifyContent={"center"} mt="5">
-                <FormLabel htmlFor="reverse-order" mb="0">
-                    Reverse variable order
-                </FormLabel>
-                <Switch
-                    colorScheme={"purple"}
-                    id="reverse-order"
-                    onChange={(e) => setReversOrder(e.target.checked)}
-                />
-            </FormControl>
+            <ReverseOrderSwitch setReversOrder={setReversOrder} />
         </>
+    );
+};
+
+interface TableHeaderCellProps {
+    data: any;
+}
+const TableHeaderCell = ({ data }: TableHeaderCellProps) => {
+    const [copied, setCopied] = useState(false);
+
+    const onCopy = () => {
+        setCopied(true);
+        navigator.clipboard.writeText(data[0]).catch((e) => console.log(e));
+    };
+    const onMouseLeave = () => {
+        setCopied(false);
+    };
+
+    return (
+        <Th
+            fontSize={"xl"}
+            color={"neutral.200"}
+            fontWeight={"extrabold"}
+            textAlign={"center"}
+            cursor={"pointer"}
+            onMouseLeave={onMouseLeave}
+            onClick={onCopy}
+        >
+            {data[1].type === "expression" ? (
+                <Tooltip
+                    label={copied ? "Copied!" : "Click to copy expression"}
+                    placement={"top"}
+                    closeOnClick={false}
+                    offset={[0, 15]}
+                    hasArrow
+                >
+                    {data[0]}
+                </Tooltip>
+            ) : (
+                <>{data[0]}</>
+            )}
+        </Th>
+    );
+};
+
+interface ReverseOrderSwitchProps {
+    setReversOrder: Function;
+}
+const ReverseOrderSwitch = ({ setReversOrder }: ReverseOrderSwitchProps) => {
+    return (
+        <FormControl display="flex" alignItems="center" justifyContent={"center"} mt="5">
+            <FormLabel htmlFor="reverse-order" mb="0">
+                Reverse variable order
+            </FormLabel>
+            <Switch
+                colorScheme={"purple"}
+                id="reverse-order"
+                onChange={(e) => setReversOrder(e.target.checked)}
+            />
+        </FormControl>
     );
 };
 
