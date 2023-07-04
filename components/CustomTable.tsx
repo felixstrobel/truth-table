@@ -40,6 +40,7 @@ const CustomTable = ({ tableData, setReversOrder }: CustomTableProps) => {
                                 <Th
                                     key={column[0]}
                                     fontSize={"xl"}
+                                    color={"neutral.200"}
                                     fontWeight={"extrabold"}
                                     textAlign={"center"}
                                 >
