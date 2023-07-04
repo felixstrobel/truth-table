@@ -8,6 +8,7 @@ import {
     Td,
     Th,
     Thead,
+    Tooltip,
     Tr,
 } from "@chakra-ui/react";
 import { TableFormat } from "@/assets/Adapter";
@@ -36,17 +37,33 @@ const CustomTable = ({ tableData, setReversOrder }: CustomTableProps) => {
                 <Table colorScheme={"neutral"}>
                     <Thead>
                         <Tr>
-                            {Object.entries(tableData[0]).map((column) => (
-                                <Th
-                                    key={column[0]}
-                                    fontSize={"xl"}
-                                    color={"neutral.200"}
-                                    fontWeight={"extrabold"}
-                                    textAlign={"center"}
-                                >
-                                    {column[0]}
-                                </Th>
-                            ))}
+                            {Object.entries(tableData[0]).map((column) => {
+                                let copied: boolean = false;
+
+                                // TODO: change text by rerendering the tooltip. And start a countdown or when the
+                                //  tooltip isn't present anymore, the text should be resettet
+                                return (
+                                    <Tooltip
+                                        key={column[0]}
+                                        label={copied ? "Copied!" : "Click to copy expression"}
+                                        placement={"top"}
+                                        closeOnClick={false}
+                                    >
+                                        <Th
+                                            fontSize={"xl"}
+                                            color={"neutral.200"}
+                                            fontWeight={"extrabold"}
+                                            textAlign={"center"}
+                                            cursor={"pointer"}
+                                            onClick={() => {
+                                                copied = true;
+                                            }}
+                                        >
+                                            {column[0]}
+                                        </Th>
+                                    </Tooltip>
+                                );
+                            })}
                         </Tr>
                     </Thead>
                     <Tbody>
