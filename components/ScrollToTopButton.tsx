@@ -1,6 +1,6 @@
 import { IconButton } from "@chakra-ui/react";
 import { ArrowUpIcon } from "@chakra-ui/icons";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const ScrollToTopButton = () => {
     const [visible, setVisible] = useState<boolean>(true);
@@ -9,9 +9,16 @@ const ScrollToTopButton = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
-    window.onscroll = () => {
-        setVisible(document.body.scrollTop > 400 || document.documentElement.scrollTop > 400);
-    };
+    useEffect(() => {
+        const onScroll = () => {
+            setVisible(document.body.scrollTop > 400 || document.documentElement.scrollTop > 400);
+        };
+        window.addEventListener("scroll", onScroll);
+
+        return () => {
+            window.removeEventListener("scroll", onScroll);
+        };
+    }, []);
 
     return (
         <IconButton
