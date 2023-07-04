@@ -32,8 +32,10 @@ const Header = () => {
                         onClick={toggleColorMode}
                         w={{ base: 8, sm: 12 }}
                         h={{ base: 10, sm: 12 }}
-                        variant={"ghost"}
                         colorScheme={"neutral"}
+                        variant={"ghost"}
+                        _hover={{ backgroundColor: "neutral.200" }}
+                        _dark={{ _hover: { backgroundColor: "whiteAlpha.200" } }}
                         icon={
                             colorMode === "dark" ? (
                                 <MoonIcon boxSize={{ base: 4, sm: 6 }} />
