@@ -24,7 +24,8 @@ const Footer = () => {
                             size={"md"}
                             color={"whiteAlpha.900"}
                             as={Link}
-                            rel="nofollow"
+                            target="_blank"
+                            rel="nofollow noopener"
                             href={"https://www.paypal.com/donate/?hosted_button_id=FMWQ2NMB943BA"}
                             bgGradient={"linear(to-br, pink.300, purple.800)"}
                             _hover={{ bgGradient: "linear(to-br, pink.400, purple.900)" }}
@@ -51,7 +52,7 @@ const Footer = () => {
                     alignSelf={{ base: "center", md: "start" }}
                     textAlign={{ base: "center", md: "right" }}
                 >
-                    <CustomLink href={"mailto:mail@truth-table.com"}>
+                    <CustomLink href={"mailto:mail@truth-table.com"} target={"_blank"}>
                         Click here to leave some feedback!
                     </CustomLink>
                 </GridItem>

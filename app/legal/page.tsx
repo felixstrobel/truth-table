@@ -37,9 +37,11 @@ const LegalNotice = () => {
                     <Heading mt={4} mb={2}>
                         Kontakt
                     </Heading>
-                    <CustomLink href="tel:+4971134160675">Telefon: +49 711 34160675</CustomLink>
+                    <CustomLink href="tel:+4971134160675" target={"_blank"}>
+                        Telefon: +49 711 34160675
+                    </CustomLink>
                     <Text>Telefax: +49 711 95338338</Text>
-                    <CustomLink href="mailto:mail@truth-table.com">
+                    <CustomLink href="mailto:mail@truth-table.com" target={"_blank"}>
                         E-Mail: mail@truth-table.com
                     </CustomLink>
                 </Box>
@@ -75,9 +77,11 @@ const LegalNotice = () => {
                     <Heading mt={4} mb={2}>
                         Contact
                     </Heading>
-                    <CustomLink href="tel:+4971134160675">Phone: +49 711 34160675</CustomLink>
+                    <CustomLink href="tel:+4971134160675" target={"_blank"}>
+                        Phone: +49 711 34160675
+                    </CustomLink>
                     <Text>Fax: +49 711 95338338</Text>
-                    <CustomLink href="mailto:mail@truth-table.com">
+                    <CustomLink href="mailto:mail@truth-table.com" target={"_blank"}>
                         E-Mail: mail@truth-table.com
                     </CustomLink>
                 </Box>
