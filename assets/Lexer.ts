@@ -130,6 +130,8 @@ export default class Lexer {
 
         const operator = this.getNextOperator();
         if (operator instanceof UnaryOperator) {
+            const omittedOperator = this.omitAndOperator();
+            if (omittedOperator) return omittedOperator;
             return new Token(TokenType.UNARY_OPERATOR, operator.getUnifiedSymbol(), operator);
         } else if (operator instanceof BinaryOperator) {
             return new Token(TokenType.BINARY_OPERATOR, operator.getUnifiedSymbol(), operator);
