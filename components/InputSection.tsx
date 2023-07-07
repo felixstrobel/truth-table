@@ -27,22 +27,19 @@ const InputSection = ({ onChange, reversOrder }: InputProps) => {
     const [infoMessage, setInfoMessage] = useState<ReactNode>(<span></span>);
     const [value, updateValue] = useReducer(
         (state: string, action: { setValue?: string; quickButtonAction?: string }): string => {
+            let newValue = "";
             if (action.setValue !== undefined) {
-                let newValue = action.setValue;
-                window.localStorage.setItem("input", newValue);
-                return newValue;
+                newValue = action.setValue;
             }
             if (action.quickButtonAction === "DEL") {
-                let newValue = state.substring(0, state.length - 1);
-                window.localStorage.setItem("input", newValue);
-                return newValue;
+                newValue = state.substring(0, state.length - 1);
             }
             if (action.quickButtonAction) {
-                let newValue = state + action.quickButtonAction;
-                window.localStorage.setItem("input", newValue);
-                return newValue;
+                newValue = state + action.quickButtonAction;
             }
-            return "";
+
+            window.localStorage.setItem("input", newValue);
+            return newValue;
         },
         ""
     );
