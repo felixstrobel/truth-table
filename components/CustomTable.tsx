@@ -75,14 +75,17 @@ const TableHeaderCell = ({ data }: TableHeaderCellProps) => {
         clearTimeout(currentTimeout);
         setCurrentTimeout(
             setTimeout(() => {
-                console.log(false);
                 setCopied(false);
             }, 1000)
         );
     };
     const onMouseLeave = () => {
-        setCopied(false);
         clearTimeout(currentTimeout);
+        setCurrentTimeout(
+            setTimeout(() => {
+                setCopied(false);
+            }, 100)
+        );
     };
 
     return (
