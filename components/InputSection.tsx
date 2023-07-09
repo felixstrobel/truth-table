@@ -45,7 +45,10 @@ const InputSection = ({ onChange, reversOrder }: InputProps) => {
     );
 
     useEffect(() => {
-        updateValue({ setValue: window.localStorage.getItem("input") ?? "" });
+        const urlParamValue = new URLSearchParams(window.location.search).get("input");
+        const storageLocationValue = window.localStorage.getItem("input");
+
+        updateValue({ setValue: urlParamValue ?? storageLocationValue ?? "" });
     }, []);
 
     const quickButtons = [
