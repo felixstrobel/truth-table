@@ -13,7 +13,7 @@ import {
 } from "@chakra-ui/react";
 import { TableFormat } from "@/assets/Adapter";
 import ParserError from "@/assets/model/ParserError";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 interface CustomTableProps {
     tableData: TableFormat;
@@ -66,13 +66,26 @@ interface TableHeaderCellProps {
 }
 const TableHeaderCell = ({ data }: TableHeaderCellProps) => {
     const [copied, setCopied] = useState(false);
+    const [currentTimeout, setCurrentTimeout] = useState<NodeJS.Timeout>();
 
     const onCopy = () => {
         setCopied(true);
         navigator.clipboard.writeText(data[0]).catch((e) => console.log(e));
+
+        clearTimeout(currentTimeout);
+        setCurrentTimeout(
+            setTimeout(() => {
+                setCopied(false);
+            }, 1000)
+        );
     };
     const onMouseLeave = () => {
-        setCopied(false);
+        clearTimeout(currentTimeout);
+        setCurrentTimeout(
+            setTimeout(() => {
+                setCopied(false);
+            }, 100)
+        );
     };
 
     return (

@@ -2,6 +2,7 @@
 	"name": "Truth Table Generator",
 	"short_name": "Truth Table",
 	"background_color": "#171717",
+	"theme_color": "#171717",
 	"display": "standalone",
 	"scope": "/",
 	"start_url": "https://truth-table.com/",

@@ -1,38 +1,14 @@
-"use client";
+import { Metadata } from "next";
+import MainContent from "./content";
 
-import { useState } from "react";
-import Header from "@/components/Header";
-import { Flex, Spacer } from "@chakra-ui/react";
-import Footer from "@/components/Footer";
-import InputSection from "@/components/InputSection";
-import CustomTable from "@/components/CustomTable";
-import { TableFormat } from "@/assets/Adapter";
-import ScrollToTopButton from "@/components/ScrollToTopButton";
-
-const Home = () => {
-    const [tableData, setTableData] = useState<TableFormat>([]);
-    const [reversOrder, setReversOrder] = useState<boolean>(false);
-
-    return (
-        <Flex
-            mx={"auto"}
-            px={{ base: "4", sm: "6", lg: "8" }}
-            maxW={"8xl"}
-            minH={"100vh"}
-            flexDirection={"column"}
-        >
-            <Header />
-
-            {/* Main Section*/}
-            <InputSection onChange={setTableData} reversOrder={reversOrder} />
-            <CustomTable tableData={tableData} setReversOrder={setReversOrder} />
-
-            <Spacer />
-            <Footer />
-
-            <ScrollToTopButton />
-        </Flex>
-    );
+export const metadata: Metadata = {
+    title: "Truth Table Generator",
+    description:
+        "Rapidly convert all your Boolean expressions into a nice-looking (dark-themed) truth table",
 };
 
-export default Home;
+const Main = () => {
+    return <MainContent />;
+};
+
+export default Main;
