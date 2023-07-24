@@ -15,8 +15,8 @@ const RootLayout = ({ children }: RootLayoutProps) => {
         <html lang="en">
             {/* TODO: Facebook & Twitter tags */}
             <head>
-                <title>Truth Table Generator</title>
-                <meta name="description" content="Rapidly convert all your Boolean expressions into a nice-looking (dark-themed) truth table" />
+                {/* <title>Truth Table Generator</title>
+                <meta name="description" content="Rapidly convert all your Boolean expressions into a nice-looking (dark-themed) truth table" /> */}
 
                 <link rel="manifest" href="/manifest.json" />
 
