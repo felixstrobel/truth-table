@@ -30,11 +30,9 @@ const InputSection = ({ onChange, reversOrder }: InputProps) => {
             let newValue = "";
             if (action.setValue !== undefined) {
                 newValue = action.setValue;
-            }
-            if (action.quickButtonAction === "DEL") {
+            } else if (action.quickButtonAction === "DEL") {
                 newValue = state.substring(0, state.length - 1);
-            }
-            if (action.quickButtonAction) {
+            } else if (action.quickButtonAction) {
                 newValue = state + action.quickButtonAction;
             }
 
