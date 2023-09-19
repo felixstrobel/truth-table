@@ -121,7 +121,7 @@ const InputSection = ({ onChange, reversOrder }: InputProps) => {
                             hasArrow
                             openDelay={800}
                             placement={"top"}
-                            label={"copy expression"}
+                            label={"Copy expression"}
                             borderRadius={"md"}
                         >
                             <IconButton
@@ -135,14 +135,22 @@ const InputSection = ({ onChange, reversOrder }: InputProps) => {
                     </InputRightElement>
                 </InputGroup>
 
-                <IconButton
-                    size={"lg"}
-                    variant={"ghost"}
-                    backgroundColor={"whiteAlpha.50"}
-                    onClick={onOpen}
-                    icon={<QuestionOutlineIcon boxSize={5} />}
-                    aria-label={"show language specifications"}
-                />
+                <Tooltip
+                    hasArrow
+                    openDelay={800}
+                    placement={"top"}
+                    label={"Show syntax"}
+                    borderRadius={"md"}
+                >
+                    <IconButton
+                        size={"lg"}
+                        variant={"ghost"}
+                        backgroundColor={"whiteAlpha.50"}
+                        onClick={onOpen}
+                        icon={<QuestionOutlineIcon boxSize={5} />}
+                        aria-label={"Show language specifications"}
+                    />
+                </Tooltip>
 
                 <HelpModal open={isOpen} onClose={onClose} />
             </Stack>
