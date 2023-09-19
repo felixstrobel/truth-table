@@ -25,6 +25,7 @@ interface InputProps {
 const InputSection = ({ onChange, reversOrder }: InputProps) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [infoMessage, setInfoMessage] = useState<ReactNode>(<span></span>);
+
     const [value, updateValue] = useReducer(
         (state: string, action: { setValue?: string; quickButtonAction?: string }): string => {
             let newValue = "";
@@ -36,17 +37,21 @@ const InputSection = ({ onChange, reversOrder }: InputProps) => {
                 newValue = state + action.quickButtonAction;
             }
 
+            location.replace("#" + newValue);
             window.localStorage.setItem("input", newValue);
             return newValue;
         },
         ""
     );
 
+	// load value form url or local storage
     useEffect(() => {
-        const urlParamValue = new URLSearchParams(window.location.search).get("input");
-        const storageLocationValue = window.localStorage.getItem("input");
+        const urlHashValue = location.hash.slice(1);
+        const localStorageValue = window.localStorage.getItem("input");
 
-        updateValue({ setValue: urlParamValue ?? storageLocationValue ?? "" });
+        const value = urlHashValue == "" ? localStorageValue : urlHashValue;
+
+        updateValue({ setValue: value ?? "" });
     }, []);
 
     const quickButtons = [
