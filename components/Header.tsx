@@ -20,7 +20,7 @@ const Header = () => {
             </GridItem>
 
             <GridItem justifySelf={"end"} alignSelf={{ base: "center", sm: "start" }}>
-                <Tooltip
+                {/*<Tooltip
                     hasArrow
                     openDelay={800}
                     closeOnClick={false}
@@ -45,7 +45,7 @@ const Header = () => {
                         }
                         aria-label={"Switch color mode"}
                     />
-                </Tooltip>
+                </Tooltip>*/}
             </GridItem>
         </Grid>
     );
