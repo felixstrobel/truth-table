@@ -1,0 +1,2 @@
+RewriteEngine on
+ErrorDocument 404   https://truth-table.com/404
