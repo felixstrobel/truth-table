@@ -1,11 +1,10 @@
 import "./globals.css";
 
 import React from "react";
-import Header from "@/components/layout/Header";
+import { URL } from "url";
+import { Metadata } from "next";
 import Footer from "@/components/layout/Footer";
 import ScrollToTopButton from "@/components/layout/ScrollToTopButton";
-import { Metadata } from "next";
-import { URL } from "url";
 
 export const metadata: Metadata = {
     metadataBase: new URL("https://truth-table.com"),
@@ -42,7 +41,7 @@ export const metadata: Metadata = {
         "truth table generator for boolean algebra",
     ],
     referrer: "strict-origin-when-cross-origin",
-    themeColor: "#171717", //TODO: maybe use another color from tailwind
+    themeColor: "#171717", // Equivalent to "neutral-900"
     // colorScheme: "", TODO
     viewport: { width: "device-width", initialScale: 1 },
     creator: "truth-table.com Team",
@@ -89,8 +88,13 @@ const RootLayout = ({ children }: RootLayoutProps) => {
     return (
         <html>
             <body className="flex flex-col min-h-screen">
-                <header className="max-w-7xl mx-auto my-2 sm:my-3 lg:my-4 px-4 sm:px-6 lg:px-8">
-                    <Header />
+                <header className="grid grid-cols-[1fr 6fr 1fr] max-w-7xl mx-auto mt-2 mb-4 sm:mt-3 sm:mb-6 lg:mt-4 lg:mb-14 px-4 sm:px-6 lg:px-8">
+                    <div className="justify-self-center self-center md:self-start">
+                        <h1 className="whitespace-nowrap text-3xl sm:text-5xl md:text-7xl dark:text-neutral-100">
+                            Truth Table
+                        </h1>
+                    </div>
+                    {/* TODO: add color mode changer */}
                 </header>
                 <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">{children}</main>
                 <footer className="flex-shrink-0 mt-12 mb-8 md:mb-4 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
