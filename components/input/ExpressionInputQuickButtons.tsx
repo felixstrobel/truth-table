@@ -1,5 +1,3 @@
-import { Button, Flex } from "@chakra-ui/react";
-
 interface ExpressionInputQuickButtonsProps {
     inputModifier: any;
 }
@@ -26,25 +24,20 @@ const ExpressionInputQuickButtons = ({ inputModifier }: ExpressionInputQuickButt
     ];
 
     return (
-        <Flex flexDirection={"row"} flexWrap={"wrap"} justifyContent={"center"}>
+        <div className="flex flex-row flex-wrap gap-4 justify-center">
             {buttons.map((buttonText: string) => {
                 return (
-                    <Button
-                        colorScheme={"neutral"}
-                        variant={"outline"}
-                        w={12}
-                        h={12}
-                        m={2}
+                    <button
+                        type="button"
                         key={buttonText}
-                        fontSize={"lg"}
                         onClick={() => inputModifier(buttonText)}
+                        className="grid place-items-center p-2.5 w-14 h-14 dark:hover:bg-neutral-300/10 border dark:border-neutral-100/70 rounded-lg text-md font-medium"
                     >
                         {buttonText}
-                    </Button>
+                    </button>
                 );
             })}
-            {/*<CustomSelect />*/}
-        </Flex>
+        </div>
     );
 };
 
