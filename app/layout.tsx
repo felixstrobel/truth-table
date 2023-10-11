@@ -86,7 +86,7 @@ interface RootLayoutProps {
 
 const RootLayout = ({ children }: RootLayoutProps) => {
     return (
-        <html>
+        <html className="dark">
             <body className="flex flex-col min-h-screen">
                 <header className="grid grid-cols-[1fr 6fr 1fr] max-w-7xl mx-auto mt-2 mb-4 sm:mt-3 sm:mb-6 lg:mt-4 lg:mb-14 px-4 sm:px-6 lg:px-8">
                     <div className="justify-self-center self-center md:self-start">
