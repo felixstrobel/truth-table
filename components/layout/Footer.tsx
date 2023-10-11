@@ -1,31 +1,30 @@
 import Link from "next/link";
-import CustomLink from "../CustomLink";
 
 const Footer = () => {
     return (
-        <div className="grid grid-cols-1 md:grid-cols-3 grid-rows-[3fr 1.5fr 1.5fr 1fr] md:grid-rows-[2fr 1fr] md:gap-x-8">
-            <div className="flex flex-col justify-items-center md:justify-items-start justify-self-center md:justify-self-start text-center md:text-start">
-                <span>Do you like what you see? Buy us a drink!</span>
+        <div className="grid grid-cols-1 md:grid-cols-3 grid-rows-[3fr 1.5fr 1.5fr 1fr] md:grid-rows-[2fr 1fr] gap-x-8 md:gap-x-12 gap-y-6 md:gap-y-12 text-center">
+            <div className="flex flex-col gap-3 lg:items-start lg:text-start">
+                <span className="text-md">Enjoying what we do? Buy&nbsp;us&nbsp;a&nbsp;drink!</span>
                 <Link
-                    className="mt-2 p-6 w-36 " //TODO: fix and linear(to-br, pink.300, purple.800) und hover: linear(to-br, pink.400, purple.900)
+                    className="mx-auto lg:mx-0 px-5 py-2.5 rounded-md whitespace-nowrap text-lg font-bold bg-gradient-to-br from-pink-600 via-violet-600 to-indigo-400 hover:scale-105 transition ease duration-300"
                     target="_blank"
                     rel="nofollow noopener"
-                    href={"https://www.paypal.com/donate/?hosted_button_id=FMWQ2NMB943BA"}
+                    href="https://www.paypal.com/donate/?hosted_button_id=FMWQ2NMB943BA"
                 >
                     Donate <span className="ml-2 text-xl">🍹</span>
                 </Link>
             </div>
-            <div className="justify-self-center self-center md:self-start text-center row-[3 / 4] md:row-auto">
-                <p className="text-xl font-bold">Proudly provided by Felix ∧ Max</p>
+            <div className="my-4 md:my-0 flex-1">
+                <span className="text-xl font-bold">Proudly provided by Felix&nbsp;∧&nbsp;Max</span>
             </div>
-            <div className="justify-self-center md:justify-self-end self-center md:self-start text-center md:text-right">
-                <CustomLink href={"mailto:mail@truth-table.com"} target={"_blank"}>
+            <div className="lg:text-right">
+                <Link className="text-md decoration-1 hover:underline decoration-indigo-400 underline-offset-[5px]" target="_blank" href="mailto:mail@truth-table.com">
                     Click here to leave some feedback!
-                </CustomLink>
+                </Link>
             </div>
-            <div className="flex flex-row mt-4 justify-items-center text-lg col-span-1 md:col-span-3 justify-self-center self-end">
-                <CustomLink href="/legal">Legal Notice</CustomLink>
-                <p>&copy; {new Date().getFullYear()} All rights reserved.</p>
+            <div className="md:col-span-3 text-sm text-neutral-400">
+                <Link className="decoration-1 hover:underline decoration-indigo-400 underline-offset-[5px]" href="/legal">Legal Notice</Link>
+                <span>&nbsp;&copy; {new Date().getFullYear()} All rights reserved.</span>
             </div>
         </div>
     );
