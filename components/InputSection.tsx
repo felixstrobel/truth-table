@@ -1,101 +1,29 @@
-import { ReactNode, useEffect, useReducer, useState } from "react";
 import {
-    Box,
-    Button,
-    Flex,
     IconButton,
     Input,
     InputGroup,
+    InputRightAddon,
     InputRightElement,
     Stack,
-    Text,
     Tooltip,
     useDisclosure,
 } from "@chakra-ui/react";
-import { CopyIcon, QuestionOutlineIcon } from "@chakra-ui/icons";
-import CustomSelect from "@/components/CustomSelect";
-import { evaluate } from "@/assets/Adapter";
-import ParserError from "@/assets/model/ParserError";
+import { CloseIcon, CopyIcon, QuestionOutlineIcon } from "@chakra-ui/icons";
 import HelpModal from "@/components/HelpModal";
+
 interface InputProps {
-    onChange: Function;
-    reversOrder: boolean;
+    input: string;
+    setInput: any;
 }
 
-const InputSection = ({ onChange, reversOrder }: InputProps) => {
+const InputSection = ({ input, setInput }: InputProps) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
-    const [infoMessage, setInfoMessage] = useState<ReactNode>(<span></span>);
-    const [value, updateValue] = useReducer(
-        (state: string, action: { setValue?: string; quickButtonAction?: string }): string => {
-            let newValue = "";
-            if (action.setValue !== undefined) {
-                newValue = action.setValue;
-            } else if (action.quickButtonAction === "DEL") {
-                newValue = state.substring(0, state.length - 1);
-            } else if (action.quickButtonAction) {
-                newValue = state + action.quickButtonAction;
-            }
-
-            window.localStorage.setItem("input", newValue);
-            return newValue;
-        },
-        ""
-    );
-
-    useEffect(() => {
-        const urlParamValue = new URLSearchParams(window.location.search).get("input");
-        const storageLocationValue = window.localStorage.getItem("input");
-
-        updateValue({ setValue: urlParamValue ?? storageLocationValue ?? "" });
-    }, []);
-
-    const quickButtons = [
-        "¬",
-        "∧",
-        "⊼",
-        "∨",
-        "⊽",
-        "→",
-        "↔",
-        "⇹",
-        "(",
-        ")",
-        ",",
-        "0",
-        "1",
-        "A",
-        "B",
-        "C",
-        "DEL",
-    ];
 
     const copyInputToClipBoard = () => {
-        navigator.clipboard.writeText(value).catch((e) => console.log(e));
+        navigator.clipboard.writeText(input).catch((e) => console.log(e));
     };
 
-    useEffect(() => {
-        const data = evaluate(value, reversOrder);
-
-        if (data instanceof ParserError) {
-            if (!data.position) {
-                setInfoMessage(<span>{data.message}</span>);
-            } else {
-                setInfoMessage(
-                    <span>
-                        {data.message + ": " + data.input.slice(0, data.position)}
-                        <Text as={"span"} color={"red.400"}>
-                            {data.input.slice(data.position, data.position + 1)}
-                        </Text>
-                        {data.input.slice(data.position + 1, data.input.length)}
-                    </span>
-                );
-            }
-            return;
-        }
-
-        onChange(data);
-        setInfoMessage(null);
-    }, [value, onChange, reversOrder]);
+    const clearInput = () => setInput("");
 
     return (
         <Stack my={{ base: 10, lg: 20 }} alignItems={"center"}>
@@ -108,15 +36,36 @@ const InputSection = ({ onChange, reversOrder }: InputProps) => {
                 >
                     <Input
                         type={"text"}
-                        value={value}
+                        value={input}
                         placeholder={"Enter Boolean Expression ..."}
-                        onChange={(e) => updateValue({ setValue: e.target.value })}
+                        onChange={(e) => {
+                            setInput(e.target.value);
+                        }}
                         variant={"filled"}
                         colorScheme={"neutral"}
                         letterSpacing={2}
                         focusBorderColor={"purple.400"}
                     />
                     <InputRightElement>
+                        {input != "" && (
+                            <Tooltip
+                                hasArrow
+                                openDelay={800}
+                                placement={"top"}
+                                label={"Clear input"}
+                                borderRadius={"md"}
+                            >
+                                <IconButton
+                                    variant={"ghost"}
+                                    colorScheme={"neutral"}
+                                    onClick={clearInput}
+                                    icon={<CloseIcon />}
+                                    aria-label={"Clear the input field"}
+                                />
+                            </Tooltip>
+                        )}
+                    </InputRightElement>
+                    <InputRightAddon>
                         <Tooltip
                             hasArrow
                             openDelay={800}
@@ -132,7 +81,7 @@ const InputSection = ({ onChange, reversOrder }: InputProps) => {
                                 aria-label={"Copy expression to clipboard"}
                             />
                         </Tooltip>
-                    </InputRightElement>
+                    </InputRightAddon>
                 </InputGroup>
 
                 <Tooltip
@@ -154,32 +103,6 @@ const InputSection = ({ onChange, reversOrder }: InputProps) => {
 
                 <HelpModal open={isOpen} onClose={onClose} />
             </Stack>
-
-            <Box h={6}>
-                <Text color={"neutral.500"} fontSize={"lg"} fontWeight={"bold"}>
-                    {infoMessage}
-                </Text>
-            </Box>
-
-            <Flex flexDirection={"row"} flexWrap={"wrap"} justifyContent={"center"}>
-                {quickButtons.map((buttonText) => {
-                    return (
-                        <Button
-                            colorScheme={"neutral"}
-                            variant={"outline"}
-                            w={12}
-                            h={12}
-                            m={2}
-                            key={buttonText}
-                            fontSize={"lg"}
-                            onClick={() => updateValue({ quickButtonAction: buttonText })}
-                        >
-                            {buttonText}
-                        </Button>
-                    );
-                })}
-                {/*<CustomSelect />*/}
-            </Flex>
         </Stack>
     );
 };

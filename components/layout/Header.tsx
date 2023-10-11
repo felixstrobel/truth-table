@@ -1,25 +1,15 @@
-import { Grid, GridItem, Heading, IconButton, Tooltip, useColorMode } from "@chakra-ui/react";
-import { MoonIcon, SunIcon } from "@chakra-ui/icons";
-
 const Header = () => {
-    const { colorMode, toggleColorMode } = useColorMode();
+    // const { colorMode, toggleColorMode } = useColorMode();
 
     return (
-        <Grid as={"header"} py={4} w={"full"} templateColumns={"1fr 6fr 1fr"}>
-            <GridItem />
+        <div className="grid grid-cols-[1fr 6fr 1fr]">
+            <div />
 
-            <GridItem justifySelf={"center"} alignSelf={{ base: "center", md: "start" }}>
-                <Heading
-                    as={"h1"}
-                    colorScheme={"neutral"}
-                    fontSize={{ base: "3xl", sm: "5xl", md: "7xl" }}
-                    whiteSpace={"nowrap"}
-                >
-                    Truth Table
-                </Heading>
-            </GridItem>
+            <div className="justify-self-center self-center md:self-start">
+                <h1 className="whitespace-nowrap text-3xl sm:text-5xl md:text-7xl">Truth Table</h1>
+            </div>
 
-            <GridItem justifySelf={"end"} alignSelf={{ base: "center", sm: "start" }}>
+            <div className="justify-self-end self-center sm:self-start">
                 {/*<Tooltip
                     hasArrow
                     openDelay={800}
@@ -46,8 +36,8 @@ const Header = () => {
                         aria-label={"Switch color mode"}
                     />
                 </Tooltip>*/}
-            </GridItem>
-        </Grid>
+            </div>
+        </div>
     );
 };
 

@@ -1,4 +1,3 @@
-import { Text } from "@chakra-ui/react";
 import Link from "next/link";
 import { HTMLAttributeAnchorTarget, ReactNode } from "react";
 
@@ -10,20 +9,14 @@ interface CustomProps {
 
 const CustomLink = ({ href, children, target }: CustomProps) => {
     return (
-        <Text
-            as={Link}
+        <Link
             href={href}
             target={target}
             rel="nofollow noopener"
-            _hover={{
-                textDecorationThickness: 2,
-                textDecorationLine: "underline",
-                textDecorationColor: "purple.400",
-                textUnderlineOffset: 4,
-            }}
+            className="decoration-2 underline decoration-purple-400 underline-offset-4"
         >
             {children}
-        </Text>
+        </Link>
     );
 };
 

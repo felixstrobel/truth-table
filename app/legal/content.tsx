@@ -1,7 +1,7 @@
 "use client";
 
 import CustomLink from "@/components/CustomLink";
-import Footer from "@/components/Footer";
+import Footer from "@/components/layout/Footer";
 import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
 import { useState } from "react";
 
@@ -12,14 +12,8 @@ const LegalNoticeContent = () => {
 
     if (language === "DE") {
         return (
-            <Flex
-                mx={"auto"}
-                px={{ base: "4", sm: "6", lg: "8" }}
-                maxW={"8xl"}
-                minH={"100vh"}
-                flexDirection={"column"}
-            >
-                <Box flexGrow={1}>
+            <div className="flex flex-col max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="flex-grow">
                     <Button mt={4} mb={12} onClick={() => setLanguage("EN")}>
                         Click here to change to the English version
                     </Button>
@@ -45,10 +39,10 @@ const LegalNoticeContent = () => {
                     <CustomLink href="mailto:mail@truth-table.com" target={"_blank"}>
                         E-Mail: mail@truth-table.com
                     </CustomLink>
-                </Box>
+                </div>
 
                 <Footer />
-            </Flex>
+            </div>
         );
     } else {
         return (

@@ -1,10 +1,85 @@
-"use client";
-
 import "./globals.css";
 
 import React from "react";
-import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
-import theme from "@/theme/theme";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import ScrollToTopButton from "@/components/layout/ScrollToTopButton";
+import { Metadata } from "next";
+import { URL } from "url";
+
+export const metadata: Metadata = {
+    metadataBase: new URL("https://truth-table.com"),
+    title: {
+        template: "%s | Truth Table Generator",
+        default: "Truth Table Generator", // a default is required when using a template
+    },
+    description:
+        "Simplify logical analysis with our easy-to-use truth table generator. Quickly evaluate your boolean expressions and view the corresponding truth table in real-time. A handy tool for students and professionals.",
+    applicationName: "Truth Table Generator",
+    authors: [
+        { name: "Felix Strobel", url: "https://github.com/felixstrobel" },
+        { name: "Max Lohrmann", url: "https://github.com/Max0440" },
+    ],
+    keywords: [
+        "Boolean expression",
+        "truth table",
+        "logic gate",
+        "logic operator",
+        "logic calculator",
+        "logical analysis",
+        "boolean algebra",
+        "evaluate logic",
+        "evaluate logical statements",
+        "Boolean expression truth table generator",
+        "Boolean logic table calculator",
+        "online truth table generator",
+        "evaluate boolean expressions online",
+        "logic gate truth table maker",
+        "binary logic analysis tool",
+        "interactive logic calculator",
+        "logic reasoning web app",
+        "solve logical puzzles online",
+        "truth table generator for boolean algebra",
+    ],
+    referrer: "strict-origin-when-cross-origin",
+    themeColor: "#171717", //TODO: maybe use another color from tailwind
+    // colorScheme: "", TODO
+    viewport: { width: "device-width", initialScale: 1 },
+    creator: "truth-table.com Team",
+    publisher: "truth-table.com Team",
+    robots: { index: true, follow: true },
+    alternates: {
+        canonical: "https://truth-table.com",
+        languages: { en: "https://truth-table.com" },
+    },
+    // icons: [], TODO: here the different sizes for the favicon
+    manifest: "/manifest.json", //TODO: check if generation is valid
+    openGraph: {
+        type: "website",
+        title: "Truth Table Generator",
+        description:
+            "Simplify logical analysis with our easy-to-use truth table generator. Quickly evaluate your boolean expressions and view the corresponding truth table in real-time. A handy tool for students and professionals.",
+        url: "https://truth-table.com",
+        // images: [] TODO: images for opengraph (1200x627 pixels)
+    },
+    twitter: {
+        card: "summary",
+        title: "Truth Table Generator",
+        description:
+            "Simplify logical analysis with our easy-to-use real-time truth table generator. Quickly evaluate your Boolean expressions and view the truth table. A handy tool for students and professionals.",
+        // images: [] TODO for twitter (1:1 ratio; min. 144x144 pixels; max. 4096x4096 pixels; max. 5MB; jpg, png, GIF?)
+    },
+    verification: {
+        google: "", //TODO: paste google search console secret
+    },
+    appleWebApp: {
+        capable: true,
+        title: "Truth Table",
+        startupImage: "/", //TODO: add splash image
+        statusBarStyle: "black-translucent",
+    },
+    formatDetection: { telephone: true, date: true, address: true, email: true, url: true },
+};
 
 interface RootLayoutProps {
     children: React.ReactNode;
@@ -12,42 +87,17 @@ interface RootLayoutProps {
 
 const RootLayout = ({ children }: RootLayoutProps) => {
     return (
-        <html lang="en">
-            <head>
-                <link rel="manifest" href="/manifest.json" />
-                <meta name="theme-color" content="#171717" />
+        <html>
+            <body className="flex flex-col min-h-screen">
+                <header className="max-w-7xl mx-auto my-2 sm:my-3 lg:my-4 px-4 sm:px-6 lg:px-8">
+                    <Header />
+                </header>
+                <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">{children}</main>
+                <footer className="flex-shrink-0 mt-12 mb-8 md:mb-4 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <Footer />
+                </footer>
 
-                <link rel="icon" href="/favicon.ico" />
-                <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-                <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-                <link rel="icon" type="image/png" sizes="256x256" href="/icon-256x256.png" />
-                <link rel="icon" type="image/png" sizes="384x384" href="/icon-384x384.png" />
-                <link
-                    rel="icon"
-                    type="image/png"
-                    sizes="192x192"
-                    href="/android-chrome-192x192.png"
-                />
-                <link
-                    rel="icon"
-                    type="image/png"
-                    sizes="512x512"
-                    href="/android-chrome-512x512.png"
-                />
-
-                <meta name="msapplication-TileColor" content="#171717" />
-
-                <meta property="og:image" content="/android-chrome-512x512.png" />
-                <meta name="twitter:image" content="/android-chrome-512x512.png" />
-
-                <meta name="apple-mobile-web-app-capable" content="yes" />
-                <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-                <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-                <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
-            </head>
-            <body>
-                <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-                <ChakraProvider theme={theme}>{children}</ChakraProvider>
+                <ScrollToTopButton />
             </body>
         </html>
     );

@@ -1,5 +1,5 @@
-import { IconButton } from "@chakra-ui/react";
-import { ArrowUpIcon } from "@chakra-ui/icons";
+"use client"
+
 import { useState, useEffect } from "react";
 
 const ScrollToTopButton = () => {
@@ -21,16 +21,17 @@ const ScrollToTopButton = () => {
     }, []);
 
     return (
-        <IconButton
-            display={visible ? "block" : "none"}
-            position={"fixed"}
-            bottom={4}
-            right={3}
-            zIndex={"tooltip"}
-            icon={<ArrowUpIcon boxSize={6} />}
-            onClick={scrollToTop}
-            aria-label={"Scroll to the top of the page"}
-        />
+        <div></div>
+        // <IconButton
+        //     display={visible ? "block" : "none"}
+        //     position={"fixed"}
+        //     bottom={4}
+        //     right={3}
+        //     zIndex={"tooltip"}
+        //     icon={<ArrowUpIcon boxSize={6} />}
+        //     onClick={scrollToTop}
+        //     aria-label={"Scroll to the top of the page"}
+        // />
     );
 };
 

@@ -1,21 +1,26 @@
-"use client"
+"use client";
 
+import InputSection from "@/components/InputSection";
+import CustomTable from "@/components/CustomTable";
 import { useEffect, useState } from "react";
 import { evaluate, TableFormat } from "@/assets/Adapter";
-import InputSection from "@/components/InputSection";
 import ExpressionInputInfoMessage from "@/components/input/ExpressionInputInfoMessage";
 import ExpressionInputQuickButtons from "@/components/input/ExpressionInputQuickButtons";
-import CustomTable from "@/components/CustomTable";
 
-const Page = () => {
+const Page = ({ params: { expression } }: { params: { expression: string } }) => {
     const [evaluatedExpressionInTableFormat, setEvaluatedExpressionInTableFormat] =
-      useState<TableFormat>([]);
+        useState<TableFormat>([]);
     const [reverseOrder, setReverseOrder] = useState<boolean>(false);
 
     const [input, setInput] = useState<string>("");
 
     // Try to pre-input the expression by checking URL params and local storage.
     useEffect(() => {
+        if (expression) {
+            setInput(expression);
+            return;
+        }
+
         const storedInput = window.localStorage.getItem(process.env.LOCAL_STORAGE_INPUT_KEY!);
         if (!storedInput) return;
 
@@ -35,25 +40,25 @@ const Page = () => {
     }, [input]);
 
     return (
-      <div>
-          <InputSection input={input} setInput={setInput} />
-          <ExpressionInputInfoMessage evaluatedExpression={evaluatedExpressionInTableFormat} />
+        <div>
+            <InputSection input={input} setInput={setInput} />
+            <ExpressionInputInfoMessage evaluatedExpression={evaluatedExpressionInTableFormat} />
 
-          <ExpressionInputQuickButtons
-            inputModifier={(buttonText: string) => {
-                setInput((prevInput) => {
-                    if (buttonText === "DEL") {
-                        return prevInput.substring(0, prevInput.length - 1);
-                    }
-                    return prevInput + buttonText;
-                });
-            }}
-          />
-          <CustomTable
-            tableData={evaluatedExpressionInTableFormat}
-            setReversOrder={setReverseOrder}
-          />
-      </div>
+            <ExpressionInputQuickButtons
+                inputModifier={(buttonText: string) => {
+                    setInput((prevInput) => {
+                        if (buttonText === "DEL") {
+                            return prevInput.substring(0, prevInput.length - 1);
+                        }
+                        return prevInput + buttonText;
+                    });
+                }}
+            />
+            <CustomTable
+                tableData={evaluatedExpressionInTableFormat}
+                setReversOrder={setReverseOrder}
+            />
+        </div>
     );
 };
 
