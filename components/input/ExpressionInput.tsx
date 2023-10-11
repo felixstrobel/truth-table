@@ -1,6 +1,6 @@
 const ExpressionInput = () => {
     return (
-        <input className="h-20 w-full bg-gray-700 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-20 border border-gray-100" />
+        <input type="text" className="h-20 w-full bg-gray-700 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-20 border border-gray-100" />
     );
 };
 
