@@ -5,6 +5,8 @@ import { URL } from "url";
 import { Metadata } from "next";
 import Footer from "@/components/layout/Footer";
 import ScrollToTopButton from "@/components/layout/ScrollToTopButton";
+import { Comfortaa } from "next/font/google";
+import { NextFont } from "next/dist/compiled/@next/font";
 
 export const metadata: Metadata = {
     metadataBase: new URL("https://truth-table.com"),
@@ -80,14 +82,20 @@ export const metadata: Metadata = {
     formatDetection: { telephone: true, date: true, address: true, email: true, url: true },
 };
 
+const comfortaa: NextFont = Comfortaa({
+    subsets: ["latin"],
+    display: "swap",
+    variable: "--font-comfortaa",
+});
+
 interface RootLayoutProps {
     children: React.ReactNode;
 }
 
 const RootLayout = ({ children }: RootLayoutProps) => {
     return (
-        <html className="dark">
-            <body className="flex flex-col min-h-screen">
+        <html lang="en" className={`dark ${comfortaa.variable}`}>
+            <body className="flex flex-col min-h-screen font-comfortaa">
                 <header className="grid grid-cols-[1fr 6fr 1fr] max-w-7xl mx-auto mt-2 mb-4 sm:mt-3 sm:mb-6 lg:mt-4 lg:mb-14 px-4 sm:px-6 lg:px-8">
                     <div className="justify-self-center self-center md:self-start">
                         <h1 className="whitespace-nowrap text-3xl sm:text-5xl md:text-7xl dark:text-neutral-100">
