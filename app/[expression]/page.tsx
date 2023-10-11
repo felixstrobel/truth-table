@@ -1,11 +1,11 @@
 "use client";
 
-import InputSection from "@/components/InputSection";
 import CustomTable from "@/components/CustomTable";
 import { useEffect, useState } from "react";
 import { evaluate, TableFormat } from "@/assets/Adapter";
 import ExpressionInputInfoMessage from "@/components/input/ExpressionInputInfoMessage";
 import ExpressionInputQuickButtons from "@/components/input/ExpressionInputQuickButtons";
+import ExpressionInput from "@/components/input/ExpressionInput";
 
 const Page = ({ params: { expression } }: { params: { expression: string } }) => {
     const [evaluatedExpressionInTableFormat, setEvaluatedExpressionInTableFormat] =
@@ -41,7 +41,7 @@ const Page = ({ params: { expression } }: { params: { expression: string } }) =>
 
     return (
         <div>
-            <InputSection input={input} setInput={setInput} />
+            <ExpressionInput input={input} setInput={setInput} />
             <ExpressionInputInfoMessage evaluatedExpression={evaluatedExpressionInTableFormat} />
 
             <ExpressionInputQuickButtons

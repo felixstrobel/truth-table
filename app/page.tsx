@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { evaluate, TableFormat } from "@/assets/Adapter";
-import InputSection from "@/components/InputSection";
 import ExpressionInputInfoMessage from "@/components/input/ExpressionInputInfoMessage";
 import ExpressionInputQuickButtons from "@/components/input/ExpressionInputQuickButtons";
 import CustomTable from "@/components/CustomTable";
+import ExpressionInput from "@/components/input/ExpressionInput";
 
 const Page = () => {
     const [evaluatedExpressionInTableFormat, setEvaluatedExpressionInTableFormat] =
@@ -35,8 +35,8 @@ const Page = () => {
     }, [input]);
 
     return (
-      <div>
-          <InputSection input={input} setInput={setInput} />
+      <div className="flex flex-col">
+          <ExpressionInput input={input} setInput={setInput} />
           <ExpressionInputInfoMessage evaluatedExpression={evaluatedExpressionInTableFormat} />
 
           <ExpressionInputQuickButtons
