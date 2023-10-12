@@ -14,7 +14,7 @@ const ExpressionInput = ({ input, setInput }: ExpressionInputProps) => {
                     spellCheck="false"
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
-                    className="block w-full h-full p-4 text-md md:text-lg tracking-widest rounded-lg border dark:bg-neutral-700/40 dark:border-neutral-600 dark:focus:border-violett-500 dark:placeholder-neutral-300 dark:focus:ring-violet-600"
+                    className="block w-full h-full p-4 text-md md:text-lg tracking-widest rounded-lg border dark:bg-neutral-700/40 dark:border-neutral-600 dark:focus:border-violet-500 dark:placeholder-neutral-300 dark:focus:ring-violet-600"
                     placeholder="Enter expression..."
                 />
                 <button
@@ -62,7 +62,7 @@ const ExpressionInput = ({ input, setInput }: ExpressionInputProps) => {
                 </button>
             </div>
             {/* TODO: button doesn't do anything. It should open the HelpModal in the future. Please try to not use the useDisclosure from Chakra. */}
-            <button className="grid place-items-center w-14 h-14 rounded-lg border dark:bg-neutral-700/40 dark:hover:bg-neutral-700/80 dark:border-neutral-600 dark:focus:border-violett-500 dark:placeholder-neutral-300 dark:focus:ring-violet-600">
+            <button className="grid place-items-center w-14 h-14 rounded-lg border dark:bg-neutral-700/40 dark:hover:bg-neutral-700/80 dark:border-neutral-600 dark:focus:border-violet-500 dark:placeholder-neutral-300 dark:focus:ring-violet-600">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
