@@ -7,6 +7,7 @@ import Footer from "@/components/layout/Footer";
 import ScrollToTopButton from "@/components/layout/ScrollToTopButton";
 import { Comfortaa } from "next/font/google";
 import { NextFont } from "next/dist/compiled/@next/font";
+import Link from "next/link";
 
 export const metadata: Metadata = {
     metadataBase: new URL("https://truth-table.com"),
@@ -98,9 +99,9 @@ const RootLayout = ({ children }: RootLayoutProps) => {
             <body className="flex flex-col min-h-screen font-comfortaa">
                 <header className="grid grid-cols-[1fr 6fr 1fr] max-w-7xl mx-auto mt-4 mb-6 lg:mt-8 lg:mb-16 px-4 sm:px-6 lg:px-8">
                     <div className="justify-self-center self-center md:self-start">
-                        <h1 className="whitespace-nowrap text-3xl sm:text-5xl md:text-7xl dark:text-neutral-100">
+                        <Link href="/" className="whitespace-nowrap text-3xl sm:text-5xl md:text-7xl dark:text-neutral-100 select-none">
                             Truth Table
-                        </h1>
+                        </Link>
                     </div>
                     {/* TODO: add color mode changer */}
                 </header>
