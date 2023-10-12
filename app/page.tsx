@@ -6,11 +6,13 @@ import ExpressionInputInfoMessage from "@/components/input/ExpressionInputInfoMe
 import ExpressionInputQuickButtons from "@/components/input/ExpressionInputQuickButtons";
 import CustomTable from "@/components/CustomTable";
 import ExpressionInput from "@/components/input/ExpressionInput";
+import Modal from "@/components/HelpModal";
 
 const Page = () => {
     const [evaluatedExpressionInTableFormat, setEvaluatedExpressionInTableFormat] =
         useState<TableFormat>([]);
     const [reverseOrder, setReverseOrder] = useState<boolean>(false);
+    const [modalOpen, setModalOpen] = useState(false);
 
     const [input, setInput] = useReducer((state: string, value: string): string => {
         location.replace("#" + value);
@@ -37,24 +39,33 @@ const Page = () => {
     }, [input, reverseOrder]);
 
     return (
-        <div className="flex flex-col">
-            <ExpressionInput input={input} setInput={setInput} />
-            <ExpressionInputInfoMessage evaluatedExpression={evaluatedExpressionInTableFormat} />
+        <>
+            <Modal isOpen={modalOpen} close={() => setModalOpen(false)} />
+            <div className="flex flex-col">
+                <ExpressionInput
+                    input={input}
+                    setInput={setInput}
+                    openHelpModal={() => setModalOpen(true)}
+                />
+                <ExpressionInputInfoMessage
+                    evaluatedExpression={evaluatedExpressionInTableFormat}
+                />
 
-            <ExpressionInputQuickButtons
-                inputModifier={(buttonText: string) => {
-                    if (buttonText === "⌫") {
-                        setInput(input.substring(0, input.length - 1));
-                    } else {
-                        setInput(input + buttonText);
-                    }
-                }}
-            />
-            <CustomTable
-                tableData={evaluatedExpressionInTableFormat}
-                setReversOrder={setReverseOrder}
-            />
-        </div>
+                <ExpressionInputQuickButtons
+                    inputModifier={(buttonText: string) => {
+                        if (buttonText === "⌫") {
+                            setInput(input.substring(0, input.length - 1));
+                        } else {
+                            setInput(input + buttonText);
+                        }
+                    }}
+                />
+                <CustomTable
+                    tableData={evaluatedExpressionInTableFormat}
+                    setReversOrder={setReverseOrder}
+                />
+            </div>
+        </>
     );
 };
 

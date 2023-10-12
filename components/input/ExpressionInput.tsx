@@ -2,10 +2,11 @@ import { clsx } from "clsx";
 
 interface ExpressionInputProps {
     input: string;
-    setInput: Function;
+    setInput: Function; // TODO don't use Function type
+    openHelpModal: () => void;
 }
 
-const ExpressionInput = ({ input, setInput }: ExpressionInputProps) => {
+const ExpressionInput = ({ input, setInput, openHelpModal }: ExpressionInputProps) => {
     return (
         <div className="flex flex-row self-center items-center gap-x-2 w-full md:w-4/5 h-14">
             <div className="relative flex-1 h-full">
@@ -61,8 +62,10 @@ const ExpressionInput = ({ input, setInput }: ExpressionInputProps) => {
                     </svg>
                 </button>
             </div>
-            {/* TODO: button doesn't do anything. It should open the HelpModal in the future. Please try to not use the useDisclosure from Chakra. */}
-            <button className="grid place-items-center w-14 h-14 rounded-lg border dark:bg-neutral-700/40 dark:hover:bg-neutral-700/80 dark:border-neutral-600 dark:focus:border-violet-500 dark:placeholder-neutral-300 dark:focus:ring-violet-600">
+            <button
+                className="grid place-items-center w-14 h-14 rounded-lg border dark:bg-neutral-700/40 dark:hover:bg-neutral-700/80 dark:border-neutral-600 dark:focus:border-violet-500 dark:placeholder-neutral-300 dark:focus:ring-violet-600"
+                onClick={openHelpModal}
+            >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
