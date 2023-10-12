@@ -6,12 +6,6 @@ interface ExpressionInputProps {
 }
 
 const ExpressionInput = ({ input, setInput }: ExpressionInputProps) => {
-    const copyInputToClipBoard = () => {
-        navigator.clipboard.writeText(input).catch((e) => console.log(e));
-    };
-
-    const clearInput = () => setInput("");
-
     return (
         <div className="flex flex-row self-center items-center gap-x-2 w-full md:w-4/5 h-14 mb-8">
             <div className="relative flex-1 h-full">
@@ -24,7 +18,7 @@ const ExpressionInput = ({ input, setInput }: ExpressionInputProps) => {
                     placeholder="Enter Boolean expression..."
                 />
                 <button
-                    onClick={() => clearInput()}
+                    onClick={() => setInput("")}
                     className={clsx(
                         "absolute right-12 top-2 grid place-items-center w-10 h-10 rounded-lg border dark:border-neutral-600/80 md:border-none dark:bg-neutral-600/50 md:dark:bg-transparent hover:dark:bg-neutral-600/70 hover:scale-105",
                         input.length === 0 && "hidden"
@@ -46,7 +40,7 @@ const ExpressionInput = ({ input, setInput }: ExpressionInputProps) => {
                     </svg>
                 </button>
                 <button
-                    onClick={() => copyInputToClipBoard()}
+                    onClick={() => navigator.clipboard.writeText(input).catch((e) => console.log(e))}
                     className="absolute right-2 top-2 grid place-items-center w-10 h-10 rounded-lg border dark:border-neutral-600/80 md:border-none dark:bg-neutral-600/50 md:dark:bg-transparent hover:dark:bg-neutral-600/70 hover:scale-105"
                 >
                     <svg
