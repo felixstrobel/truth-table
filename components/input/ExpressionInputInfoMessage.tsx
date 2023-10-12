@@ -11,7 +11,7 @@ const ExpressionInputInfoMessage = ({ evaluatedExpression }: ExpressionInputInfo
 
     useEffect(() => {
         if (evaluatedExpression instanceof ParserError) {
-            if (!evaluatedExpression.position) {
+            if (evaluatedExpression.position === undefined) {
                 setMessage(<span>{evaluatedExpression.message}</span>);
                 return;
             }
@@ -33,8 +33,9 @@ const ExpressionInputInfoMessage = ({ evaluatedExpression }: ExpressionInputInfo
                     )}
                 </span>
             );
+        } else {
+            setMessage("");
         }
-        setMessage("");
     }, [evaluatedExpression]);
 
     return <div className="mt-1 h-7 self-center">{message}</div>;
