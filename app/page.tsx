@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { evaluate, TableFormat } from "@/assets/Adapter";
 import ExpressionInputInfoMessage from "@/components/input/ExpressionInputInfoMessage";
 import ExpressionInputQuickButtons from "@/components/input/ExpressionInputQuickButtons";
@@ -9,51 +9,50 @@ import ExpressionInput from "@/components/input/ExpressionInput";
 
 const Page = () => {
     const [evaluatedExpressionInTableFormat, setEvaluatedExpressionInTableFormat] =
-      useState<TableFormat>([]);
+        useState<TableFormat>([]);
     const [reverseOrder, setReverseOrder] = useState<boolean>(false);
 
-    const [input, setInput] = useState<string>("");
+    const [input, setInput] = useReducer((state: string, value: string): string => {
+        location.replace("#" + value);
+        window.localStorage.setItem(process.env.LOCAL_STORAGE_INPUT_KEY!, value);
+        return value;
+    }, "");
 
     // Try to pre-input the expression by checking URL params and local storage.
     useEffect(() => {
-        const storedInput = window.localStorage.getItem(process.env.LOCAL_STORAGE_INPUT_KEY!);
-        if (!storedInput) return;
+        const urlHashValue = location.hash.slice(1);
+        const localStorageValue = window.localStorage.getItem(process.env.LOCAL_STORAGE_INPUT_KEY!);
 
-        if (storedInput.length > parseInt(process.env.MAX_INPUT_LENGTH!)) {
-            console.info(process.env.MAX_INPUT_LENGTH_EXCEEDED_INFO);
-            return;
-        }
+        const value = urlHashValue === "" ? localStorageValue : urlHashValue;
 
-        setInput(storedInput);
+        setInput(value ?? "");
     }, []);
 
-    // Store the current input in the local storage when it changes.
+    // Update table when input changes
     useEffect(() => {
-        window.localStorage.setItem(process.env.LOCAL_STORAGE_INPUT_KEY!, input);
-
+        // TODO don't auto-generate table if input has more than xxx variables
         setEvaluatedExpressionInTableFormat(evaluate(input, reverseOrder));
-    }, [input]);
+    }, [input, reverseOrder]);
 
     return (
-      <div className="flex flex-col">
-          <ExpressionInput input={input} setInput={setInput} />
-          <ExpressionInputInfoMessage evaluatedExpression={evaluatedExpressionInTableFormat} />
+        <div className="flex flex-col">
+            <ExpressionInput input={input} setInput={setInput} />
+            <ExpressionInputInfoMessage evaluatedExpression={evaluatedExpressionInTableFormat} />
 
-          <ExpressionInputQuickButtons
-            inputModifier={(buttonText: string) => {
-                setInput((prevInput) => {
-                    if (buttonText === "DEL") {
-                        return prevInput.substring(0, prevInput.length - 1);
+            <ExpressionInputQuickButtons
+                inputModifier={(buttonText: string) => {
+                    if (buttonText === "⌫") {
+                        setInput(input.substring(0, input.length - 1));
+                    } else {
+                        setInput(input + buttonText);
                     }
-                    return prevInput + buttonText;
-                });
-            }}
-          />
-          <CustomTable
-            tableData={evaluatedExpressionInTableFormat}
-            setReversOrder={setReverseOrder}
-          />
-      </div>
+                }}
+            />
+            <CustomTable
+                tableData={evaluatedExpressionInTableFormat}
+                setReversOrder={setReverseOrder}
+            />
+        </div>
     );
 };
 
