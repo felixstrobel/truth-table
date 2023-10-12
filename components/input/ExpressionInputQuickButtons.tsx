@@ -24,7 +24,7 @@ const ExpressionInputQuickButtons = ({ inputModifier }: ExpressionInputQuickButt
     ];
 
     return (
-        <div className="flex flex-row flex-wrap gap-4 justify-center">
+        <div className="flex flex-row flex-wrap gap-2.5 md:gap-4 justify-center">
             {buttons.map((buttonText: string) => {
                 return (
                     <button
