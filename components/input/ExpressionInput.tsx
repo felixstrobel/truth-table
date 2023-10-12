@@ -15,7 +15,7 @@ const ExpressionInput = ({ input, setInput }: ExpressionInputProps) => {
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     className="block w-full h-full p-4 text-md md:text-lg tracking-widest rounded-lg border dark:bg-neutral-700/40 dark:border-neutral-600 dark:focus:border-violett-500 dark:placeholder-neutral-300 dark:focus:ring-violet-600"
-                    placeholder="Enter Boolean expression..."
+                    placeholder="Enter expression..."
                 />
                 <button
                     onClick={() => setInput("")}
