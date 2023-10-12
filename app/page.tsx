@@ -14,14 +14,16 @@ const Page = () => {
 
     const [input, setInput] = useReducer((state: string, value: string): string => {
         location.replace("#" + value);
-        window.localStorage.setItem(process.env.LOCAL_STORAGE_INPUT_KEY!, value);
+        window.localStorage.setItem(process.env.NEXT_PUBLIC_LOCAL_STORAGE_INPUT_KEY!, value);
         return value;
     }, "");
 
     // Try to pre-input the expression by checking URL params and local storage.
     useEffect(() => {
         const urlHashValue = location.hash.slice(1);
-        const localStorageValue = window.localStorage.getItem(process.env.LOCAL_STORAGE_INPUT_KEY!);
+        const localStorageValue = window.localStorage.getItem(
+            process.env.NEXT_PUBLIC_LOCAL_STORAGE_INPUT_KEY!
+        );
 
         const value = urlHashValue === "" ? localStorageValue : urlHashValue;
 
