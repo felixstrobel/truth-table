@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 const Page = () => {
     return (
-        <div className="flex flex-col md:flex-row flex-wrap gap-x-16">
+        <div className="flex flex-col lg:flex-row flex-wrap gap-x-0 lg:gap-x-16 gap-y-8 ">
             <aside className="basis-0 flex-grow flex-shrink p-6 leading-8 rounded-lg shadow dark:bg-neutral-800/80 border dark:border-neutral-700 dark:hover:bg-neutral-800">
                 <h1 className="font-bold text-2xl">Impressum</h1>
                 <h2 className="mt-8 mb-2 font-bold text-lg">Angaben gemäß § 5 TMG</h2>
