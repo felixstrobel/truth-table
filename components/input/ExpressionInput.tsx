@@ -20,7 +20,7 @@ const ExpressionInput = ({ input, setInput }: ExpressionInputProps) => {
                 <button
                     onClick={() => setInput("")}
                     className={clsx(
-                        "absolute right-12 top-2 grid place-items-center w-10 h-10 rounded-lg border dark:border-neutral-600/80 md:border-none dark:bg-neutral-600/50 md:dark:bg-transparent hover:dark:bg-neutral-600/70 hover:scale-105",
+                        "absolute right-12 top-2 grid place-items-center w-10 h-10 rounded-lg hover:dark:bg-neutral-600/70 hover:scale-105",
                         input.length === 0 && "hidden"
                     )}
                 >
@@ -40,8 +40,10 @@ const ExpressionInput = ({ input, setInput }: ExpressionInputProps) => {
                     </svg>
                 </button>
                 <button
-                    onClick={() => navigator.clipboard.writeText(input).catch((e) => console.log(e))}
-                    className="absolute right-2 top-2 grid place-items-center w-10 h-10 rounded-lg border dark:border-neutral-600/80 md:border-none dark:bg-neutral-600/50 md:dark:bg-transparent hover:dark:bg-neutral-600/70 hover:scale-105"
+                    onClick={() =>
+                        navigator.clipboard.writeText(input).catch((e) => console.log(e))
+                    }
+                    className="absolute right-2 top-2 grid place-items-center w-10 h-10 rounded-lg hover:dark:bg-neutral-600/70 hover:scale-105"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
