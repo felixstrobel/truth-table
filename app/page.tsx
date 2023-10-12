@@ -41,7 +41,7 @@ const Page = () => {
 
             <ExpressionInputQuickButtons
                 inputModifier={(buttonText: string) => {
-                    if (buttonText === "DEL") {
+                    if (buttonText === "⌫") {
                         setInput(input.substring(0, input.length - 1));
                     } else {
                         setInput(input + buttonText);

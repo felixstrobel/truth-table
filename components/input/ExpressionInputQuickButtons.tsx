@@ -20,7 +20,7 @@ const ExpressionInputQuickButtons = ({ inputModifier }: ExpressionInputQuickButt
         "A",
         "B",
         "C",
-        "DEL",
+        "⌫",
     ];
 
     return (
@@ -31,7 +31,7 @@ const ExpressionInputQuickButtons = ({ inputModifier }: ExpressionInputQuickButt
                         type="button"
                         key={buttonText}
                         onClick={() => inputModifier(buttonText)}
-                        className="grid place-items-center p-2.5 w-14 h-14 dark:hover:bg-neutral-300/10 border dark:border-neutral-100/70 rounded-lg text-md font-medium"
+                        className="grid place-items-center p-2.5 w-14 h-14 dark:hover:bg-neutral-300/10 border dark:border-neutral-100/70 rounded-lg text-xl font-medium"
                     >
                         {buttonText}
                     </button>
