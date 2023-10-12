@@ -7,7 +7,7 @@ interface ExpressionInputProps {
 
 const ExpressionInput = ({ input, setInput }: ExpressionInputProps) => {
     return (
-        <div className="flex flex-row self-center items-center gap-x-2 w-full md:w-4/5 h-14 mb-8">
+        <div className="flex flex-row self-center items-center gap-x-2 w-full md:w-4/5 h-14">
             <div className="relative flex-1 h-full">
                 <input
                     type="text"
