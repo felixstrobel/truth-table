@@ -17,10 +17,10 @@ import { useState, useEffect, useRef } from "react";
 
 interface CustomTableProps {
     tableData: TableFormat;
-    setReversOrder: Function;
+    setReverseOrder: Function;
 }
 
-const CustomTable = ({ tableData, setReversOrder }: CustomTableProps) => {
+const CustomTable = ({ tableData, setReverseOrder }: CustomTableProps) => {
     if (tableData instanceof ParserError || tableData.length === 0) {
         return;
     }
@@ -56,7 +56,7 @@ const CustomTable = ({ tableData, setReversOrder }: CustomTableProps) => {
                     </Tbody>
                 </Table>
             </TableContainer>
-            <ReverseOrderSwitch setReversOrder={setReversOrder} />
+            <ReverseOrderSwitch setReverseOrder={setReverseOrder} />
         </>
     );
 };
@@ -116,9 +116,9 @@ const TableHeaderCell = ({ data }: TableHeaderCellProps) => {
 };
 
 interface ReverseOrderSwitchProps {
-    setReversOrder: Function;
+    setReverseOrder: Function;
 }
-const ReverseOrderSwitch = ({ setReversOrder }: ReverseOrderSwitchProps) => {
+const ReverseOrderSwitch = ({ setReverseOrder }: ReverseOrderSwitchProps) => {
     return (
         <FormControl display="flex" alignItems="center" justifyContent={"center"} mt="5">
             <FormLabel htmlFor="reverse-order" mb="0">
@@ -127,7 +127,7 @@ const ReverseOrderSwitch = ({ setReversOrder }: ReverseOrderSwitchProps) => {
             <Switch
                 colorScheme={"purple"}
                 id="reverse-order"
-                onChange={(e) => setReversOrder(e.target.checked)}
+                onChange={(e) => setReverseOrder(e.target.checked)}
             />
         </FormControl>
     );
