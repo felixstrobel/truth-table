@@ -6,16 +6,15 @@ type HelpModalProps = {
     close: () => void;
 };
 
-// TODO style
 const HelpModal = ({ isOpen, close }: HelpModalProps) => {
     return (
         <div
             className={clsx(
-                "absolute top-0 left-0 z-50 flex justify-center w-screen h-screen bg-black/50",
+                "absolute top-0 left-0 z-50 flex justify-center w-full h-screen overflow-y-auto overscroll-contain bg-black/50",
                 !isOpen && "hidden"
             )}
         >
-            <div className="mt-16 px-6 py-4 h-fit rounded-lg dark:bg-neutral-900 dark:text-neutral-100">
+            <div className="md:mx-4 md:mt-16 p-6 w-full md:w-auto h-fit min-h-screen md:min-h-0 md:rounded-lg dark:bg-neutral-900 dark:text-neutral-100">
                 <div className="flex items-center mb-2">
                     <h2 className="flex-1 text-xl font-bold">Input Syntax</h2>
                     <button
@@ -41,7 +40,7 @@ const HelpModal = ({ isOpen, close }: HelpModalProps) => {
 
                 <h3>Here you can see which connectives we support and how you can enter them.</h3>
 
-                <div className="relative overflow-x-auto my-4">
+                <div className="overflow-x-auto my-4">
                     <table className="w-full text-sm text-left">
                         <thead className="text-md font-bold uppercase">
                             <tr>
