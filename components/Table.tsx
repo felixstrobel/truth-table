@@ -40,7 +40,7 @@ const Table = ({ tableData, setReverseOrder }: TableProps) => {
 
     return (
         <div className="flex flex-col items-center gap-y-4 mt-8">
-            <div className="relative grid items-center mx-auto overflow-x-auto shadow-md sm:rounded-lg border dark:border-neutral-600">
+            <div className="grid items-center mx-auto overflow-x-auto shadow-md sm:rounded-lg border dark:border-neutral-600">
                 <table className="w-full text-md text-left dark:bg-neutral-700/40">
                     <thead className="font-bold uppercase dark:bg-neutral-700/60">
                         <tr>
