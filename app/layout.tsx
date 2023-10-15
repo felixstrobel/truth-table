@@ -45,7 +45,6 @@ export const metadata: Metadata = {
     ],
     referrer: "strict-origin-when-cross-origin",
     themeColor: "#171717", // Equivalent to "neutral-900"
-    // colorScheme: "", TODO
     viewport: { width: "device-width", initialScale: 1 },
     creator: "truth-table.com Team",
     publisher: "truth-table.com Team",
