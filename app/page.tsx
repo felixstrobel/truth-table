@@ -4,7 +4,7 @@ import { useEffect, useReducer, useState } from "react";
 import { evaluate, TableFormat } from "@/assets/Adapter";
 import ExpressionInputInfoMessage from "@/components/input/ExpressionInputInfoMessage";
 import ExpressionInputQuickButtons from "@/components/input/ExpressionInputQuickButtons";
-import CustomTable from "@/components/CustomTable";
+import Table from "@/components/Table";
 import ExpressionInput from "@/components/input/ExpressionInput";
 import Modal from "@/components/HelpModal";
 
@@ -60,9 +60,9 @@ const Page = () => {
                         }
                     }}
                 />
-                <CustomTable
+                <Table
                     tableData={evaluatedExpressionInTableFormat}
-                    setReversOrder={setReverseOrder}
+                    setReverseOrder={setReverseOrder}
                 />
             </div>
         </>
