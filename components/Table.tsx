@@ -1,5 +1,6 @@
 import { TableFormat } from "@/assets/Adapter";
 import ParserError from "@/assets/model/ParserError";
+import clsx from "clsx";
 import { useState } from "react";
 
 interface TableProps {
@@ -39,7 +40,7 @@ const Table = ({ tableData, setReverseOrder }: TableProps) => {
 
     return (
         <div className="flex flex-col items-center gap-y-4 mt-8">
-            <div className="relative grid items-center mx-auto overflow-x-auto shadow-md sm:rounded-lg">
+            <div className="relative grid items-center mx-auto overflow-x-auto shadow-md sm:rounded-lg border dark:border-neutral-600">
                 <table className="w-full text-md text-left dark:bg-neutral-700/40">
                     <thead className="font-bold uppercase dark:bg-neutral-700/60">
                         <tr>
@@ -48,7 +49,10 @@ const Table = ({ tableData, setReverseOrder }: TableProps) => {
                                     <th
                                         key={column[0]}
                                         scope="col"
-                                        className="px-6 py-3 text-lg tracking-widest"
+										className={clsx(
+                                            "px-6 py-3 text-lg tracking-widest",
+                                            column[1].type === "expression" && "border-l-[1px] dark:border-neutral-600"
+                                        )}
                                         onMouseLeave={onMouseLeave}
                                         onClick={() =>
                                             column[1].type === "expression" && onCopy(column[0])
@@ -70,7 +74,10 @@ const Table = ({ tableData, setReverseOrder }: TableProps) => {
                                     <td
                                         key={index}
                                         scope="row"
-                                        className="px-6 py-4 font-medium text-center whitespace-nowrap"
+                                        className={clsx(
+                                            "px-6 py-4 font-medium text-center whitespace-nowrap",
+                                            column[1].type === "expression" && "border-l-[1px] dark:border-neutral-600"
+                                        )}
                                     >
                                         {column[1].value ? "T" : "F"}
                                     </td>
