@@ -9,10 +9,6 @@ interface TableProps {
 
 //TODO: implement tooltip (1. use FlowBite -> install package for JavaScript file; 2. use Popper.js and make it custom)
 const Table = ({ tableData, setReverseOrder }: TableProps) => {
-    if (tableData instanceof ParserError || tableData.length === 0) {
-        return;
-    }
-
     const [copied, setCopied] = useState(false);
     const [currentTimeout, setCurrentTimeout] = useState<NodeJS.Timeout>();
 
@@ -36,6 +32,10 @@ const Table = ({ tableData, setReverseOrder }: TableProps) => {
             }, 100)
         );
     };
+
+    if (tableData instanceof ParserError || tableData.length === 0) {
+        return <></>;
+    }
 
     return (
         <div className="flex flex-col items-center gap-y-4 mt-8">
