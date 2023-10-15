@@ -7,6 +7,7 @@ interface TableProps {
     setReverseOrder: Function;
 }
 
+//TODO: implement tooltip (1. use FlowBite -> install package for JavaScript file; 2. use Popper.js and make it custom)
 const Table = ({ tableData, setReverseOrder }: TableProps) => {
     if (tableData instanceof ParserError || tableData.length === 0) {
         return;
