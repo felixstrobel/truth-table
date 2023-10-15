@@ -5,7 +5,7 @@
 	"theme_color": "#171717",
 	"display": "standalone",
 	"scope": "/",
-	"start_url": "/",
+	"start_url": "https://truth-table.com/",
 	"icons": [
 		{
 			"src": "favicon.ico",
