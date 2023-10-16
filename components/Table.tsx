@@ -49,10 +49,9 @@ const Table = ({ tableData, setReverseOrder }: TableProps) => {
                                     <th
                                         key={column[0]}
                                         scope="col"
-                                        className={clsx(
+										className={clsx(
                                             "px-6 py-3 text-lg tracking-widest",
-                                            column[1].type === "expression" &&
-                                                "border-l-[1px] dark:border-neutral-600"
+                                            column[1].type === "expression" && "border-l-[1px] dark:border-neutral-600"
                                         )}
                                         onMouseLeave={onMouseLeave}
                                         onClick={() =>
@@ -77,8 +76,7 @@ const Table = ({ tableData, setReverseOrder }: TableProps) => {
                                         scope="row"
                                         className={clsx(
                                             "px-6 py-4 font-medium text-center whitespace-nowrap",
-                                            column[1].type === "expression" &&
-                                                "border-l-[1px] dark:border-neutral-600"
+                                            column[1].type === "expression" && "border-l-[1px] dark:border-neutral-600"
                                         )}
                                     >
                                         {column[1].value ? "T" : "F"}
