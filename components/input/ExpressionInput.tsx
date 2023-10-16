@@ -2,7 +2,7 @@ import { clsx } from "clsx";
 
 interface ExpressionInputProps {
     input: string;
-    setInput: Function; // TODO don't use Function type
+    setInput: (x: string) => void;
     openHelpModal: () => void;
 }
 
