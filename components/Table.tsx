@@ -40,7 +40,7 @@ const Table = ({ tableData, setReverseOrder }: TableProps) => {
 
     return (
         <div className="flex flex-col items-center gap-y-4 mt-8">
-            <div className="grid items-center mx-auto overflow-x-auto md:w-5/6 w-full shadow-md sm:rounded-lg border dark:border-neutral-600">
+            <div className="grid items-center mx-auto overflow-x-auto w-full md:w-auto shadow-md sm:rounded-lg border dark:border-neutral-600">
                 <table className="w-full text-md text-left dark:bg-neutral-700/40">
                     <thead className="font-bold uppercase dark:bg-neutral-700/60">
                         <tr>
@@ -97,7 +97,7 @@ const Table = ({ tableData, setReverseOrder }: TableProps) => {
                     className="sr-only peer"
                     onChange={(e) => setReverseOrder(e.target.checked)}
                 />
-                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-violet-600 rounded-full peer dark:bg-neutral-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-neutral-600 peer-checked:bg-violet-600"></div>
+                <div className="w-11 h-6 bg-gray-200 rounded-full peer dark:bg-neutral-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-neutral-600 peer-checked:bg-violet-600"></div>
                 <span className="ml-3 text-sm font-medium">Reverse variable order</span>
             </label>
         </div>
