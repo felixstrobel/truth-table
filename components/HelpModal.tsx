@@ -1,16 +1,16 @@
 import { clsx } from "clsx";
 import React from "react";
 
-type HelpModalProps = {
+interface HelpModalProps {
     isOpen: boolean;
     close: () => void;
-};
+}
 
 const HelpModal = ({ isOpen, close }: HelpModalProps) => {
     return (
         <div
             className={clsx(
-                "absolute top-0 left-0 z-50 flex justify-center w-full h-screen overflow-y-auto overscroll-contain bg-black/50",
+                "fixed top-0 left-0 z-50 flex justify-center w-full h-screen overflow-y-auto overscroll-contain bg-black/50",
                 !isOpen && "hidden"
             )}
         >
@@ -145,7 +145,10 @@ const HelpModal = ({ isOpen, close }: HelpModalProps) => {
 
                 <h3>
                     You can also enter <span className="font-bold">multiple expressions</span> by
-                    entering them comma separated: <code className="px-2 py-1.5 text-md font-semibold text-neutral-800 bg-neutral-100 border border-neutral-200 rounded-lg dark:bg-neutral-600 dark:text-neutral-100 dark:border-neutral-500">A∧B,A∨B</code>
+                    entering them comma separated:{" "}
+                    <code className="px-2 py-1.5 text-md font-semibold text-neutral-800 bg-neutral-100 border border-neutral-200 rounded-lg dark:bg-neutral-600 dark:text-neutral-100 dark:border-neutral-500">
+                        A∧B,A∨B
+                    </code>
                 </h3>
             </div>
         </div>
