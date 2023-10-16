@@ -50,7 +50,7 @@ const Table = ({ tableData, setReverseOrder }: TableProps) => {
                                         key={column[0]}
                                         scope="col"
                                         className={clsx(
-                                            "px-6 py-3 text-lg tracking-widest",
+                                            "px-6 py-3 text-lg tracking-widest text-center",
                                             column[1].type === "expression" &&
                                                 "border-l-[1px] dark:border-neutral-600"
                                         )}
