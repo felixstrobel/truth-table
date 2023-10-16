@@ -107,7 +107,7 @@ const RootLayout = ({ children }: RootLayoutProps) => {
                     </div>
                     {/* TODO: add color mode changer */}
                 </header>
-                <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">{children}</main>
+                <main className="flex-1 max-w-7xl md:mx-auto px-4 sm:px-6 lg:px-8">{children}</main>
                 <footer className="flex-shrink-0 mt-12 mb-8 md:mb-4 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <Footer />
                 </footer>
