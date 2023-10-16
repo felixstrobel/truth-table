@@ -70,9 +70,6 @@ export const metadata: Metadata = {
             "Simplify logical analysis with our easy-to-use real-time truth table generator. Quickly evaluate your Boolean expressions and view the truth table. A handy tool for students and professionals.",
         // images: [] TODO for twitter (1:1 ratio; min. 144x144 pixels; max. 4096x4096 pixels; max. 5MB; jpg, png, GIF?)
     },
-    verification: {
-        google: "", //TODO: paste google search console secret
-    },
     appleWebApp: {
         capable: true,
         title: "Truth Table",
