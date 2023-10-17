@@ -76,7 +76,7 @@ const Table = ({ tableData, setReverseOrder }: TableProps) => {
                                         key={index}
                                         scope="row"
                                         className={clsx(
-                                            "px-6 py-4 font-medium text-center whitespace-nowrap",
+                                            "px-6 py-3 font-medium text-center whitespace-nowrap",
                                             column[1].type === "expression" &&
                                                 "border-l-[1px] border-neutral-400 dark:border-neutral-600"
                                         )}
