@@ -18,7 +18,7 @@ const ExpressionInput = ({ input, setInput, openHelpModal }: ExpressionInputProp
                     spellCheck="false"
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
-                    className="block w-full h-full p-4 text-md md:text-lg tracking-widest rounded-lg shadow-md border dark:bg-neutral-700/40 dark:border-neutral-600 dark:focus:border-violet-500 dark:placeholder-neutral-300 dark:focus:ring-violet-600"
+                    className="block w-full h-full p-4 text-md md:text-lg tracking-widest rounded-lg shadow-md border dark:bg-neutral-700/40 border-neutral-400 dark:border-neutral-600 dark:focus:border-violet-500 dark:placeholder-neutral-300 dark:focus:ring-violet-600"
                     placeholder="Enter expression..."
                 />
                 <button
@@ -40,7 +40,7 @@ const ExpressionInput = ({ input, setInput, openHelpModal }: ExpressionInputProp
                 </button>
             </div>
             <button
-                className="grid place-items-center w-14 h-14 rounded-lg shadow-md border dark:bg-neutral-700/40 dark:hover:bg-neutral-700/80 dark:border-neutral-600 dark:focus:border-violet-500 dark:placeholder-neutral-300 dark:focus:ring-violet-600"
+                className="grid place-items-center w-14 h-14 rounded-lg shadow-md border dark:bg-neutral-700/40 dark:hover:bg-neutral-700/80 border-neutral-400 dark:border-neutral-600 dark:focus:border-violet-500 dark:placeholder-neutral-300 dark:focus:ring-violet-600"
                 onClick={openHelpModal}
             >
                 <InfoIcon className="w-7 h-7" />

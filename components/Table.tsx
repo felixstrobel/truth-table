@@ -40,7 +40,7 @@ const Table = ({ tableData, setReverseOrder }: TableProps) => {
 
     return (
         <div className="flex flex-col items-center gap-y-4 mt-8">
-            <div className="grid items-center mx-auto overflow-x-auto w-full md:w-auto shadow-md sm:rounded-lg border dark:border-neutral-600">
+            <div className="grid items-center mx-auto overflow-x-auto w-full md:w-auto shadow-md sm:rounded-lg border border-neutral-400 dark:border-neutral-600">
                 <table className="w-full text-md text-left dark:bg-neutral-700/40">
                     <thead className="font-bold uppercase dark:bg-neutral-700/60">
                         <tr>
@@ -52,7 +52,7 @@ const Table = ({ tableData, setReverseOrder }: TableProps) => {
                                         className={clsx(
                                             "px-6 py-3 text-lg tracking-widest text-center",
                                             column[1].type === "expression" &&
-                                                "border-l-[1px] dark:border-neutral-600"
+                                                "border-l-[1px] border-neutral-400 dark:border-neutral-600"
                                         )}
                                         onMouseLeave={onMouseLeave}
                                         onClick={() =>
@@ -69,16 +69,16 @@ const Table = ({ tableData, setReverseOrder }: TableProps) => {
                         {tableData.map((evaluation, index) => (
                             <tr
                                 key={index}
-                                className="border-t dark:border-neutral-600 dark:hover:bg-neutral-700/30"
+                                className="border-t border-neutral-400 dark:border-neutral-600 dark:hover:bg-neutral-700/30"
                             >
                                 {Object.entries(evaluation).map((column, index) => (
                                     <td
                                         key={index}
                                         scope="row"
                                         className={clsx(
-                                            "px-6 py-4 font-medium text-center whitespace-nowrap",
+                                            "px-6 py-3 font-medium text-center whitespace-nowrap",
                                             column[1].type === "expression" &&
-                                                "border-l-[1px] dark:border-neutral-600"
+                                                "border-l-[1px] border-neutral-400 dark:border-neutral-600"
                                         )}
                                     >
                                         {column[1].value ? "T" : "F"}
