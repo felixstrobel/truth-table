@@ -8,6 +8,8 @@ import ScrollToTopButton from "@/components/layout/ScrollToTopButton";
 import { Comfortaa } from "next/font/google";
 import { NextFontWithVariable } from "next/dist/compiled/@next/font";
 import Link from "next/link";
+import ColorModeProvider from "@/components/theme/ColorModeProvider";
+import ColorModeSwitcher from "@/components/theme/ColorModeSwitcher";
 
 export const metadata: Metadata = {
     metadataBase: new URL("https://truth-table.com"),
@@ -91,25 +93,32 @@ interface RootLayoutProps {
 
 const RootLayout = ({ children }: RootLayoutProps) => {
     return (
-        <html lang="en" className={`dark ${comfortaa.variable}`}>
+        <html lang="en" className={`${comfortaa.variable}`} suppressHydrationWarning>
             <body className="flex flex-col min-h-screen font-comfortaa">
-                <header className="grid grid-cols-[1fr 6fr 1fr] max-w-7xl mx-auto mt-4 mb-6 lg:mt-8 lg:mb-16 px-4 sm:px-6 lg:px-8">
-                    <div className="justify-self-center self-center md:self-start">
-                        <Link
-                            href="/"
-                            className="whitespace-nowrap text-3xl sm:text-5xl md:text-7xl dark:text-neutral-100 select-none"
-                        >
-                            Truth Table
-                        </Link>
-                    </div>
-                    {/* TODO: add color mode changer */}
-                </header>
-                <main className="flex-1 max-w-7xl md:mx-auto px-4 sm:px-6 lg:px-8">{children}</main>
-                <footer className="flex-shrink-0 mt-12 mb-8 md:mb-4 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <Footer />
-                </footer>
+                <ColorModeProvider>
+                    <header className="grid grid-cols-3 grid-rows-1 w-full max-w-7xl mx-auto mt-4 mb-6 lg:mt-8 lg:mb-16 px-4 sm:px-6 lg:px-8">
+                        <div></div>
 
-                <ScrollToTopButton />
+                        <div className="justify-self-center self-center md:self-start">
+                            <Link
+                                href="/"
+                                className="whitespace-nowrap text-3xl sm:text-5xl md:text-7xl dark:text-neutral-100 select-none"
+                            >
+                                Truth Table
+                            </Link>
+                        </div>
+
+                        <ColorModeSwitcher className="justify-self-end self-center" />
+                    </header>
+                    <main className="flex-1 max-w-7xl md:mx-auto px-4 sm:px-6 lg:px-8">
+                        {children}
+                    </main>
+                    <footer className="flex-shrink-0 mt-12 mb-8 md:mb-4 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <Footer />
+                    </footer>
+
+                    <ScrollToTopButton />
+                </ColorModeProvider>
             </body>
         </html>
     );
