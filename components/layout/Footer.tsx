@@ -6,7 +6,7 @@ const Footer = () => {
             <div className="flex flex-col gap-3 order-2 md:order-1 lg:items-start lg:text-start">
                 <span className="text-md">Enjoying what we do? Buy&nbsp;us&nbsp;a&nbsp;drink!</span>
                 <Link
-                    className="mx-auto lg:mx-0 px-5 py-2.5 rounded-md whitespace-nowrap text-lg font-bold bg-gradient-to-br from-pink-600 via-violet-600 to-indigo-400 hover:scale-105 transition ease duration-300"
+                    className="mx-auto lg:mx-0 px-5 py-2.5 rounded-md whitespace-nowrap text-lg font-bold text-white bg-gradient-to-br from-pink-600 via-violet-600 to-indigo-400 hover:scale-105 transition ease duration-300"
                     target="_blank"
                     rel="nofollow noopener"
                     href="https://www.paypal.com/donate/?hosted_button_id=FMWQ2NMB943BA"
@@ -26,7 +26,7 @@ const Footer = () => {
                     Click here to leave some feedback!
                 </Link>
             </div>
-            <div className="order-4 md:col-span-3 text-sm text-neutral-400">
+            <div className="order-4 md:col-span-3 text-sm text-neutral-600 dark:text-neutral-400">
                 <Link
                     className="decoration-1 hover:underline decoration-indigo-400 underline-offset-[5px]"
                     href="/legal"

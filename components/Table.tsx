@@ -97,7 +97,7 @@ const Table = ({ tableData, setReverseOrder }: TableProps) => {
                     className="sr-only peer"
                     onChange={(e) => setReverseOrder(e.target.checked)}
                 />
-                <div className="w-11 h-6 bg-gray-200 rounded-full peer dark:bg-neutral-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-neutral-600 peer-checked:bg-violet-600"></div>
+                <div className="w-11 h-6 rounded-full peer bg-neutral-300 dark:bg-neutral-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-neutral-600 peer-checked:bg-violet-600"></div>
                 <span className="ml-3 text-sm font-medium">Reverse variable order</span>
             </label>
         </div>
