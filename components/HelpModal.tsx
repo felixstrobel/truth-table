@@ -1,5 +1,6 @@
 import { clsx } from "clsx";
 import React from "react";
+import CloseIcon from "@/components/icons/CloseIcon";
 
 interface HelpModalProps {
     isOpen: boolean;
@@ -21,20 +22,7 @@ const HelpModal = ({ isOpen, close }: HelpModalProps) => {
                         onClick={close}
                         className="grid place-items-center w-10 h-10 rounded-lg hover:dark:bg-neutral-600/70 hover:scale-110"
                     >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            strokeWidth={1.5}
-                            stroke="currentColor"
-                            className="w-6 h-6"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M6 18L18 6M6 6l12 12"
-                            />
-                        </svg>
+                        <CloseIcon className="w-6 h-6" />
                     </button>
                 </div>
 
