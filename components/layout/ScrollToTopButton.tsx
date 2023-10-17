@@ -25,7 +25,7 @@ const ScrollToTopButton = () => {
         <button
             onClick={scrollToTop}
             className={clsx(
-                "fixed bottom-4 right-3 grid place-items-center w-10 h-10 rounded-lg border dark:bg-neutral-700/40 dark:hover:bg-neutral-700/80 dark:border-neutral-600 dark:focus:border-violet-500 dark:placeholder-neutral-300 dark:focus:ring-violet-600",
+                "fixed bottom-4 right-3 grid place-items-center w-10 h-10 rounded-lg border dark:bg-neutral-700/40 dark:hover:bg-neutral-700/80 border-neutral-400 dark:border-neutral-600 dark:focus:border-violet-500 dark:placeholder-neutral-300 dark:focus:ring-violet-600",
                 !visible && "hidden"
             )}
         >
