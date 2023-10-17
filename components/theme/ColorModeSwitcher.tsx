@@ -24,7 +24,7 @@ const ColorModeSwitcher = ({ className }: ColorModeSwitcherProps) => {
             )}
             onClick={toggleTheme}
         >
-            {theme === "light" ? <MoonIcon className="w-4 h-4 sm:w-7 sm:h-7" /> : <SunIcon className="w-6 h-6 sm:w-7 sm:h-7" />}
+            {theme === "dark" ? <MoonIcon className="w-4 h-4 sm:w-7 sm:h-7" /> : <SunIcon className="w-6 h-6 sm:w-7 sm:h-7" />}
         </button>
     );
 };
