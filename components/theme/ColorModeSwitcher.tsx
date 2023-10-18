@@ -6,6 +6,7 @@ import MoonIcon from "@/components/icons/MoonIcon";
 import SunIcon from "@/components/icons/SunIcon";
 import React from "react";
 import { clsx } from "clsx";
+import { Tooltip } from "react-tooltip";
 
 interface ColorModeSwitcherProps {
     className: string;
@@ -17,15 +18,29 @@ const ColorModeSwitcher = ({ className }: ColorModeSwitcherProps) => {
     const toggleTheme = () => setTheme(theme === "light" ? "dark" : "light");
 
     return (
-        <button
-            className={clsx(
-                "grid place-items-center w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-lg hover:shadow-md md:hover:scale-105 dark:hover:bg-neutral-700/40",
-                className
-            )}
-            onClick={toggleTheme}
-        >
-            {theme === "dark" ? <MoonIcon className="w-4 h-4 sm:w-7 sm:h-7" /> : <SunIcon className="w-6 h-6 sm:w-7 sm:h-7" />}
-        </button>
+        <>
+            <button
+                className={clsx(
+                    "grid place-items-center w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-lg hover:shadow-md md:hover:scale-105 dark:hover:bg-neutral-700/40",
+                    className
+                )}
+                onClick={toggleTheme}
+                id="color-switcher"
+            >
+                {theme === "dark" ? (
+                    <MoonIcon className="w-4 h-4 sm:w-7 sm:h-7" />
+                ) : (
+                    <SunIcon className="w-6 h-6 sm:w-7 sm:h-7" />
+                )}
+            </button>
+
+            <Tooltip
+                variant={theme === "light" ? "light" : "dark"}
+                delayShow={500}
+                anchorSelect="#color-switcher"
+                content={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+            />
+        </>
     );
 };
 
