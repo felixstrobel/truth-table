@@ -7,19 +7,19 @@ import Term from "./Term";
  * @author Max Lohrmann <https://github.com/Max0440>
  */
 export default class Variable extends Term {
-	private symbol: string;
+    private symbol: string;
 
-	constructor(symbol: string) {
-		super(null, null);
+    constructor(symbol: string) {
+        super(null, null);
 
-		this.symbol = symbol;
-	}
+        this.symbol = symbol;
+    }
 
-	public eval(variableAssignment: Map<string, boolean>): boolean {
-		return variableAssignment.get(this.symbol)!;
-	}
+    public eval(variableAssignment: Map<string, boolean>): boolean {
+        return variableAssignment.get(this.symbol)!;
+    }
 
-	public toString(): string {
-		return this.symbol;
-	}
+    public toString(): string {
+        return this.symbol;
+    }
 }

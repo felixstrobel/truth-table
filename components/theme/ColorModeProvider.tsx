@@ -8,7 +8,11 @@ interface DarkModeProviderProps {
 }
 
 const ColorModeProvider = ({ children }: DarkModeProviderProps) => {
-    return <ThemeProvider attribute="class" defaultTheme="dark">{children}</ThemeProvider>;
+    return (
+        <ThemeProvider attribute="class" defaultTheme="dark">
+            {children}
+        </ThemeProvider>
+    );
 };
 
 export default ColorModeProvider;

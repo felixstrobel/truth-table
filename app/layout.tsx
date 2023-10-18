@@ -95,27 +95,27 @@ interface RootLayoutProps {
 const RootLayout = ({ children }: RootLayoutProps) => {
     return (
         <html lang="en" className={`${comfortaa.variable}`} suppressHydrationWarning>
-            <body className="flex flex-col min-h-screen font-comfortaa">
+            <body className="flex min-h-screen flex-col font-comfortaa">
                 <PlausibleProvider domain="truth-table.com">
                     <ColorModeProvider>
-                        <header className="grid grid-cols-3 grid-rows-1 w-full max-w-7xl mx-auto mt-4 mb-6 lg:mt-8 lg:mb-16 px-4 sm:px-6 lg:px-8">
+                        <header className="mx-auto mb-6 mt-4 grid w-full max-w-7xl grid-cols-3 grid-rows-1 px-4 sm:px-6 lg:mb-16 lg:mt-8 lg:px-8">
                             <div></div>
 
-                            <div className="justify-self-center self-center md:self-start">
+                            <div className="self-center justify-self-center md:self-start">
                                 <Link
                                     href="/"
-                                    className="whitespace-nowrap text-3xl sm:text-5xl md:text-7xl dark:text-neutral-100 select-none"
+                                    className="select-none whitespace-nowrap text-3xl dark:text-neutral-100 sm:text-5xl md:text-7xl"
                                 >
                                     Truth Table
                                 </Link>
                             </div>
 
-                            <ColorModeSwitcher className="justify-self-end self-center" />
+                            <ColorModeSwitcher className="self-center justify-self-end" />
                         </header>
-                        <main className="flex-1 max-w-7xl md:mx-auto px-4 sm:px-6 lg:px-8">
+                        <main className="max-w-7xl flex-1 px-4 sm:px-6 md:mx-auto lg:px-8">
                             {children}
                         </main>
-                        <footer className="flex-shrink-0 mt-12 mb-8 md:mb-4 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <footer className="mx-auto mb-8 mt-12 w-full max-w-7xl flex-shrink-0 px-4 sm:px-6 md:mb-4 lg:px-8">
                             <Footer />
                         </footer>
 

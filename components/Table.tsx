@@ -39,9 +39,9 @@ const Table = ({ tableData, setReverseOrder }: TableProps) => {
     }
 
     return (
-        <div className="flex flex-col items-center gap-y-4 mt-8">
-            <div className="grid items-center mx-auto overflow-x-auto w-full md:w-auto shadow-md sm:rounded-lg border border-neutral-400 dark:border-neutral-600">
-                <table className="w-full text-md text-left dark:bg-neutral-700/40">
+        <div className="mt-8 flex flex-col items-center gap-y-4">
+            <div className="mx-auto grid w-full items-center overflow-x-auto border border-neutral-400 shadow-md dark:border-neutral-600 sm:rounded-lg md:w-auto">
+                <table className="text-md w-full text-left dark:bg-neutral-700/40">
                     <thead className="font-bold uppercase dark:bg-neutral-700/60">
                         <tr>
                             {Object.entries(tableData[0]).map((column) => {
@@ -50,7 +50,7 @@ const Table = ({ tableData, setReverseOrder }: TableProps) => {
                                         key={column[0]}
                                         scope="col"
                                         className={clsx(
-                                            "px-6 py-3 text-lg tracking-widest text-center",
+                                            "px-6 py-3 text-center text-lg tracking-widest",
                                             column[1].type === "expression" &&
                                                 "border-l-[1px] border-neutral-400 dark:border-neutral-600"
                                         )}
@@ -76,7 +76,7 @@ const Table = ({ tableData, setReverseOrder }: TableProps) => {
                                         key={index}
                                         scope="row"
                                         className={clsx(
-                                            "px-6 py-3 font-medium text-center whitespace-nowrap",
+                                            "whitespace-nowrap px-6 py-3 text-center font-medium",
                                             column[1].type === "expression" &&
                                                 "border-l-[1px] border-neutral-400 dark:border-neutral-600"
                                         )}
@@ -90,14 +90,14 @@ const Table = ({ tableData, setReverseOrder }: TableProps) => {
                 </table>
             </div>
 
-            <label className="relative inline-flex items-center cursor-pointer">
+            <label className="relative inline-flex cursor-pointer items-center">
                 <input
                     type="checkbox"
                     value=""
-                    className="sr-only peer"
+                    className="peer sr-only"
                     onChange={(e) => setReverseOrder(e.target.checked)}
                 />
-                <div className="w-11 h-6 rounded-full peer bg-neutral-300 dark:bg-neutral-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-neutral-600 peer-checked:bg-violet-600"></div>
+                <div className="peer h-6 w-11 rounded-full bg-neutral-300 after:absolute after:left-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-violet-600 peer-checked:after:translate-x-full peer-checked:after:border-white dark:border-neutral-600 dark:bg-neutral-700"></div>
                 <span className="ml-3 text-sm font-medium">Reverse variable order</span>
             </label>
         </div>

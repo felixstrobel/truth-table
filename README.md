@@ -31,7 +31,10 @@ at [info@truth-table.com](mailto:info@truth-table.com).
 
 ### The Authors
 
-Hi, we are Felix and Max. We started this project during our second semester in informatics at [Karlsruhe Institute of Technology](https://kit.edu). Many discussions and researches gave us first insights into lexer and parser architectures. Many changes and improvements led to the fact that we were able to release the already second version of the Truth Table Generator already after the end of the second semester.
+Hi, we are Felix and Max. We started this project during our second semester in informatics
+at [Karlsruhe Institute of Technology](https://kit.edu). Many discussions and researches gave us first insights into
+lexer and parser architectures. Many changes and improvements led to the fact that we were able to release the already
+second version of the Truth Table Generator already after the end of the second semester.
 All in all, it was a fun project that kept us entertained besides the daily university routine and the exam period.
 Cheers!
 

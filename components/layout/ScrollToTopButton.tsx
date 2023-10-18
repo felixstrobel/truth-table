@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { clsx } from "clsx";
 
 const ScrollToTopButton = () => {
@@ -25,7 +25,7 @@ const ScrollToTopButton = () => {
         <button
             onClick={scrollToTop}
             className={clsx(
-                "fixed bottom-4 right-3 grid place-items-center w-10 h-10 rounded-lg border bg-neutral-200 dark:bg-neutral-700 hover:bg-neutral-300 dark:hover:bg-neutral-600 border-neutral-400 dark:border-neutral-600 dark:focus:border-violet-500 dark:placeholder-neutral-300 dark:focus:ring-violet-600",
+                "fixed bottom-4 right-3 grid h-10 w-10 place-items-center rounded-lg border border-neutral-400 bg-neutral-200 hover:bg-neutral-300 dark:border-neutral-600 dark:bg-neutral-700 dark:placeholder-neutral-300 dark:hover:bg-neutral-600 dark:focus:border-violet-500 dark:focus:ring-violet-600",
                 !visible && "hidden"
             )}
         >
@@ -35,7 +35,7 @@ const ScrollToTopButton = () => {
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="w-6 h-6"
+                className="h-6 w-6"
             >
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
             </svg>

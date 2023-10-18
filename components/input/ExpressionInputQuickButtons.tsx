@@ -24,14 +24,14 @@ const ExpressionInputQuickButtons = ({ inputModifier }: ExpressionInputQuickButt
     ];
 
     return (
-        <div className="flex flex-row flex-wrap gap-2.5 md:gap-4 justify-center">
+        <div className="flex flex-row flex-wrap justify-center gap-2.5 md:gap-4">
             {buttons.map((buttonText: string) => {
                 return (
                     <button
                         type="button"
                         key={buttonText}
                         onClick={() => inputModifier(buttonText)}
-                        className="grid place-items-center p-2.5 w-14 h-14 dark:hover:bg-neutral-300/10 border border-neutral-400 dark:border-neutral-100/70 rounded-lg text-xl font-medium"
+                        className="grid h-14 w-14 place-items-center rounded-lg border border-neutral-400 p-2.5 text-xl font-medium dark:border-neutral-100/70 dark:hover:bg-neutral-300/10"
                     >
                         {buttonText}
                     </button>

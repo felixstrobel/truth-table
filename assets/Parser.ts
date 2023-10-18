@@ -144,16 +144,9 @@ export default class Parser {
         }
 
         if (this.currentToken.getTokenType() === TokenType.EOL) {
-            throw new ParserError(
-                "unexpected end of expression",
-                this.lexer.getInput()
-            );
+            throw new ParserError("unexpected end of expression", this.lexer.getInput());
         }
 
-        throw new ParserError(
-            "unexpected token",
-            this.lexer.getInput(),
-            this.lexer.getLocation()
-        );
+        throw new ParserError("unexpected token", this.lexer.getInput(), this.lexer.getLocation());
     }
 }

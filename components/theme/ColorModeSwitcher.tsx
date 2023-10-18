@@ -21,16 +21,16 @@ const ColorModeSwitcher = ({ className }: ColorModeSwitcherProps) => {
         <>
             <button
                 className={clsx(
-                    "grid place-items-center w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-lg hover:shadow-md md:hover:scale-105 dark:hover:bg-neutral-700/40",
+                    "grid h-9 w-9 place-items-center rounded-lg hover:shadow-md dark:hover:bg-neutral-700/40 sm:h-10 sm:w-10 md:h-12 md:w-12 md:hover:scale-105",
                     className
                 )}
                 onClick={toggleTheme}
                 id="color-switcher"
             >
                 {theme === "dark" ? (
-                    <MoonIcon className="w-4 h-4 sm:w-7 sm:h-7" />
+                    <MoonIcon className="h-4 w-4 sm:h-7 sm:w-7" />
                 ) : (
-                    <SunIcon className="w-6 h-6 sm:w-7 sm:h-7" />
+                    <SunIcon className="h-6 w-6 sm:h-7 sm:w-7" />
                 )}
             </button>
 

@@ -54,25 +54,25 @@ const HelpModal = ({ isOpen, close }: HelpModalProps) => {
     return (
         <div
             className={clsx(
-                "fixed top-0 left-0 z-50 flex justify-center w-full h-screen overflow-y-auto overscroll-contain bg-black/50",
+                "fixed left-0 top-0 z-50 flex h-screen w-full justify-center overflow-y-auto overscroll-contain bg-black/50",
                 !isOpen && "hidden"
             )}
         >
-            <div className="md:mx-4 md:mt-16 p-6 w-full md:w-auto h-fit min-h-screen md:min-h-0 md:rounded-lg bg-neutral-100 dark:bg-neutral-900 dark:text-neutral-100">
-                <div className="flex items-center mb-2">
+            <div className="h-fit min-h-screen w-full bg-neutral-100 p-6 dark:bg-neutral-900 dark:text-neutral-100 md:mx-4 md:mt-16 md:min-h-0 md:w-auto md:rounded-lg">
+                <div className="mb-2 flex items-center">
                     <h2 className="flex-1 text-xl font-bold">Input Syntax</h2>
                     <button
                         onClick={close}
-                        className="grid place-items-center w-10 h-10 rounded-lg hover:bg-neutral-400/30 hover:dark:bg-neutral-600/70 hover:scale-110"
+                        className="grid h-10 w-10 place-items-center rounded-lg hover:scale-110 hover:bg-neutral-400/30 hover:dark:bg-neutral-600/70"
                     >
-                        <CloseIcon className="w-6 h-6" />
+                        <CloseIcon className="h-6 w-6" />
                     </button>
                 </div>
 
                 <h3>Here you can see which connectives we support and how you can enter them.</h3>
 
-                <div className="overflow-x-auto my-4">
-                    <table className="w-full text-sm text-left">
+                <div className="my-4 overflow-x-auto">
+                    <table className="w-full text-left text-sm">
                         <thead className="text-md font-bold uppercase">
                             <tr>
                                 <th scope="col" className="px-6 py-3">
@@ -94,7 +94,7 @@ const HelpModal = ({ isOpen, close }: HelpModalProps) => {
                                 >
                                     <th
                                         scope="row"
-                                        className="px-6 py-4 font-medium text-neutral-900 whitespace-nowrap dark:text-white"
+                                        className="whitespace-nowrap px-6 py-4 font-medium text-neutral-900 dark:text-white"
                                     >
                                         {value.operator}
                                     </th>
@@ -109,7 +109,7 @@ const HelpModal = ({ isOpen, close }: HelpModalProps) => {
                 <h3>
                     You can also enter <span className="font-bold">multiple expressions</span> by
                     entering them comma separated:{" "}
-                    <code className="px-2 py-1.5 text-md font-semibold text-neutral-800 bg-neutral-100 border border-neutral-200 rounded-lg dark:bg-neutral-600 dark:text-neutral-100 dark:border-neutral-500">
+                    <code className="text-md rounded-lg border border-neutral-200 bg-neutral-100 px-2 py-1.5 font-semibold text-neutral-800 dark:border-neutral-500 dark:bg-neutral-600 dark:text-neutral-100">
                         A∧B,A∨B
                     </code>
                 </h3>
