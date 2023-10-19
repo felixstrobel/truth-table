@@ -106,7 +106,7 @@ const RootLayout = ({ children }: RootLayoutProps) => {
                                     href="/"
                                     className="select-none whitespace-nowrap text-3xl dark:text-neutral-100 sm:text-5xl md:text-7xl"
                                 >
-                                    Truth Table
+                                    <h1>Truth Table</h1>
                                 </Link>
                             </div>
 
