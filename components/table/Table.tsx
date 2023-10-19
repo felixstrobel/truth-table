@@ -2,6 +2,8 @@ import { TableFormat } from "@/assets/Adapter";
 import ParserError from "@/assets/model/ParserError";
 import TableHeading from "./TableHeading";
 import TableData from "./TableData";
+import { Tooltip } from "react-tooltip";
+import { useState } from "react";
 
 interface TableProps {
     tableData: TableFormat;
@@ -9,6 +11,9 @@ interface TableProps {
 }
 
 const Table = ({ tableData, setReverseOrder }: TableProps) => {
+    const [copied, setCopied] = useState(false);
+    const [currentTimeout, setCurrentTimeout] = useState<NodeJS.Timeout>();
+
     if (tableData instanceof ParserError || tableData.length === 0) {
         return <></>;
     }
@@ -20,7 +25,13 @@ const Table = ({ tableData, setReverseOrder }: TableProps) => {
                     <thead className="font-bold uppercase dark:bg-neutral-700/60">
                         <tr>
                             {tableData[0].map((column, index) => (
-                                <TableHeading key={index} data={column} />
+                                <TableHeading
+                                    key={index}
+                                    data={column}
+                                    currentTimeout={currentTimeout}
+                                    setCurrentTimeout={setCurrentTimeout}
+                                    setCopied={setCopied}
+                                />
                             ))}
                         </tr>
                     </thead>
@@ -49,6 +60,12 @@ const Table = ({ tableData, setReverseOrder }: TableProps) => {
                 <div className="peer h-6 w-11 rounded-full bg-neutral-300 after:absolute after:left-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-violet-600 peer-checked:after:translate-x-full peer-checked:after:border-white dark:border-neutral-600 dark:bg-neutral-700"></div>
                 <span className="ml-3 text-sm font-medium">Reverse variable order</span>
             </label>
+
+            <Tooltip
+                delayShow={500}
+                anchorSelect=".expression"
+                content={copied ? "Copied!" : "Copy to clipboard"}
+            />
         </div>
     );
 };
