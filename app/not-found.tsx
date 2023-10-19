@@ -8,12 +8,12 @@ export const metadata: Metadata = {
 const NotFound = () => {
     return (
         <div className="max-w-3xl text-lg">
-            Oops! It seems you've reached a page that doesn't exist. Please check the URL or
+            Oops! It seems you&#039;ve reached a page that doesn&#039;t exist. Please check the URL or
             navigate back to our{" "}
             <Link className="italic" href={"/"}>
                 homepage
             </Link>{" "}
-            to find what you're looking for.
+            to find what you&#039;re looking for.
         </div>
     );
 };
