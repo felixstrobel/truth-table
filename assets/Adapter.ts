@@ -3,14 +3,13 @@ import Parser from "./Parser";
 import ParserError from "./model/ParserError";
 import Term from "./model/term/Term";
 
-export type TableFormat =
-    | {
-          [x: string]: {
-              value: boolean;
-              type: "variable" | "expression";
-          };
-      }[]
-    | ParserError;
+export type TableDataType = {
+    expression: string;
+    value: boolean;
+    type: "variable" | "expression";
+};
+export type TableRowType = TableDataType[];
+export type TableFormat = TableRowType[] | ParserError;
 
 export const evaluate = (input: string, reverseSorting: boolean = false): TableFormat => {
     const expressions = input.split(",");
@@ -78,19 +77,22 @@ function generateTable(
     const data: TableFormat = [];
 
     for (const constants of generator) {
-        let row: {
-            [x: string]: {
-                value: boolean;
-                type: "variable" | "expression";
-            };
-        } = {};
+        let row: TableRowType = [];
 
         for (const [key, val] of constants) {
-            row[key] = { value: val, type: "variable" };
+            row.push({
+                expression: key,
+                value: val,
+                type: "variable",
+            });
         }
 
         for (const term of terms) {
-            row[term.toString()] = { value: term.eval(constants), type: "expression" };
+            row.push({
+                expression: term.toString(),
+                value: term.eval(constants),
+                type: "expression",
+            });
         }
 
         data.push(row);

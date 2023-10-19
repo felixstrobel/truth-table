@@ -4,7 +4,7 @@ import { useEffect, useReducer, useState } from "react";
 import { evaluate, TableFormat } from "@/assets/Adapter";
 import ExpressionInputInfoMessage from "@/components/input/ExpressionInputInfoMessage";
 import ExpressionInputQuickButtons from "@/components/input/ExpressionInputQuickButtons";
-import Table from "@/components/Table";
+import Table from "@/components/table/Table";
 import ExpressionInput from "@/components/input/ExpressionInput";
 import Modal from "@/components/HelpModal";
 
