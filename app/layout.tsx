@@ -56,8 +56,19 @@ export const metadata: Metadata = {
         canonical: "https://truth-table.com",
         languages: { en: "https://truth-table.com" },
     },
-    // icons: [], TODO: here the different sizes for the favicon
-    manifest: "/manifest.json", //TODO: check if generation is valid
+    icons: [
+        { href: "/icon-16.png", url: "/icon-16.png", sizes: "16x16", type: "image/png" },
+        { href: "/icon-32.png", url: "/icon-32.png", sizes: "32x32", type: "image/png" },
+        { href: "/icon-48.png", url: "/icon-48.png", sizes: "48x48", type: "image/png" },
+        { href: "/icon-96.png", url: "/icon-96.png", sizes: "96x96", type: "image/png" },
+        { href: "/icon-144.png", url: "/icon-144.png", sizes: "144x144", type: "image/png" },
+        { href: "/icon-152.png", url: "/icon-152.png", sizes: "152x152", type: "image/png" },
+        { href: "/icon-192.png", url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+        { href: "/icon-256.png", url: "/icon-256.png", sizes: "256x256", type: "image/png" },
+        { href: "/icon-384.png", url: "/icon-384.png", sizes: "384x384", type: "image/png" },
+        { href: "/icon-512.png", url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    manifest: "/manifest.json",
     openGraph: {
         type: "website",
         title: "Truth Table Generator",
@@ -76,7 +87,7 @@ export const metadata: Metadata = {
     appleWebApp: {
         capable: true,
         title: "Truth Table",
-        startupImage: "/", //TODO: add splash image
+        startupImage: "/icon-256.png",
         statusBarStyle: "black-translucent",
     },
     formatDetection: { telephone: true, date: true, address: true, email: true, url: true },
