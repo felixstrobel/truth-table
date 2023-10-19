@@ -15,14 +15,14 @@ const Page = () => {
     const [modalOpen, setModalOpen] = useState(false);
 
     const [input, setInput] = useReducer((state: string, value: string): string => {
-        location.replace("#" + value);
+        location.replace("#" + encodeURI(value));
         window.localStorage.setItem(process.env.NEXT_PUBLIC_LOCAL_STORAGE_INPUT_KEY!, value);
         return value;
     }, "");
 
     // Try to pre-input the expression by checking URL params and local storage.
     useEffect(() => {
-        const urlHashValue = location.hash.slice(1);
+        const urlHashValue = decodeURI(location.hash.slice(1));
         const localStorageValue = window.localStorage.getItem(
             process.env.NEXT_PUBLIC_LOCAL_STORAGE_INPUT_KEY!
         );
