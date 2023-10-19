@@ -4,6 +4,8 @@ import TableHeading from "./TableHeading";
 import TableData from "./TableData";
 import { Tooltip } from "react-tooltip";
 import { useState } from "react";
+import { useTheme } from "next-themes";
+import { UseThemeProps } from "next-themes/dist/types";
 
 interface TableProps {
     tableData: TableFormat;
@@ -11,6 +13,7 @@ interface TableProps {
 }
 
 const Table = ({ tableData, setReverseOrder }: TableProps) => {
+    const { theme }: UseThemeProps = useTheme();
     const [copied, setCopied] = useState(false);
     const [currentTimeout, setCurrentTimeout] = useState<NodeJS.Timeout>();
 
@@ -62,6 +65,7 @@ const Table = ({ tableData, setReverseOrder }: TableProps) => {
             </label>
 
             <Tooltip
+                variant={theme === "light" ? "light" : "dark"}
                 delayShow={500}
                 anchorSelect=".expression"
                 content={copied ? "Copied!" : "Copy to clipboard"}
