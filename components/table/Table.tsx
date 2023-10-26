@@ -64,12 +64,12 @@ const Table = ({ tableData, setReverseOrder }: TableProps) => {
                 <span className="ml-3 text-sm font-medium">Reverse variable order</span>
             </label>
 
-            <Tooltip
+            {/* <Tooltip
                 variant={theme === "light" ? "light" : "dark"}
                 delayShow={500}
                 anchorSelect=".expression"
                 content={copied ? "Copied!" : "Copy to clipboard"}
-            />
+            /> */}
         </div>
     );
 };

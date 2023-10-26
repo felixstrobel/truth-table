@@ -37,12 +37,12 @@ const ExpressionInput = ({ input, setInput, openHelpModal }: ExpressionInputProp
                 >
                     <TrashIcon className="h-6 w-6" />
                 </button>
-                <Tooltip
+                {/* <Tooltip
                     variant={theme === "light" ? "light" : "dark"}
                     delayShow={500}
                     anchorSelect="#clearInputButton"
                     content="Clear input"
-                />
+                /> */}
 
                 <button
                     id="copyInputButton"
@@ -54,12 +54,12 @@ const ExpressionInput = ({ input, setInput, openHelpModal }: ExpressionInputProp
                     <CopyIcon className="h-6 w-6" />
                 </button>
                 {/* TODO change text of tooltip to "Copied!" if expression copied (see table heading) */}
-                <Tooltip
+                {/* <Tooltip
                     variant={theme === "light" ? "light" : "dark"}
                     delayShow={500}
                     anchorSelect="#copyInputButton"
                     content="Copy expression"
-                />
+                /> */}
             </div>
             <button
                 id="openHelpModalButton"
@@ -68,12 +68,12 @@ const ExpressionInput = ({ input, setInput, openHelpModal }: ExpressionInputProp
             >
                 <InfoIcon className="h-7 w-7" />
             </button>
-            <Tooltip
+            {/* <Tooltip
                 variant={theme === "light" ? "light" : "dark"}
                 delayShow={500}
                 anchorSelect="#openHelpModalButton"
                 content="Show input syntax"
-            />
+            /> */}
         </div>
     );
 };

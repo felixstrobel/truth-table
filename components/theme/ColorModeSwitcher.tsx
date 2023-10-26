@@ -34,12 +34,12 @@ const ColorModeSwitcher = ({ className }: ColorModeSwitcherProps) => {
                 )}
             </button>
 
-            <Tooltip
+            {/* <Tooltip
                 variant={theme === "light" ? "light" : "dark"}
                 delayShow={500}
                 anchorSelect="#color-switcher"
                 content={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
-            />
+            /> */}
         </>
     );
 };
