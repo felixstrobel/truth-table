@@ -2,7 +2,7 @@ import "./globals.css";
 
 import React from "react";
 import { URL } from "url";
-import { Metadata } from "next";
+import { Metadata, Viewport } from "next";
 import Footer from "@/components/layout/Footer";
 import ScrollToTopButton from "@/components/layout/ScrollToTopButton";
 import { Comfortaa } from "next/font/google";
@@ -47,8 +47,6 @@ export const metadata: Metadata = {
         "truth table generator for boolean algebra",
     ],
     referrer: "strict-origin-when-cross-origin",
-    themeColor: "#171717", // Equivalent to "neutral-900"
-    viewport: { width: "device-width", initialScale: 1 },
     creator: "truth-table.com Team",
     publisher: "truth-table.com Team",
     robots: { index: true, follow: true },
@@ -120,6 +118,12 @@ export const metadata: Metadata = {
         statusBarStyle: "black-translucent",
     },
     formatDetection: { telephone: true, date: true, address: true, email: true, url: true },
+};
+
+export const viewport: Viewport = {
+    themeColor: "#171717", // Equivalent to "neutral-900"
+    width: "device-width",
+    initialScale: 1,
 };
 
 const comfortaa: NextFontWithVariable = Comfortaa({
