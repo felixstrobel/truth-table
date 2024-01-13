@@ -10,7 +10,7 @@ import { NextFontWithVariable } from "next/dist/compiled/@next/font";
 import Link from "next/link";
 import ColorModeProvider from "@/components/theme/ColorModeProvider";
 import ColorModeSwitcher from "@/components/theme/ColorModeSwitcher";
-import PlausibleProvider from "next-plausible";
+// import PlausibleProvider from "next-plausible";
 
 export const metadata: Metadata = {
     metadataBase: new URL("https://truth-table.com"),
@@ -136,32 +136,32 @@ const RootLayout = ({ children }: RootLayoutProps) => {
     return (
         <html lang="en" className={`${comfortaa.variable}`} suppressHydrationWarning>
             <body className="flex min-h-screen flex-col font-comfortaa">
-                <PlausibleProvider domain="truth-table.com">
-                    <ColorModeProvider>
-                        <header className="mx-auto mb-6 mt-4 grid w-full max-w-7xl grid-cols-3 grid-rows-1 px-4 sm:px-6 lg:mb-16 lg:mt-8 lg:px-8">
-                            <div></div>
+                {/* <PlausibleProvider domain="truth-table.com"> */}
+                <ColorModeProvider>
+                    <header className="mx-auto mb-6 mt-4 grid w-full max-w-7xl grid-cols-3 grid-rows-1 px-4 sm:px-6 lg:mb-16 lg:mt-8 lg:px-8">
+                        <div></div>
 
-                            <div className="self-center justify-self-center md:self-start">
-                                <Link
-                                    href="/"
-                                    className="select-none whitespace-nowrap text-3xl dark:text-neutral-100 sm:text-5xl md:text-7xl"
-                                >
-                                    <h1>Truth Table</h1>
-                                </Link>
-                            </div>
+                        <div className="self-center justify-self-center md:self-start">
+                            <Link
+                                href="/"
+                                className="select-none whitespace-nowrap text-3xl dark:text-neutral-100 sm:text-5xl md:text-7xl"
+                            >
+                                <h1>Truth Table</h1>
+                            </Link>
+                        </div>
 
-                            <ColorModeSwitcher className="self-center justify-self-end" />
-                        </header>
-                        <main className="max-w-7xl flex-1 px-4 sm:px-6 md:mx-auto lg:px-8">
-                            {children}
-                        </main>
-                        <footer className="mx-auto mb-8 mt-12 w-full max-w-7xl flex-shrink-0 px-4 sm:px-6 md:mb-4 lg:px-8">
-                            <Footer />
-                        </footer>
+                        <ColorModeSwitcher className="self-center justify-self-end" />
+                    </header>
+                    <main className="max-w-7xl flex-1 px-4 sm:px-6 md:mx-auto lg:px-8">
+                        {children}
+                    </main>
+                    <footer className="mx-auto mb-8 mt-12 w-full max-w-7xl flex-shrink-0 px-4 sm:px-6 md:mb-4 lg:px-8">
+                        <Footer />
+                    </footer>
 
-                        <ScrollToTopButton />
-                    </ColorModeProvider>
-                </PlausibleProvider>
+                    <ScrollToTopButton />
+                </ColorModeProvider>
+                {/* </PlausibleProvider> */}
             </body>
         </html>
     );
