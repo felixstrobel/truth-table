@@ -12,25 +12,25 @@
     "node": ">=16.8.0"
   },
   "dependencies": {
-    "@types/node": "20.8.6",
-    "@types/react": "18.2.28",
-    "@types/react-dom": "18.2.13",
+    "@types/node": "20.11.0",
+    "@types/react": "18.2.47",
+    "@types/react-dom": "18.2.18",
     "autoprefixer": "10.4.16",
-    "clsx": "^2.0.0",
-    "eslint": "8.51.0",
-    "eslint-config-next": "13.5.5",
-    "next": "^13.5.5",
-    "next-plausible": "^3.11.2",
+    "clsx": "^2.1.0",
+    "eslint": "8.56.0",
+    "eslint-config-next": "14.0.4",
+    "next": "^14.0.4",
+    "next-plausible": "^3.12.0",
     "next-themes": "^0.2.1",
-    "postcss": "^8.4.31",
+    "postcss": "^8.4.33",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-tooltip": "^5.21.5",
-    "tailwindcss": "3.3.3",
-    "typescript": "5.2.2"
+    "react-tooltip": "^5.25.1",
+    "tailwindcss": "3.4.1",
+    "typescript": "5.3.3"
   },
   "devDependencies": {
-    "prettier": "^3.0.3",
-    "prettier-plugin-tailwindcss": "^0.5.6"
+    "prettier": "^3.2.1",
+    "prettier-plugin-tailwindcss": "^0.5.11"
   }
 }
