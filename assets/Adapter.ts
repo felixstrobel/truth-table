@@ -90,7 +90,9 @@ function generateTable(
         for (const term of terms) {
             // remove brackets at start and the end
             let expression = term.toString();
-            expression = expression.slice(1, expression.length - 1);
+            if (expression.startsWith("(") && expression.endsWith(")")) {
+                expression = expression.slice(1, expression.length - 1);
+            }
 
             row.push({
                 expression: expression,
